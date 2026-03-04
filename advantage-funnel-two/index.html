@@ -1047,7 +1047,7 @@ async function submitForm(e){
     tags:['Funnel-2 | Credit Interest','Advantage Lead',f.selectedPlan.value+' Plan'],
     timestamp:new Date().toISOString()
   };
-  try{ await fetch(GHL_WEBHOOK_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload),mode:'no-cors'}); }
+  try{ await fetch(GHL_WEBHOOK_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)}); }
   catch(err){ console.warn('GHL:',err.message); }
   document.getElementById('lead-form').style.display='none';
   document.getElementById('success-box').style.display='block';
