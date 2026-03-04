@@ -1264,6 +1264,34 @@ body{background:var(--navy);color:var(--white);font-family:var(--font);overflow-
 
 <script>
 const GHL_WEBHOOK_URL = 'https://services.leadconnectorhq.com/hooks/zrzOGclvAYraeKbgXPY1/webhook-trigger/53764181-af3d-45f8-930a-817745cb8aec';
+const GHL_ABANDON_URL = 'https://services.leadconnectorhq.com/hooks/zrzOGclvAYraeKbgXPY1/webhook-trigger/7375944f-cd42-4590-8227-80d798545246';
+
+document.addEventListener('DOMContentLoaded', function(){
+  const emailField = document.querySelector('input[name="email"]');
+  if(!emailField) return;
+  let abandonFired = false;
+  emailField.addEventListener('blur', async function(){
+    if(abandonFired) return;
+    const email = emailField.value.trim();
+    if(!email || !email.includes('@')) return;
+    abandonFired = true;
+    const f = emailField.closest('form');
+    const payload = {
+      firstName:    f && f.firstName    ? f.firstName.value    : '',
+      lastName:     f && f.lastName     ? f.lastName.value     : '',
+      email:        email,
+      phone:        f && f.phone        ? f.phone.value        : '',
+      selectedPlan: f && f.selectedPlan ? f.selectedPlan.value : '',
+      planPrice:    f && f.planPrice    ? f.planPrice.value    : '',
+      funnelSource: 'Funnel-1-Fear-Homeowner',
+      abandonStage: 'email',
+      tags: ['Abandoned Form', 'Funnel Abandonment', 'Funnel-1 | Fear-Homeowner'],
+      timestamp: new Date().toISOString()
+    };
+    try{ await fetch(GHL_ABANDON_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)}); }
+    catch(err){ console.warn('Abandon GHL:', err.message); }
+  });
+});
 let currentPanel = 1;
 let plan = {name:'Advanced', price:199, detail:'2 Bi-Annual Inspections · Priority Response'};
 
