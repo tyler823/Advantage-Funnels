@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Mr. Restore Advantage | Commercial Protection Program</title>
+<link rel="preconnect" href="https://fonts.cdnfonts.com"/>
+<link href="https://fonts.cdnfonts.com/css/open-sauce-one" rel="stylesheet"/>
+<style>
+/* ============================================================
+   BRAND PALETTE — Mr. Restore Brand Guide
+   Deep Sea Navy #0d2442 · Washed Black #272727 · Bright Red #ff3131 · Royal Blue #3828eb
+   Font: Open Sauce One
+   ============================================================ */
+:root{
+  --navy:#0d2442; --navy2:#0a1d38; --navy3:#0f2d52;
+  --black:#272727; --black2:#1e1e1e;
+  --red:#ff3131; --red2:#e01c1c;
+  --blue:#3828eb; --blue2:#2a1dc7;
+  --white:#ffffff; --off:#d6e0ef; --muted:#8fa8c4;
+  --font:'Open Sauce One','Nunito',sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--black);color:var(--white);font-family:var(--font);overflow-x:hidden}
+
+/* ── NAV ── */
+.topnav{
+  position:fixed;top:0;left:0;right:0;z-index:200;
+  background:var(--black2);
+  border-bottom:1px solid rgba(255,255,255,.08);
+  border-bottom-width:0;
+  height:56px;display:flex;align-items:center;padding:0 32px;
+  box-shadow:0 2px 0 var(--red);
+}
+.nav-logo{font-size:17px;font-weight:700;color:var(--white);letter-spacing:.5px;margin-right:auto}
+.nav-logo span{color:var(--red)}
+.nav-steps{display:flex;gap:0}
+.nav-step{
+  padding:0 18px;height:56px;display:flex;align-items:center;gap:8px;
+  font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);
+  border-top:3px solid transparent;transition:all .2s;cursor:pointer;
+}
+.nav-step.active{color:var(--white);border-top-color:var(--red)}
+.nav-step.done{color:var(--muted);border-top-color:rgba(255,49,49,.3)}
+.step-pip{
+  width:22px;height:22px;border-radius:50%;
+  background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);
+  display:flex;align-items:center;justify-content:center;
+  font-size:11px;font-weight:700;transition:all .2s;
+}
+.nav-step.active .step-pip{background:var(--red);border-color:var(--red)}
+.nav-step.done .step-pip{background:rgba(255,49,49,.15);border-color:var(--red);color:var(--red)}
+
+/* ── PANELS ── */
+.panel{display:none;min-height:100vh;padding-top:56px}
+.panel.active{display:block}
+
+/* ══════════════════════════════════════
+   PANEL 1 — AWARENESS
+══════════════════════════════════════ */
+#panel-1{
+  background:
+    repeating-linear-gradient(90deg,transparent,transparent 99px,rgba(255,255,255,.015) 100px),
+    var(--black);
+}
+
+.hero-band{
+  max-width:1060px;margin:0 auto;padding:72px 40px 60px;
+  display:grid;grid-template-columns:1fr 380px;gap:64px;align-items:center;
+}
+.hero-tag{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:6px 12px 6px 6px;background:rgba(255,49,49,.1);
+  border-left:3px solid var(--red);
+  font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--red);
+  margin-bottom:28px;
+}
+.pulse{width:6px;height:6px;border-radius:50%;background:var(--red);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.6);opacity:.5}}
+
+.hero-band h1{
+  font-size:clamp(36px,4.5vw,64px);font-weight:700;
+  line-height:1.02;letter-spacing:-1px;margin-bottom:24px;
+}
+.hero-band h1 em{color:var(--red);font-style:normal;display:block}
+.hero-band .lead{font-size:16px;color:var(--off);line-height:1.8;margin-bottom:36px;max-width:540px}
+.hero-band .lead strong{color:var(--white);font-weight:700}
+
+/* biz type pills */
+.biz-types{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:36px}
+.biz-pill{
+  padding:7px 14px;border:1px solid rgba(255,255,255,.12);
+  font-size:12px;color:var(--muted);transition:all .2s;
+}
+.biz-pill:hover{border-color:var(--red);color:var(--white)}
+
+.btn-red{
+  display:inline-flex;align-items:center;gap:10px;
+  background:var(--red);color:var(--white);
+  font-family:var(--font);font-weight:700;font-size:16px;
+  letter-spacing:.5px;padding:16px 36px;border:none;cursor:pointer;
+  text-transform:uppercase;transition:background .2s,transform .15s;
+}
+.btn-red:hover{background:var(--red2);transform:translateY(-2px)}
+.btn-outline{
+  display:inline-flex;align-items:center;gap:8px;background:transparent;
+  color:var(--off);font-family:var(--font);font-size:13px;padding:14px 22px;
+  border:1px solid rgba(255,255,255,.15);cursor:pointer;
+  text-transform:uppercase;letter-spacing:.5px;transition:all .2s;
+}
+.btn-outline:hover{border-color:var(--white);color:var(--white)}
+.btn-row{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+
+/* cost panel */
+.cost-panel{background:var(--navy);border:1px solid rgba(255,255,255,.08);overflow:hidden}
+.cp-head{background:var(--red);padding:16px 24px}
+.cp-head p{font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase}
+.cp-body{padding:28px 24px}
+.cp-row{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:11px 0;border-bottom:1px solid rgba(255,255,255,.06);font-size:13px;
+}
+.cp-row:last-of-type{border-bottom:none}
+.cp-row .lbl{color:var(--muted)}
+.cp-row .val{font-weight:700;color:var(--white)}
+.cp-row .val.r{color:var(--red)}
+.cp-total{font-size:40px;font-weight:700;color:var(--red);text-align:center;margin:14px 0 4px}
+.cp-total-lbl{font-size:11px;color:var(--muted);text-align:center;letter-spacing:1px;text-transform:uppercase;margin-bottom:18px}
+.cp-cta{
+  display:block;width:100%;padding:13px;background:var(--blue);
+  color:var(--white);border:none;font-family:var(--font);font-weight:700;
+  font-size:14px;cursor:pointer;text-transform:uppercase;letter-spacing:.5px;
+  transition:background .2s;
+}
+.cp-cta:hover{background:var(--blue2)}
+
+/* impact row */
+.impact-row{
+  background:var(--navy2);
+  border-top:1px solid rgba(255,255,255,.05);
+  padding:28px 40px;
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:1px;
+  background:var(--black2);
+}
+.impact-row{max-width:100%;background:var(--black2)}
+.ir-inner{max-width:1060px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(255,255,255,.06)}
+.ir-stat{background:var(--black2);padding:24px 20px;text-align:center}
+.ir-val{font-size:34px;font-weight:700;color:var(--red);display:block;line-height:1;margin-bottom:6px}
+.ir-lbl{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px}
+
+/* EDUCATION */
+.edu{background:var(--navy);padding:72px 40px}
+.edu-inner{max-width:1060px;margin:0 auto}
+.section-tag{
+  font-size:11px;letter-spacing:3px;text-transform:uppercase;
+  color:var(--red);margin-bottom:16px;
+  display:flex;align-items:center;gap:10px;
+}
+.section-tag::after{content:'';width:40px;height:1px;background:var(--red);opacity:.5}
+.edu-inner h2{font-size:clamp(26px,3.5vw,44px);font-weight:700;letter-spacing:-0.5px;margin-bottom:14px}
+.edu-inner h2 em{color:var(--red);font-style:normal}
+.edu-inner .sub{font-size:15px;color:var(--off);line-height:1.8;max-width:640px;margin-bottom:48px}
+
+.scenario-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(255,255,255,.06)}
+.sc-card{background:var(--navy);padding:32px 26px;border-bottom:3px solid transparent;transition:all .2s}
+.sc-card:hover{background:var(--navy3);border-bottom-color:var(--red)}
+.sc-icon{margin-bottom:14px;display:block}
+.sc-icon svg{stroke:var(--red);opacity:.9}
+.sc-card h3{font-size:16px;font-weight:700;margin-bottom:8px}
+.sc-card p{font-size:13px;color:var(--muted);line-height:1.7}
+.sc-impact{
+  margin-top:14px;padding:10px 12px;
+  background:rgba(255,49,49,.08);border-left:2px solid var(--red);
+  font-size:12px;color:var(--off);line-height:1.5;
+}
+
+/* proof */
+.proof{background:var(--black2);padding:72px 40px}
+.proof-inner{max-width:1060px;margin:0 auto}
+.ph{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:36px;flex-wrap:wrap;gap:16px}
+.ph h2{font-size:clamp(24px,3vw,38px);font-weight:700;letter-spacing:-0.5px}
+.stars{color:#f5c842;font-size:17px;letter-spacing:2px}
+.reviews{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:32px}
+.rv{background:var(--navy);border:1px solid rgba(255,255,255,.06);padding:26px 22px}
+.rv-stars{color:#f5c842;font-size:13px;margin-bottom:10px}
+.rv-text{font-size:13px;color:var(--off);line-height:1.75;margin-bottom:14px;font-style:italic}
+.rv-attr{display:flex;align-items:center;gap:10px}
+.av{width:34px;height:34px;border-radius:50%;background:var(--blue);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0}
+.rv-name{font-size:12px;font-weight:700}
+.rv-role{font-size:11px;color:var(--muted)}
+
+.tape{background:var(--navy2);border-top:1px solid rgba(255,255,255,.05);padding:10px 0;overflow:hidden;white-space:nowrap}
+.tape-inner{display:inline-block;animation:scroll 22s linear infinite;font-size:11px;letter-spacing:3px;text-transform:uppercase;font-weight:700;color:var(--muted)}
+@keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ══════════════════════════════════════
+   PANEL 2 — CONSIDERATION
+══════════════════════════════════════ */
+#panel-2{background:var(--navy2)}
+
+.section-center{text-align:center;padding:72px 40px 48px}
+.sc-tag{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--red);margin-bottom:16px}
+.section-center h2{font-size:clamp(28px,4vw,48px);font-weight:700;letter-spacing:-0.5px;margin-bottom:14px}
+.section-center h2 em{color:var(--red);font-style:normal}
+.section-center p{font-size:15px;color:var(--off);line-height:1.75;max-width:580px;margin:0 auto}
+
+/* included grid */
+.included{padding:0 40px 48px;max-width:1060px;margin:0 auto}
+.included h3{font-size:20px;font-weight:700;margin-bottom:28px}
+.inc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(255,255,255,.06);margin-bottom:48px}
+.inc{background:var(--navy2);padding:30px 24px;transition:background .2s}
+.inc:hover{background:rgba(255,49,49,.06)}
+.inc-icon{margin-bottom:12px;display:block}
+.inc-icon svg{stroke:var(--red);opacity:.9}
+.inc h4{font-size:15px;font-weight:700;margin-bottom:8px}
+.inc p{font-size:13px;color:var(--muted);line-height:1.7}
+
+/* commercial plans */
+.com-plans{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:40px}
+.com-plan{
+  background:var(--black);border:1px solid rgba(255,255,255,.07);
+  padding:34px 26px;cursor:pointer;
+  transition:border-color .2s,transform .2s;position:relative;
+}
+.com-plan:hover{border-color:rgba(255,49,49,.5);transform:translateY(-3px)}
+.com-plan.featured{border-color:var(--red);background:linear-gradient(170deg,rgba(255,49,49,.06) 0%,var(--black) 60%)}
+.com-badge{
+  position:absolute;top:-1px;left:-1px;right:-1px;
+  background:var(--red);color:var(--white);text-align:center;
+  font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:7px;
+}
+.com-name{font-size:22px;font-weight:700;margin-bottom:4px}
+.com-plan.featured .com-name{margin-top:22px}
+.com-tag{font-size:12px;color:var(--muted);margin-bottom:18px}
+.com-price{font-size:14px;color:var(--muted);margin-bottom:4px;text-transform:uppercase;letter-spacing:.5px}
+.com-price-val{font-size:42px;font-weight:700;line-height:1;margin-bottom:4px}
+.com-price-val sup{font-size:20px;vertical-align:super;color:var(--red)}
+.com-mo{font-size:13px;color:var(--muted);margin-bottom:16px}
+.com-note{
+  background:rgba(255,49,49,.08);border-left:2px solid var(--red);
+  padding:10px 13px;font-size:12px;color:var(--off);line-height:1.5;margin-bottom:18px;
+}
+.com-note strong{color:var(--red)}
+.com-features{list-style:none;margin-bottom:22px}
+.com-features li{
+  display:flex;align-items:flex-start;gap:8px;font-size:13px;
+  color:var(--muted);padding:6px 0;
+  border-bottom:1px solid rgba(255,255,255,.04);line-height:1.5;
+}
+.com-features li:last-child{border-bottom:none}
+.com-features li::before{content:'→';color:var(--red);font-size:12px;margin-top:1px;flex-shrink:0}
+.com-btn{
+  width:100%;padding:13px;background:transparent;
+  border:1px solid rgba(255,255,255,.15);color:var(--white);
+  font-family:var(--font);font-weight:700;font-size:14px;
+  cursor:pointer;text-transform:uppercase;letter-spacing:.5px;transition:all .2s;
+}
+.com-plan.featured .com-btn{background:var(--red);border-color:var(--red)}
+.com-btn:hover{background:var(--red);border-color:var(--red)}
+
+/* segment table */
+.segment-section{background:var(--black);padding:72px 40px}
+.ss-inner{max-width:1060px;margin:0 auto}
+.ss-inner h2{font-size:clamp(24px,3vw,38px);font-weight:700;letter-spacing:-0.5px;margin-bottom:10px}
+.ss-inner .sub{font-size:14px;color:var(--muted);margin-bottom:32px}
+.seg-table{width:100%;border-collapse:collapse}
+.seg-table th{
+  text-align:left;padding:13px 18px;font-size:10px;
+  letter-spacing:2px;text-transform:uppercase;color:var(--muted);
+  background:var(--navy);border-bottom:2px solid var(--red);
+}
+.seg-table th.hl{color:var(--white);background:var(--red)}
+.seg-table td{
+  padding:14px 18px;font-size:13px;
+  border-bottom:1px solid rgba(255,255,255,.05);
+  vertical-align:middle;color:var(--muted);
+}
+.seg-table td:first-child{color:var(--white);font-weight:600}
+.seg-table td.hl{background:rgba(255,49,49,.04);color:var(--off)}
+.seg-table tr:last-child td{border-bottom:none}
+
+/* FAQ */
+.faq-section{background:var(--navy3);padding:72px 40px}
+.faq-inner{max-width:800px;margin:0 auto}
+.faq-hdr h2{font-size:clamp(24px,3vw,38px);font-weight:700;letter-spacing:-0.5px;margin-bottom:32px}
+.faq-item{border-bottom:1px solid rgba(255,255,255,.07);overflow:hidden}
+.faq-q{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:18px 0;cursor:pointer;font-size:15px;font-weight:700;color:var(--white);
+  gap:16px;background:none;border:none;width:100%;text-align:left;
+  font-family:var(--font);transition:color .2s;
+}
+.faq-q:hover{color:var(--red)}
+.faq-icon{font-size:20px;color:var(--red);flex-shrink:0;transition:transform .2s}
+.faq-item.open .faq-icon{transform:rotate(45deg)}
+.faq-a{font-size:14px;color:var(--muted);line-height:1.8;max-height:0;overflow:hidden;transition:max-height .35s ease,padding .2s}
+.faq-item.open .faq-a{max-height:200px;padding:0 0 18px}
+
+/* ══════════════════════════════════════
+   PANEL 3 — CONVERSION
+══════════════════════════════════════ */
+#panel-3{background:var(--navy)}
+
+.conv-wrap{
+  max-width:1060px;margin:0 auto;padding:72px 40px 80px;
+  display:grid;grid-template-columns:1fr 440px;gap:64px;align-items:start;
+}
+.conv-left .tag{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--red);margin-bottom:16px}
+.conv-left h2{font-size:clamp(28px,4vw,48px);font-weight:700;letter-spacing:-0.5px;line-height:1.05;margin-bottom:16px}
+.conv-left h2 em{color:var(--red);font-style:normal}
+.conv-left .cbody{font-size:15px;color:var(--off);line-height:1.8;margin-bottom:32px}
+
+.sel-plan{
+  background:var(--black);border:1px solid rgba(255,49,49,.25);
+  padding:16px 20px;display:flex;align-items:center;
+  justify-content:space-between;margin-bottom:6px;gap:12px;
+}
+.sp-name{font-size:18px;font-weight:700}
+.sp-detail{font-size:11px;color:var(--muted)}
+.sp-price{font-size:26px;font-weight:700;color:var(--red);flex-shrink:0}
+.change-btn{
+  font-size:11px;color:var(--muted);text-decoration:underline;
+  cursor:pointer;border:none;background:none;font-family:var(--font);
+  margin-bottom:28px;display:block;
+}
+
+.steps-list{list-style:none;margin-bottom:0}
+.sl-item{display:flex;gap:14px;align-items:flex-start;padding:14px 0;border-bottom:1px solid rgba(255,255,255,.06)}
+.sl-item:last-child{border-bottom:none}
+.sl-num{
+  width:28px;height:28px;border-radius:50%;border:1px solid var(--red);
+  color:var(--red);display:flex;align-items:center;justify-content:center;
+  font-size:12px;font-weight:700;flex-shrink:0;
+}
+.sl-title{font-size:14px;font-weight:700;margin-bottom:3px}
+.sl-body{font-size:12px;color:var(--muted);line-height:1.6}
+
+/* form */
+.form-box{background:var(--black);border:1px solid rgba(255,255,255,.08);padding:36px 32px}
+.fb-top{
+  background:var(--red);margin:-36px -32px 24px;
+  padding:14px 22px;display:flex;align-items:center;justify-content:space-between;
+}
+.fbt-name{font-size:15px;font-weight:700}
+.fbt-price{font-size:18px;font-weight:700}
+.fb-chg{
+  font-size:11px;color:rgba(255,255,255,.55);text-decoration:underline;
+  cursor:pointer;border:none;background:none;font-family:var(--font);
+  margin-bottom:20px;display:block;
+}
+.form-box h3{font-size:20px;font-weight:700;margin-bottom:5px}
+.form-box .fsub{font-size:13px;color:var(--muted);margin-bottom:22px}
+
+.lead-form{display:flex;flex-direction:column;gap:12px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:11px}
+.fg{display:flex;flex-direction:column;gap:5px}
+.fg label{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted)}
+.fg input,.fg select,.fg textarea{
+  background:var(--navy);border:1px solid rgba(255,255,255,.1);
+  color:var(--white);padding:12px 13px;
+  font-family:var(--font);font-size:13px;
+  outline:none;transition:border-color .2s;
+  width:100%;appearance:none;-webkit-appearance:none;
+}
+.fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--red)}
+.fg select option{background:var(--black)}
+.fg textarea{resize:vertical;min-height:68px}
+
+.submit-btn{
+  width:100%;padding:17px;background:var(--red);border:none;color:var(--white);
+  font-family:var(--font);font-weight:700;font-size:16px;cursor:pointer;
+  text-transform:uppercase;letter-spacing:.5px;
+  transition:background .2s,transform .15s;margin-top:4px;
+}
+.submit-btn:hover{background:var(--red2);transform:translateY(-2px)}
+.submit-btn:disabled{background:#444;cursor:not-allowed;transform:none}
+.form-note{font-size:10px;color:rgba(143,168,196,.4);text-align:center;margin-top:8px;line-height:1.6}
+
+.success-box{display:none;text-align:center;padding:44px 20px}
+.success-box .ico{display:block;margin-bottom:14px}
+.success-box h2{font-size:26px;font-weight:700;color:var(--red);margin-bottom:10px}
+.success-box p{font-size:14px;color:var(--muted);line-height:1.7}
+
+@media(max-width:900px){
+  .hero-band{grid-template-columns:1fr}
+  .ir-inner{grid-template-columns:repeat(2,1fr)}
+  .scenario-grid{grid-template-columns:1fr}
+  .inc-grid{grid-template-columns:1fr}
+  .reviews{grid-template-columns:1fr}
+  .com-plans{grid-template-columns:1fr}
+  .conv-wrap{grid-template-columns:1fr}
+  .form-row{grid-template-columns:1fr}
+  .nav-steps{display:none}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="topnav">
+  <div class="nav-logo">Mr. Restore <span>Advantage</span></div>
+  <div class="nav-steps">
+    <div class="nav-step active" id="ns1" onclick="goTo(1)"><div class="step-pip">1</div>Risk Assessment</div>
+    <div class="nav-step" id="ns2" onclick="goTo(2)"><div class="step-pip">2</div>Protection Plans</div>
+    <div class="nav-step" id="ns3" onclick="goTo(3)"><div class="step-pip">3</div>Request Quote</div>
+  </div>
+</nav>
+
+<!-- ═══════════════════════════════════
+     PANEL 1 — AWARENESS
+═══════════════════════════════════ -->
+<section class="panel active" id="panel-1">
+
+  <div class="hero-band">
+    <div>
+      <div class="hero-tag"><div class="pulse"></div>Commercial &amp; Multi-Family Property Owners</div>
+      <h1>
+        Water Damage Doesn't Just
+        <em>Damage Property.</em>
+        It Stops Revenue.
+      </h1>
+      <p class="lead">
+        The average commercial water damage event costs <strong>$47,000+</strong> before accounting
+        for business interruption, lost revenue, and tenant disruption. The Mr. Restore Advantage
+        Commercial Program combines <strong>quarterly thermal imaging inspections</strong> and
+        <strong>fully managed repairs</strong> under one monthly membership — so your operation never stops.
+      </p>
+      <div class="biz-types">
+        <span class="biz-pill">Multifamily / Apartments</span>
+        <span class="biz-pill">Medical Offices &amp; Clinics</span>
+        <span class="biz-pill">Retail Storefronts</span>
+        <span class="biz-pill">Hotels &amp; Hospitality</span>
+        <span class="biz-pill">Office Buildings</span>
+        <span class="biz-pill">Restaurants</span>
+        <span class="biz-pill">Industrial Properties</span>
+        <span class="biz-pill">Religious Facilities</span>
+      </div>
+      <div class="btn-row">
+        <button class="btn-red" onclick="goTo(2)">View Commercial Plans →</button>
+        <button class="btn-outline" onclick="goTo(3)">Request a Quote</button>
+      </div>
+    </div>
+    <div>
+      <div class="cost-panel">
+        <div class="cp-head"><p>What an Unprotected Event Costs You</p></div>
+        <div class="cp-body">
+          <div class="cp-row"><span class="lbl">Emergency mitigation</span><span class="val">$8,000–$18,000</span></div>
+          <div class="cp-row"><span class="lbl">Structural drying</span><span class="val">$4,000–$9,000</span></div>
+          <div class="cp-row"><span class="lbl">Mold remediation</span><span class="val">$3,000–$12,000</span></div>
+          <div class="cp-row"><span class="lbl">Contents &amp; equipment</span><span class="val">$2,000–$8,000</span></div>
+          <div class="cp-row"><span class="lbl">Business interruption</span><span class="val r">Unquantifiable</span></div>
+          <div class="cp-total">$47,000+</div>
+          <div class="cp-total-lbl">Average commercial event</div>
+          <button class="cp-cta" onclick="goTo(2)">See Prevention Plans</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- IMPACT ROW -->
+  <div style="background:var(--black2);padding:0 40px">
+    <div class="ir-inner">
+      <div class="ir-stat"><span class="ir-val">$47K+</span><span class="ir-lbl">Avg. commercial event cost</span></div>
+      <div class="ir-stat"><span class="ir-val">48 hrs</span><span class="ir-lbl">Mold begins in untreated moisture</span></div>
+      <div class="ir-stat"><span class="ir-val">60 min</span><span class="ir-lbl">Emergency response DFW</span></div>
+      <div class="ir-stat"><span class="ir-val">100%</span><span class="ir-lbl">Payments become restoration credit</span></div>
+    </div>
+  </div>
+
+  <!-- EDUCATION: BUSINESS SCENARIOS -->
+  <div class="edu">
+    <div class="edu-inner">
+      <div class="section-tag">The Real Business Risk</div>
+      <h2>What Happens to Your Business <em>While You Wait for Repairs?</em></h2>
+      <p class="sub">For residential properties, water damage is traumatic but survivable. For commercial properties, every hour your doors are closed is revenue you can never recover. Here's what each business type faces.</p>
+      <div class="scenario-grid">
+        <div class="sc-card">
+          <span class="sc-icon"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></span>
+          <h3>Medical Offices &amp; Clinics</h3>
+          <p>A ceiling leak or pipe failure can contaminate exam rooms, destroy records, trigger HIPAA compliance reviews, and force patient rescheduling across weeks — not days.</p>
+          <div class="sc-impact">Average closure cost: $15,000–$40,000 in lost appointments + remediation</div>
+        </div>
+        <div class="sc-card">
+          <span class="sc-icon"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 3v18"/><path d="M3 9h6"/><path d="M3 15h6"/><path d="M15 9h3"/><path d="M15 13h3"/><path d="M15 17h3"/></svg></span>
+          <h3>Multifamily / Apartments</h3>
+          <p>A single burst pipe can simultaneously damage multiple units, displace residents, trigger liability exposure, and generate months of negative reviews on every rental platform.</p>
+          <div class="sc-impact">A 12-unit displacement event can cost $60,000+ in remediation + lost rent</div>
+        </div>
+        <div class="sc-card">
+          <span class="sc-icon"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></span>
+          <h3>Retail &amp; Restaurants</h3>
+          <p>Retail closures mean zero revenue. For restaurants, a water event means failed health inspections, inventory loss, equipment damage, and staff disruption — all at once.</p>
+          <div class="sc-impact">Average 3-day closure: $12,000–$25,000 in direct lost revenue</div>
+        </div>
+        <div class="sc-card">
+          <span class="sc-icon"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 22V11l9-9 9 9v11"/><path d="M9 22v-7h6v7"/><path d="M3 11h18"/></svg></span>
+          <h3>Hotels &amp; Hospitality</h3>
+          <p>Water damage on any floor can cascade to rooms below, take entire wings offline, and generate refund obligations and reputation damage through review platforms instantly.</p>
+          <div class="sc-impact">40-room offline event: $30,000–$80,000 in lost room revenue + repairs</div>
+        </div>
+        <div class="sc-card">
+          <span class="sc-icon"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 20a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8l-7 5V8l-7 5V4a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z"/></svg></span>
+          <h3>Industrial &amp; Warehouse</h3>
+          <p>Equipment, inventory, and flooring damage from water events can halt production lines for days or weeks. Supply chain disruption compounds the damage far beyond the physical repairs.</p>
+          <div class="sc-impact">Production line stoppage: $50,000–$200,000+ in lost output</div>
+        </div>
+        <div class="sc-card">
+          <span class="sc-icon"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8"/><path d="M12 17v4"/><path d="M2 10h20"/></svg></span>
+          <h3>Office Buildings</h3>
+          <p>Tenant relations, lease obligations, and liability exposure all converge when a water event forces evacuation. Tenant retention is directly tied to how your building responds.</p>
+          <div class="sc-impact">Tenant departure risk + legal exposure: difficult to quantify but significant</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROOF -->
+  <div class="proof">
+    <div class="proof-inner">
+      <div class="ph">
+        <div>
+          <div class="section-tag">Member Experiences</div>
+          <h2>Commercial Members Across DFW &amp; OKC</h2>
+        </div>
+        <div style="text-align:right"><div class="stars">★★★★★</div><div style="font-size:11px;color:var(--muted)">4.9 / 5 · 1,000+ reviews</div></div>
+      </div>
+      <div class="reviews">
+        <div class="rv">
+          <div class="rv-stars">★★★★★</div>
+          <p class="rv-text">"The thermal imaging on our quarterly inspection found a pinhole leak in the supply line above our server room. Repair cost: $900. Estimated damage if undetected: they said $60,000–$80,000 in equipment and downtime. Zero question this paid for itself."</p>
+          <div class="rv-attr"><div class="av">GT</div><div><div class="rv-name">Greg T.</div><div class="rv-role">Office Building Owner · Addison, TX</div></div></div>
+        </div>
+        <div class="rv">
+          <div class="rv-stars">★★★★★</div>
+          <p class="rv-text">"After a kitchen sprinkler activation during off-hours flooded two floors, Mr. Restore had mitigation equipment running within 55 minutes. As a commercial member, we were first in line. We opened the next morning. Can't say enough about that."</p>
+          <div class="rv-attr"><div class="av">RO</div><div><div class="rv-name">Restaurant Owner</div><div class="rv-role">Commercial Member · Plano, TX</div></div></div>
+        </div>
+        <div class="rv">
+          <div class="rv-stars">★★★★★</div>
+          <p class="rv-text">"We manage 280 units across 4 properties. The Advantage program handles our quarterly inspections across all buildings and the antimicrobial treatment has dramatically reduced our mold-related maintenance calls. The fully managed repair component alone is worth it."</p>
+          <div class="rv-attr"><div class="av">PM</div><div><div class="rv-name">Property Manager</div><div class="rv-role">Multi-Family Member · Frisco, TX</div></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tape">
+    <span class="tape-inner">FULLY MANAGED REPAIRS · THERMAL IMAGING · QUARTERLY INSPECTIONS · PRIORITY RESPONSE · 60 MIN ARRIVAL · IICRC CERTIFIED · DFW · OKC · AMARILLO · FULLY MANAGED REPAIRS · THERMAL IMAGING · QUARTERLY INSPECTIONS · PRIORITY RESPONSE · 60 MIN ARRIVAL · IICRC CERTIFIED · DFW · OKC · AMARILLO ·&nbsp;</span>
+  </div>
+
+</section><!-- /panel-1 -->
+
+<!-- ═══════════════════════════════════
+     PANEL 2 — CONSIDERATION
+═══════════════════════════════════ -->
+<section class="panel" id="panel-2">
+
+  <div class="section-center">
+    <div class="sc-tag">Commercial Plans</div>
+    <h2>Built for <em>Business Continuity</em></h2>
+    <p>Unlike residential plans, every commercial membership includes fully managed repairs — we don't just detect problems, we handle them end-to-end so your business keeps running.</p>
+  </div>
+
+  <div class="included">
+    <h3>What Every Commercial Membership Includes</h3>
+    <div class="inc-grid">
+      <div class="inc"><span class="inc-icon"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 14.76V3.5a2.5 2.5 0 0 0-5 0v11.26a4.5 4.5 0 1 0 5 0z"/></svg></span><h4>Thermal Imaging Inspections</h4><p>Quarterly visits with professional-grade thermal cameras to detect moisture behind walls, under floors, and in ceilings before a crisis.</p></div>
+      <div class="inc"><span class="inc-icon"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></span><h4>Fully Managed Repairs</h4><p>We coordinate and execute all necessary repairs end-to-end. No managing multiple contractors. One call, full resolution.</p></div>
+      <div class="inc"><span class="inc-icon"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span><h4>Antimicrobial Treatment</h4><p>Professional antimicrobial application on every visit prevents mold before it starts — protecting indoor air quality and compliance.</p></div>
+      <div class="inc"><span class="inc-icon"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></span><h4>Priority Emergency Response</h4><p>Commercial members jump the queue. 60-minute average response in DFW. When water is flowing, you are first in line, every time.</p></div>
+      <div class="inc"><span class="inc-icon"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/><line x1="9" y1="12" x2="15" y2="12"/><line x1="9" y1="16" x2="13" y2="16"/></svg></span><h4>Risk Documentation</h4><p>Full property risk report after every inspection — documented evidence for insurance, tenant disputes, and property value maintenance.</p></div>
+      <div class="inc"><span class="inc-icon"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg></span><h4>Credit Accumulation</h4><p>100% of monthly payments accumulate as restoration credit applicable toward any covered loss mitigation or reconstruction work.</p></div>
+    </div>
+
+    <div class="com-plans">
+      <div class="com-plan" onclick="selectPlan('Commercial Standard',499,'Retail / Office / Medical')">
+        <div class="com-name">Commercial</div>
+        <div class="com-tag">Retail, office, and medical storefronts</div>
+        <div class="com-price">Starting at</div>
+        <div class="com-price-val"><sup>$</sup>499</div>
+        <div class="com-mo">per month · 12-month minimum</div>
+        <div class="com-note">Pricing based on <strong>sq. footage, unit count,</strong> and inspection depth.</div>
+        <ul class="com-features">
+          <li>Quarterly Multi-Point Inspections</li>
+          <li>Thermal Imaging Leak Detection</li>
+          <li>Antimicrobial Treatment</li>
+          <li>Fully Managed Repairs</li>
+          <li>Priority Emergency Response</li>
+          <li>Risk Documentation Reports</li>
+        </ul>
+        <button class="com-btn">Get Started →</button>
+      </div>
+      <div class="com-plan featured" onclick="selectPlan('Medical / Practice',499,'Medical Office / Clinic')">
+        <div class="com-badge">Healthcare Specialists</div>
+        <div class="com-name">Medical</div>
+        <div class="com-tag">Clinics, practices, and healthcare facilities</div>
+        <div class="com-price">Starting at</div>
+        <div class="com-price-val"><sup>$</sup>499</div>
+        <div class="com-mo">per month · 12-month minimum</div>
+        <div class="com-note">Tailored for <strong>compliance-sensitive</strong> environments and HIPAA considerations.</div>
+        <ul class="com-features">
+          <li>Quarterly Compliance-Ready Inspections</li>
+          <li>Thermal Imaging Leak Detection</li>
+          <li>Antimicrobial Treatment</li>
+          <li>Fully Managed Repairs</li>
+          <li>Priority Response</li>
+          <li>Risk Documentation</li>
+        </ul>
+        <button class="com-btn">Get Started →</button>
+      </div>
+      <div class="com-plan" onclick="selectPlan('Multi-Family Portfolio',0,'Apartments / Multifamily')">
+        <div class="com-name">Multi-Family</div>
+        <div class="com-tag">Apartment complexes and portfolios</div>
+        <div class="com-price">Custom Pricing</div>
+        <div class="com-price-val" style="font-size:28px;margin-top:4px">Per Portfolio</div>
+        <div class="com-mo" style="margin-bottom:12px">Tailored to your unit count</div>
+        <div class="com-note"><strong>Volume discounts</strong> for multi-property portfolios. Dedicated account manager included.</div>
+        <ul class="com-features">
+          <li>Per-Unit Inspection Scheduling</li>
+          <li>Thermal Imaging at Scale</li>
+          <li>Antimicrobial Treatment</li>
+          <li>Fully Managed Repairs</li>
+          <li>Portfolio-Level Reporting</li>
+          <li>Dedicated Account Manager</li>
+        </ul>
+        <button class="com-btn">Request Quote →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- SEGMENT TABLE -->
+  <div class="segment-section">
+    <div class="ss-inner">
+      <div class="section-tag" style="color:var(--red)">By Business Type</div>
+      <h2>What We Protect for Each Segment</h2>
+      <p class="sub">Our inspection and response protocols are adapted to the specific risks of your industry.</p>
+      <table class="seg-table">
+        <thead>
+          <tr>
+            <th>Property Type</th>
+            <th class="hl">Primary Risk We Address</th>
+            <th>Business Impact Prevented</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Medical Office / Clinic</td><td class="hl">Supply line leaks near records &amp; equipment</td><td>Compliance violations, forced closure</td></tr>
+          <tr><td>Multifamily / Apartments</td><td class="hl">Unit-to-unit water migration, shared walls</td><td>Tenant displacement, liability exposure</td></tr>
+          <tr><td>Restaurant / Food Service</td><td class="hl">Kitchen supply lines, refrigeration drainage</td><td>Health inspection failure, closure</td></tr>
+          <tr><td>Hotel / Hospitality</td><td class="hl">Floor-to-floor pipe failures, HVAC condensate</td><td>Wing closures, refunds, reputation damage</td></tr>
+          <tr><td>Office Building</td><td class="hl">Roof drain backup, ceiling plenum moisture</td><td>Tenant evacuation, lease disputes</td></tr>
+          <tr><td>Industrial / Warehouse</td><td class="hl">Sprinkler system integrity, equipment drainage</td><td>Production stoppage, inventory loss</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- FAQ -->
+  <div class="faq-section">
+    <div class="faq-inner">
+      <div class="faq-hdr">
+        <div class="section-tag" style="color:var(--red)">Commercial Program Questions</div>
+        <h2>Frequently Asked Questions</h2>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">What does "fully managed repairs" mean exactly? <span class="faq-icon">+</span></button>
+        <div class="faq-a">Commercial members don't just receive an inspection report — Mr. Restore coordinates and performs all mitigation and reconstruction work identified in the inspection or arising from a covered event. You deal with one company, one invoice, and one point of contact from detection through completion.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">Why is there a 12-month minimum for commercial plans? <span class="faq-icon">+</span></button>
+        <div class="faq-a">Commercial properties require scheduling coordination across multiple buildings, dedicated account managers, and quarterly inspection routes. The 12-month minimum ensures we can build a meaningful risk baseline for your property and deliver consistent value across the inspection cycle.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">Can we add multiple properties to one account? <span class="faq-icon">+</span></button>
+        <div class="faq-a">Yes. Portfolio accounts with multiple properties qualify for volume discounts and receive a dedicated account manager who coordinates all inspections, reporting, and repair work across your portfolio under a single relationship.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">How is commercial pricing calculated? <span class="faq-icon">+</span></button>
+        <div class="faq-a">Commercial pricing is based on square footage, unit count, number of buildings, travel time to each location, and estimated inspection duration per property. Our commercial account specialists will build a custom proposal after an initial assessment — no obligation.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">Does the credit apply to tenant damage claims? <span class="faq-icon">+</span></button>
+        <div class="faq-a">Credit applies to covered mitigation and reconstruction work performed by Mr. Restore at the enrolled property. It can offset your deductible or direct mitigation costs for covered water, fire, and storm events. Tenant-caused damage or voluntary improvements are not covered under the credit program.</div>
+      </div>
+    </div>
+  </div>
+
+</section><!-- /panel-2 -->
+
+<!-- ═══════════════════════════════════
+     PANEL 3 — CONVERSION
+═══════════════════════════════════ -->
+<section class="panel" id="panel-3">
+  <div class="conv-wrap">
+    <div class="conv-left">
+      <div class="tag">Step 3 — Request Your Commercial Membership</div>
+      <h2>Protect Your Revenue. <em>Start Today.</em></h2>
+      <p class="cbody">Fill out the form and a commercial account specialist will contact you within 24 business hours to build a custom plan, answer questions, and schedule your first complimentary site assessment. No obligation.</p>
+
+      <div class="sel-plan">
+        <div>
+          <div class="sp-name" id="sp-name">Commercial Standard</div>
+          <div class="sp-detail" id="sp-detail">Retail / Office / Medical · From $499/mo</div>
+        </div>
+        <div class="sp-price" id="sp-price">From $499<span style="font-size:14px;color:var(--muted)">/mo</span></div>
+      </div>
+      <button class="change-btn" onclick="goTo(2)">← Change plan type</button>
+
+      <ul class="steps-list">
+        <li class="sl-item"><div class="sl-num">1</div><div><div class="sl-title">Commercial specialist contacts you within 24 hours</div><div class="sl-body">To confirm property details and build your custom proposal.</div></div></li>
+        <li class="sl-item"><div class="sl-num">2</div><div><div class="sl-title">Complimentary site assessment scheduled</div><div class="sl-body">First inspection often within the same week — establishes your property's risk baseline at no cost.</div></div></li>
+        <li class="sl-item"><div class="sl-num">3</div><div><div class="sl-title">Membership activates — credit starts immediately</div><div class="sl-body">Your property is on priority response from day one. Credit accumulates from payment one.</div></div></li>
+      </ul>
+    </div>
+
+    <div>
+      <div class="form-box">
+        <div class="fb-top">
+          <div class="fbt-name" id="fbt-name">Commercial Standard</div>
+          <div class="fbt-price" id="fbt-price">From $499/mo</div>
+        </div>
+        <button class="fb-chg" onclick="goTo(2)">← Change plan type</button>
+
+        <h3>Request My Membership</h3>
+        <p class="fsub">We'll build a custom proposal within 24 business hours.</p>
+
+        <form class="lead-form" id="lead-form" onsubmit="submitForm(event)">
+          <div class="form-row">
+            <div class="fg"><label>First Name *</label><input type="text" name="firstName" placeholder="Robert" required/></div>
+            <div class="fg"><label>Last Name *</label><input type="text" name="lastName" placeholder="Davis" required/></div>
+          </div>
+          <div class="fg"><label>Business Email *</label><input type="email" name="email" placeholder="robert@company.com" required/></div>
+          <div class="fg"><label>Phone Number *</label><input type="tel" name="phone" placeholder="(972) 555-0100" required/></div>
+          <div class="fg"><label>Business / Property Name *</label><input type="text" name="businessName" placeholder="Greenway Medical Group" required/></div>
+          <div class="form-row">
+            <div class="fg"><label>City *</label><input type="text" name="city" placeholder="Plano" required/></div>
+            <div class="fg"><label>State</label><select name="state"><option value="TX">Texas</option><option value="OK">Oklahoma</option><option value="Other">Other</option></select></div>
+          </div>
+          <div class="fg"><label>Property Type *</label>
+            <select name="propertyType" required>
+              <option value="">Select...</option>
+              <option value="Medical Office">Medical Office / Clinic</option>
+              <option value="Retail">Retail Storefront</option>
+              <option value="Office Building">Office Building</option>
+              <option value="Restaurant">Restaurant / Food Service</option>
+              <option value="Multifamily">Multifamily / Apartments</option>
+              <option value="Hotel">Hotel / Hospitality</option>
+              <option value="Industrial">Industrial / Warehouse</option>
+              <option value="Other">Other Commercial</option>
+            </select>
+          </div>
+          <div class="fg"><label>Approx. Square Footage</label>
+            <select name="sqft">
+              <option value="Under 2,500">Under 2,500 sq ft</option>
+              <option value="2,500-10,000">2,500–10,000 sq ft</option>
+              <option value="10,000-50,000">10,000–50,000 sq ft</option>
+              <option value="50,000+">50,000+ sq ft</option>
+            </select>
+          </div>
+          <div class="fg"><label>Additional Notes</label>
+            <textarea name="notes" placeholder="Tell us about your property, any specific concerns, or questions..."></textarea>
+          </div>
+          <input type="hidden" name="selectedPlan" id="h-plan" value="Commercial Standard"/>
+          <input type="hidden" name="planPrice" id="h-price" value="499"/>
+          <input type="hidden" name="funnelSource" value="Funnel-3-Commercial"/>
+          <input type="hidden" name="funnelStage" value="Conversion"/>
+          <input type="hidden" name="contactType" value="Commercial"/>
+
+          <button type="submit" class="submit-btn" id="submit-btn">Request Commercial Membership →</button>
+          <p class="form-note">No obligation. Commercial pricing based on property scope. By submitting you consent to be contacted by Mr. Restore Advantage.</p>
+        </form>
+
+        <div class="success-box" id="success-box">
+          <span class="ico"><svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#4ade80" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></span>
+          <h2>Request Received</h2>
+          <p>A commercial account specialist will contact you within 24 business hours to build your custom proposal and schedule your first site assessment.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+const GHL_WEBHOOK_URL = 'https://YOUR_GHL_WEBHOOK_URL_HERE';
+let currentPanel = 1;
+let plan = {name:'Commercial Standard', price:499, detail:'Retail / Office / Medical'};
+
+function goTo(n){
+  document.getElementById('panel-'+currentPanel).classList.remove('active');
+  document.getElementById('panel-'+n).classList.add('active');
+  currentPanel = n;
+  window.scrollTo({top:0,behavior:'smooth'});
+  ['ns1','ns2','ns3'].forEach((id,i)=>{
+    const el = document.getElementById(id);
+    el.classList.remove('active','done');
+    if(i+1===n) el.classList.add('active');
+    if(i+1<n) el.classList.add('done');
+  });
+}
+
+function selectPlan(name, price, detail){
+  plan = {name, price, detail};
+  document.getElementById('sp-name').textContent = name;
+  document.getElementById('sp-detail').textContent = detail + (price>0 ? ' · From $'+price+'/mo' : ' · Custom Pricing');
+  document.getElementById('sp-price').innerHTML = price>0 ? 'From $'+price+'<span style="font-size:14px;color:var(--muted)">/mo</span>' : 'Custom Quote';
+  document.getElementById('fbt-name').textContent = name;
+  document.getElementById('fbt-price').textContent = price>0 ? 'From $'+price+'/mo' : 'Custom Pricing';
+  document.getElementById('h-plan').value = name;
+  document.getElementById('h-price').value = price;
+  goTo(3);
+}
+
+function toggleFaq(btn){
+  const item = btn.closest('.faq-item');
+  const isOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item.open').forEach(i=>i.classList.remove('open'));
+  if(!isOpen) item.classList.add('open');
+}
+
+async function submitForm(e){
+  e.preventDefault();
+  const btn = document.getElementById('submit-btn');
+  btn.disabled=true; btn.textContent='Submitting...';
+  const f = e.target;
+  const payload = {
+    firstName:f.firstName.value, lastName:f.lastName.value,
+    email:f.email.value, phone:f.phone.value,
+    businessName:f.businessName.value,
+    city:f.city.value, state:f.state.value,
+    propertyType:f.propertyType.value, sqft:f.sqft.value,
+    notes:f.notes.value,
+    selectedPlan:f.selectedPlan.value, planPrice:f.planPrice.value,
+    funnelSource:f.funnelSource.value, funnelStage:'Conversion',
+    contactType:'Commercial',
+    tags:['Funnel-3 | Commercial','Commercial Lead',f.propertyType.value,f.selectedPlan.value],
+    timestamp:new Date().toISOString()
+  };
+  try{ await fetch(GHL_WEBHOOK_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload),mode:'no-cors'}); }
+  catch(err){ console.warn('GHL:',err.message); }
+  document.getElementById('lead-form').style.display='none';
+  document.getElementById('success-box').style.display='block';
+}
+</script>
+</body>
+</html>
