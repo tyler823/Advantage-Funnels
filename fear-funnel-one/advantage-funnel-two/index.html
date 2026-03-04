@@ -1,0 +1,1060 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Mr. Restore Advantage | Your Monthly Payment Never Disappears</title>
+<link rel="preconnect" href="https://fonts.cdnfonts.com"/>
+<link href="https://fonts.cdnfonts.com/css/open-sauce-one" rel="stylesheet"/>
+<style>
+/* ============================================================
+   BRAND PALETTE — Mr. Restore Brand Guide
+   Deep Sea Navy #0d2442 · Washed Black #272727 · Bright Red #ff3131 · Royal Blue #3828eb
+   Font: Open Sauce One
+   ============================================================ */
+:root{
+  --navy:#0d2442; --navy2:#0a1d38; --navy3:#0f2d52;
+  --black:#272727; --black2:#1e1e1e;
+  --red:#ff3131; --red2:#e01c1c;
+  --blue:#3828eb; --blue2:#2a1dc7;
+  --white:#ffffff; --off:#d6e0ef; --muted:#8fa8c4;
+  --font:'Open Sauce One','Nunito',sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--navy2);color:var(--white);font-family:var(--font);overflow-x:hidden}
+
+/* ── NAV ── */
+.topnav{
+  position:fixed;top:0;left:0;right:0;z-index:200;
+  background:var(--black);border-bottom:2px solid var(--blue);
+  height:56px;display:flex;align-items:center;padding:0 32px;
+}
+.nav-logo{font-size:17px;font-weight:700;color:var(--white);letter-spacing:.5px;margin-right:auto}
+.nav-logo span{color:var(--blue)}
+.progress-wrap{display:flex;align-items:center;gap:14px}
+.prog-bar{width:140px;height:3px;background:rgba(255,255,255,.1);border-radius:2px;overflow:hidden}
+.prog-fill{height:100%;background:linear-gradient(90deg,var(--blue),var(--red));border-radius:2px;transition:width .5s ease;width:33%}
+.prog-label{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted)}
+
+/* ── PANELS ── */
+.panel{display:none;min-height:100vh;padding-top:56px}
+.panel.active{display:block}
+
+/* ══════════════════════════════════════
+   PANEL 1 — AWARENESS
+══════════════════════════════════════ */
+#panel-1{background:linear-gradient(170deg,var(--navy2) 0%,var(--navy) 60%,#0a1e36 100%)}
+
+.aw-hero{
+  max-width:1060px;margin:0 auto;padding:80px 40px 64px;
+  display:grid;grid-template-columns:1fr 400px;gap:72px;align-items:center;
+}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:10px;
+  font-size:11px;letter-spacing:3px;text-transform:uppercase;
+  color:var(--red);margin-bottom:24px;
+}
+.eyebrow::before{content:'';width:24px;height:2px;background:var(--red)}
+
+.aw-hero h1{
+  font-size:clamp(40px,5vw,70px);font-weight:700;
+  line-height:1.02;letter-spacing:-1px;margin-bottom:24px;
+}
+.aw-hero h1 .accent{color:var(--red);display:block}
+
+.lead{font-size:17px;color:var(--off);line-height:1.8;margin-bottom:36px;max-width:540px}
+.lead strong{color:var(--white);font-weight:700}
+
+/* CREDIT BARS */
+.credit-bars{margin-bottom:40px}
+.cb-row{margin-bottom:18px}
+.cb-label{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);margin-bottom:6px}
+.cb-label strong{color:var(--white)}
+.cb-track{height:6px;background:rgba(56,40,235,.15);border-radius:3px;overflow:hidden}
+.cb-fill{height:100%;border-radius:3px;animation:grow .8s ease-out forwards}
+@keyframes grow{from{width:0}}
+.cb-fill.blue{background:var(--blue)}
+.cb-fill.red{background:linear-gradient(90deg,var(--red),#ff7070)}
+
+/* truth pills */
+.truth-pills{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:40px}
+.pill{
+  padding:8px 16px;border:1px solid rgba(255,255,255,.1);
+  font-size:12px;color:var(--off);letter-spacing:.5px;
+  border-radius:2px;
+}
+.pill.blue-pill{border-color:rgba(56,40,235,.5);color:var(--off);background:rgba(56,40,235,.08)}
+
+.btn-blue{
+  display:inline-flex;align-items:center;gap:10px;
+  background:var(--blue);color:var(--white);
+  font-family:var(--font);font-weight:700;font-size:16px;
+  letter-spacing:.5px;padding:16px 36px;border:none;cursor:pointer;
+  text-transform:uppercase;transition:background .2s,transform .15s;
+}
+.btn-blue:hover{background:var(--blue2);transform:translateY(-2px)}
+.btn-outline{
+  display:inline-flex;align-items:center;gap:8px;
+  background:transparent;color:var(--off);
+  font-family:var(--font);font-size:13px;padding:14px 22px;
+  border:1px solid rgba(255,255,255,.15);cursor:pointer;
+  text-transform:uppercase;letter-spacing:.5px;transition:all .2s;
+}
+.btn-outline:hover{border-color:var(--white);color:var(--white)}
+.btn-row{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+
+/* right side card */
+.diff-card{background:var(--black);border:1px solid rgba(255,255,255,.07);overflow:hidden}
+.dc-head{background:var(--blue);padding:16px 24px}
+.dc-head p{font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase}
+.dc-body{padding:28px 24px}
+.dc-row{
+  display:flex;gap:14px;align-items:flex-start;
+  padding:14px 0;border-bottom:1px solid rgba(255,255,255,.05);
+}
+.dc-row:last-child{border-bottom:none}
+.dc-icon{display:flex;align-items:flex-start;flex-shrink:0}
+.dc-icon svg{stroke:var(--off)}
+.dc-title{font-size:14px;font-weight:700;margin-bottom:4px}
+.dc-body-text{font-size:12px;color:var(--muted);line-height:1.65}
+.dc-cta{
+  display:block;width:100%;padding:14px;
+  background:var(--red);color:var(--white);border:none;
+  font-family:var(--font);font-weight:700;font-size:14px;
+  cursor:pointer;text-transform:uppercase;letter-spacing:.5px;
+  transition:background .2s;
+}
+.dc-cta:hover{background:var(--red2)}
+
+/* WHY DIFFERENT section */
+.why-diff{background:var(--black);padding:72px 40px}
+.why-inner{max-width:1060px;margin:0 auto}
+.section-tag{
+  font-size:11px;letter-spacing:3px;text-transform:uppercase;
+  color:var(--red);margin-bottom:16px;
+  display:flex;align-items:center;gap:12px;
+}
+.section-tag::after{content:'';width:40px;height:1px;background:var(--red);opacity:.5}
+.why-diff h2{font-size:clamp(28px,3.5vw,46px);font-weight:700;letter-spacing:-0.5px;margin-bottom:14px}
+.why-diff h2 em{color:var(--red);font-style:normal}
+.why-diff .sub{font-size:15px;color:var(--off);line-height:1.8;max-width:620px;margin-bottom:52px}
+
+.why-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:rgba(255,255,255,.06)}
+.why-card{background:var(--black);padding:36px 32px;border-bottom:3px solid transparent;transition:border-color .2s,background .2s}
+.why-card:hover{background:rgba(56,40,235,.06);border-bottom-color:var(--blue)}
+.wc-icon{margin-bottom:14px;display:block}
+.wc-icon svg{stroke:var(--blue)}
+.why-card h3{font-size:17px;font-weight:700;margin-bottom:10px}
+.why-card p{font-size:13px;color:var(--muted);line-height:1.7}
+.why-card .tag-note{
+  display:inline-flex;align-items:center;gap:6px;
+  font-size:11px;color:var(--off);margin-top:12px;
+  padding:5px 12px;background:rgba(56,40,235,.08);
+  border:1px solid rgba(56,40,235,.2);
+}
+
+/* PROOF */
+.proof{background:var(--navy3);padding:72px 40px}
+.proof-inner{max-width:1060px;margin:0 auto}
+.proof-header{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:40px;flex-wrap:wrap;gap:16px}
+.proof-header h2{font-size:clamp(26px,3vw,40px);font-weight:700;letter-spacing:-0.5px}
+.stars{color:#f5c842;font-size:18px;letter-spacing:2px}
+
+.reviews{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:36px}
+.rv{background:var(--black);border:1px solid rgba(255,255,255,.06);padding:28px 24px}
+.rv-stars{color:#f5c842;font-size:13px;margin-bottom:12px}
+.rv-text{font-size:13px;color:var(--off);line-height:1.75;margin-bottom:16px;font-style:italic}
+.rv-attr{display:flex;align-items:center;gap:10px}
+.av{width:34px;height:34px;border-radius:50%;background:var(--blue);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0}
+.rv-name{font-size:12px;font-weight:700}
+.rv-role{font-size:11px;color:var(--muted)}
+
+/* ── VIDEO SECTION ── */
+.video-section{background:var(--black2);padding:72px 40px;border-top:1px solid rgba(255,255,255,.05);border-bottom:1px solid rgba(255,255,255,.05)}
+.video-inner{max-width:900px;margin:0 auto}
+.video-eyebrow{display:flex;align-items:center;gap:12px;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--red);margin-bottom:16px;justify-content:center}
+.video-eyebrow::before,.video-eyebrow::after{content:'';flex:1;max-width:60px;height:1px;background:var(--red);opacity:.4}
+.video-section h2{font-size:clamp(26px,3.5vw,42px);font-weight:700;letter-spacing:-0.5px;text-align:center;margin-bottom:10px}
+.video-section h2 em{color:var(--red);font-style:normal}
+.video-section .vsub{font-size:15px;color:var(--muted);line-height:1.75;text-align:center;max-width:600px;margin:0 auto 36px}
+.video-wrap{position:relative;background:var(--navy2);border:1px solid rgba(56,40,235,.2);overflow:hidden}
+.video-wrap video{display:block;width:100%;height:auto}
+.video-caption{background:var(--navy);border-top:1px solid rgba(255,255,255,.06);padding:14px 20px;display:flex;align-items:center;gap:12px}
+.vc-badge{background:var(--blue);color:var(--white);font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:4px 10px;flex-shrink:0}
+.vc-text{font-size:13px;color:var(--muted)}
+.vc-text strong{color:var(--white)}
+/* ── CREDIT BENEFITS ── */
+.credit-benefits{background:var(--black);padding:80px 40px;border-top:1px solid rgba(255,255,255,.05)}
+.cb-inner{max-width:1040px;margin:0 auto}
+.cb-header{margin-bottom:48px}
+.cb-header h2{font-size:clamp(28px,4vw,48px);font-weight:700;letter-spacing:-0.5px;margin-bottom:14px;line-height:1.08}
+.cb-header h2 em{color:var(--red);font-style:normal}
+.cb-header p{font-size:16px;color:var(--off);line-height:1.8;max-width:640px}
+.cb-blocks{display:grid;grid-template-columns:1fr 1fr;gap:2px;background:rgba(255,255,255,.06)}
+.cb-block{background:var(--navy2);padding:48px 40px;border-bottom:4px solid transparent;transition:border-color .2s,background .2s}
+.cb-block:hover{background:var(--navy3);border-bottom-color:var(--blue)}
+.cb-block-icon{margin-bottom:20px;display:flex;gap:4px;align-items:center}
+.cb-block h3{font-size:22px;font-weight:700;margin-bottom:14px;letter-spacing:-0.25px;line-height:1.2}
+.cb-block h3 em{color:var(--red);font-style:normal}
+.cb-block p{font-size:14px;color:var(--muted);line-height:1.8;margin-bottom:22px}
+.cb-scenario{background:var(--black);border:1px solid rgba(56,40,235,.25);padding:20px 22px}
+.cb-scenario .sc-label{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--red);margin-bottom:12px;font-weight:700}
+.cb-scenario-row{display:flex;justify-content:space-between;align-items:center;font-size:13px;padding:7px 0;border-bottom:1px solid rgba(255,255,255,.05)}
+.cb-scenario-row:last-of-type{border-bottom:none}
+.cb-scenario-row .sr-label{color:var(--muted)}
+.cb-scenario-row .sr-val{font-weight:700;color:var(--white)}
+.cb-scenario-row .sr-val.green{color:#4ade80}
+.cb-scenario-row .sr-val.red{color:var(--red)}
+.cb-scenario-total{margin-top:14px;padding-top:14px;border-top:2px solid var(--blue);display:flex;justify-content:space-between;align-items:center}
+.cb-scenario-total .st-label{font-size:13px;font-weight:700;color:var(--white)}
+.cb-scenario-total .st-val{font-size:28px;font-weight:700;color:#4ade80}
+.cb-note{margin-top:14px;font-size:12px;color:var(--muted);line-height:1.65;font-style:italic}
+.tape{background:var(--blue);padding:10px 0;overflow:hidden;white-space:nowrap}
+.tape-inner{display:inline-block;animation:scroll 22s linear infinite;font-size:11px;letter-spacing:3px;text-transform:uppercase;font-weight:700}
+@keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ══════════════════════════════════════
+   PANEL 2 — CONSIDERATION
+══════════════════════════════════════ */
+#panel-2{background:var(--navy)}
+
+.calc-section{max-width:900px;margin:0 auto;padding:80px 40px 60px}
+.section-center{text-align:center;margin-bottom:48px}
+.sc-tag{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--red);margin-bottom:16px}
+.section-center h2{font-size:clamp(28px,4vw,48px);font-weight:700;letter-spacing:-0.5px;margin-bottom:14px}
+.section-center h2 em{color:var(--red);font-style:normal}
+.section-center p{font-size:15px;color:var(--off);line-height:1.75;max-width:560px;margin:0 auto}
+
+.calc-card{background:var(--black);border:1px solid rgba(255,255,255,.08);padding:40px 36px}
+.calc-card h3{font-size:22px;font-weight:700;margin-bottom:6px}
+.calc-subtitle{font-size:13px;color:var(--muted);margin-bottom:32px}
+
+.tab-row{display:grid;grid-template-columns:repeat(3,1fr);margin-bottom:32px;border:1px solid rgba(255,255,255,.08)}
+.tab{
+  padding:18px 12px;text-align:center;cursor:pointer;
+  border-right:1px solid rgba(255,255,255,.08);
+  font-size:13px;color:var(--muted);transition:all .2s;
+}
+.tab:last-child{border-right:none}
+.tab:hover{background:rgba(56,40,235,.08)}
+.tab.active{background:var(--blue);color:var(--white)}
+.tab .tp{font-family:var(--font);font-size:24px;font-weight:700;display:block;margin-bottom:4px}
+.tab .tn{font-size:10px;letter-spacing:1.5px;text-transform:uppercase}
+
+.timeline-row{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:28px}
+.tl-item{background:var(--navy2);padding:20px 14px;text-align:center;border:1px solid rgba(255,255,255,.05)}
+.tl-mo{font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
+.tl-amt{font-size:28px;font-weight:700;color:var(--white);display:block;line-height:1;margin-bottom:5px}
+.tl-lbl{font-size:11px;color:var(--muted)}
+
+.calc-facts{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding-top:24px;border-top:1px solid rgba(255,255,255,.06)}
+.cf{background:rgba(56,40,235,.08);border:1px solid rgba(56,40,235,.2);padding:18px}
+.cf .fl{font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--off);margin-bottom:6px}
+.cf .fv{font-size:24px;font-weight:700;color:var(--white)}
+.cf .fn{font-size:12px;color:var(--muted);margin-top:4px}
+
+/* plans */
+.plans-section{padding:0 40px 60px;max-width:1060px;margin:0 auto}
+.plans-header{text-align:center;margin-bottom:36px}
+.plans-header h3{font-size:clamp(24px,3vw,38px);font-weight:700;letter-spacing:-0.5px;margin-bottom:8px}
+.plans-header h3 em{color:var(--red);font-style:normal}
+.plans-header p{font-size:14px;color:var(--muted)}
+
+.plans-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.plan{
+  background:var(--black2);border:1px solid rgba(255,255,255,.07);
+  padding:36px 26px;cursor:pointer;transition:border-color .2s,transform .2s;position:relative;
+}
+.plan:hover{border-color:rgba(56,40,235,.5);transform:translateY(-4px)}
+.plan.featured{border-color:var(--blue);background:linear-gradient(170deg,rgba(56,40,235,.07) 0%,var(--black2) 60%)}
+.plan-badge{
+  position:absolute;top:-1px;left:-1px;right:-1px;
+  background:var(--blue);color:var(--white);
+  text-align:center;font-size:10px;font-weight:700;
+  letter-spacing:2px;text-transform:uppercase;padding:7px;
+}
+.plan-name{font-size:26px;font-weight:700;margin-bottom:4px}
+.plan.featured .plan-name{margin-top:22px}
+.plan-tag{font-size:12px;color:var(--muted);margin-bottom:22px}
+.plan-price{font-size:50px;font-weight:700;line-height:1;margin-bottom:4px}
+.plan-price sup{font-size:22px;vertical-align:super;color:var(--red)}
+.plan-mo{font-size:13px;color:var(--muted);margin-bottom:18px}
+.plan-credit{
+  background:rgba(56,40,235,.1);border-left:2px solid var(--blue);
+  padding:11px 13px;font-size:12px;color:var(--off);line-height:1.5;margin-bottom:18px;
+}
+.plan-credit strong{color:var(--off)}
+.plan-features{list-style:none;margin-bottom:24px}
+.plan-features li{
+  display:flex;align-items:flex-start;gap:9px;
+  font-size:13px;color:var(--muted);padding:6px 0;
+  border-bottom:1px solid rgba(255,255,255,.04);line-height:1.5;
+}
+.plan-features li:last-child{border-bottom:none}
+.plan-features li::before{content:'◆';color:var(--blue);font-size:8px;margin-top:4px;flex-shrink:0}
+.plan-btn{
+  width:100%;padding:14px;background:transparent;
+  border:1px solid rgba(255,255,255,.15);color:var(--white);
+  font-family:var(--font);font-weight:700;font-size:14px;
+  cursor:pointer;text-transform:uppercase;letter-spacing:.5px;transition:all .2s;
+}
+.plan.featured .plan-btn{background:var(--blue);border-color:var(--blue)}
+.plan-btn:hover{background:var(--blue);border-color:var(--blue)}
+
+/* HOW CREDIT WORKS */
+.credit-how{background:var(--black);padding:72px 40px}
+.ch-inner{max-width:1060px;margin:0 auto}
+.ch-inner h2{font-size:clamp(26px,3.5vw,42px);font-weight:700;letter-spacing:-0.5px;margin-bottom:12px}
+.ch-inner h2 em{color:var(--red);font-style:normal}
+.ch-inner .sub{font-size:15px;color:var(--off);line-height:1.8;max-width:620px;margin-bottom:44px}
+
+.credit-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(255,255,255,.06)}
+.cs{background:var(--black);padding:32px 28px}
+.cs-n{font-size:52px;font-weight:700;color:rgba(56,40,235,.2);line-height:1;margin-bottom:10px}
+.cs h3{font-size:16px;font-weight:700;margin-bottom:10px}
+.cs p{font-size:13px;color:var(--muted);line-height:1.7}
+.cs .cs-example{
+  margin-top:14px;padding:12px 14px;
+  background:rgba(56,40,235,.08);border:1px solid rgba(56,40,235,.2);
+  font-size:12px;color:var(--off);line-height:1.5;
+}
+
+/* FAQ */
+.faq-section{background:var(--navy3);padding:72px 40px}
+.faq-inner{max-width:800px;margin:0 auto}
+.faq-hdr{margin-bottom:40px}
+.faq-hdr h2{font-size:clamp(26px,3vw,40px);font-weight:700;letter-spacing:-0.5px}
+.faq-item{border-bottom:1px solid rgba(255,255,255,.07);overflow:hidden}
+.faq-q{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:20px 0;cursor:pointer;font-size:15px;font-weight:700;
+  color:var(--white);gap:16px;background:none;border:none;
+  width:100%;text-align:left;font-family:var(--font);transition:color .2s;
+}
+.faq-q:hover{color:var(--red)}
+.faq-icon{font-size:20px;color:var(--red);flex-shrink:0;transition:transform .2s}
+.faq-item.open .faq-icon{transform:rotate(45deg)}
+.faq-a{
+  font-size:14px;color:var(--muted);line-height:1.8;
+  max-height:0;overflow:hidden;transition:max-height .35s ease,padding .2s;
+}
+.faq-item.open .faq-a{max-height:220px;padding:0 0 20px}
+
+/* ══════════════════════════════════════
+   PANEL 3 — CONVERSION
+══════════════════════════════════════ */
+#panel-3{background:var(--navy2)}
+
+.conv-wrap{
+  max-width:1060px;margin:0 auto;padding:72px 40px 80px;
+  display:grid;grid-template-columns:1fr 460px;gap:64px;align-items:start;
+}
+.conv-left .tag{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--red);margin-bottom:16px}
+.conv-left h2{font-size:clamp(30px,4vw,50px);font-weight:700;letter-spacing:-0.5px;line-height:1.05;margin-bottom:16px}
+.conv-left h2 em{color:var(--red);font-style:normal}
+.conv-left .cbody{font-size:15px;color:var(--off);line-height:1.8;margin-bottom:32px}
+
+/* credit accumulator viz */
+.acc-box{background:var(--black);border:1px solid rgba(56,40,235,.25);padding:24px;margin-bottom:28px}
+.acc-title{font-size:12px;color:var(--muted);margin-bottom:14px;font-style:italic}
+.acc-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:4px;margin-bottom:10px}
+.acc-month{height:26px;background:rgba(56,40,235,.12);border-radius:2px}
+.acc-month.filled{background:var(--blue);animation:fill .4s ease forwards}
+@keyframes fill{from{opacity:.3;transform:scaleY(.5)}to{opacity:1;transform:scaleY(1)}}
+.acc-legend{display:flex;justify-content:space-between;font-size:11px;color:var(--muted)}
+.acc-legend strong{color:var(--off)}
+
+.plan-badge-box{
+  background:var(--black);border:1px solid rgba(255,255,255,.07);
+  padding:16px 20px;display:flex;align-items:center;
+  justify-content:space-between;margin-bottom:6px;gap:12px;
+}
+.pbb-name{font-size:17px;font-weight:700}
+.pbb-detail{font-size:11px;color:var(--muted)}
+.pbb-price{font-size:26px;font-weight:700;color:var(--red);flex-shrink:0}
+.change-btn{
+  font-size:11px;color:var(--muted);text-decoration:underline;
+  cursor:pointer;border:none;background:none;font-family:var(--font);
+  margin-bottom:24px;display:block;
+}
+
+.steps-list{list-style:none;margin-bottom:0}
+.sl-item{
+  display:flex;gap:14px;align-items:flex-start;
+  padding:14px 0;border-bottom:1px solid rgba(255,255,255,.06);
+}
+.sl-item:last-child{border-bottom:none}
+.sl-num{
+  width:28px;height:28px;border-radius:50%;
+  border:1px solid var(--blue);color:var(--white);
+  display:flex;align-items:center;justify-content:center;
+  font-size:12px;font-weight:700;flex-shrink:0;
+}
+.sl-title{font-size:14px;font-weight:700;margin-bottom:3px}
+.sl-body{font-size:12px;color:var(--muted);line-height:1.6}
+
+/* form */
+.form-box{background:var(--black);border:1px solid rgba(255,255,255,.08);padding:36px 32px}
+.fb-top{
+  background:var(--blue);margin:-36px -32px 26px;
+  padding:14px 22px;display:flex;align-items:center;justify-content:space-between;
+}
+.fbt-name{font-size:15px;font-weight:700}
+.fbt-price{font-size:19px;font-weight:700}
+.fb-chg{
+  font-size:11px;color:rgba(255,255,255,.55);text-decoration:underline;
+  cursor:pointer;border:none;background:none;font-family:var(--font);
+  margin-bottom:20px;display:block;
+}
+.form-box h3{font-size:21px;font-weight:700;margin-bottom:5px}
+.form-box .fsub{font-size:13px;color:var(--muted);margin-bottom:22px}
+
+.lead-form{display:flex;flex-direction:column;gap:13px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.fg{display:flex;flex-direction:column;gap:5px}
+.fg label{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted)}
+.fg input,.fg select{
+  background:var(--navy);border:1px solid rgba(255,255,255,.1);
+  color:var(--white);padding:12px 13px;
+  font-family:var(--font);font-size:13px;
+  outline:none;transition:border-color .2s;
+  width:100%;appearance:none;-webkit-appearance:none;
+}
+.fg input:focus,.fg select:focus{border-color:var(--blue)}
+.fg select option{background:var(--black)}
+
+.submit-btn{
+  width:100%;padding:17px;
+  background:var(--red);border:none;color:var(--white);
+  font-family:var(--font);font-weight:700;font-size:17px;
+  cursor:pointer;text-transform:uppercase;letter-spacing:.5px;
+  transition:background .2s,transform .15s;margin-top:4px;
+}
+.submit-btn:hover{background:var(--red2);transform:translateY(-2px)}
+.submit-btn:disabled{background:#444;cursor:not-allowed;transform:none}
+.form-note{font-size:10px;color:rgba(143,168,196,.4);text-align:center;margin-top:8px;line-height:1.6}
+
+.success-box{display:none;text-align:center;padding:44px 20px}
+.success-box .ico{display:block;margin-bottom:14px}
+.success-box h2{font-size:26px;font-weight:700;color:var(--red);margin-bottom:10px}
+.success-box p{font-size:14px;color:var(--muted);line-height:1.7}
+
+@media(max-width:900px){
+  .aw-hero{grid-template-columns:1fr}
+  .why-grid{grid-template-columns:1fr}
+  .reviews{grid-template-columns:1fr}
+  .timeline-row{grid-template-columns:repeat(2,1fr)}
+  .plans-grid{grid-template-columns:1fr}
+  .credit-steps{grid-template-columns:1fr}
+  .conv-wrap{grid-template-columns:1fr}
+  .form-row{grid-template-columns:1fr}
+  .calc-facts{grid-template-columns:1fr}
+  .tab-row{grid-template-columns:1fr}
+  .acc-grid{grid-template-columns:repeat(4,1fr)}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="topnav">
+  <div class="nav-logo">Mr. Restore <span>Advantage</span></div>
+  <div class="progress-wrap">
+    <div class="prog-bar"><div class="prog-fill" id="prog-fill"></div></div>
+    <div class="prog-label" id="prog-label">Discover</div>
+  </div>
+</nav>
+
+<!-- ═══════════════════════════════════
+     PANEL 1 — AWARENESS
+═══════════════════════════════════ -->
+<section class="panel active" id="panel-1">
+  <div class="aw-hero">
+    <div>
+      <div class="eyebrow">A Smarter Way to Protect What You've Built</div>
+      <h1>
+        Every Dollar You Pay
+        <span class="accent">Comes Back When It Matters Most.</span>
+      </h1>
+      <p class="lead">
+        Fire, water, storm — catastrophe doesn't ask permission. Most homeowners pay into protection 
+        products and get nothing to show for it when disaster strikes. 
+        The Mr. Restore Advantage Program is different — <strong>100% of your monthly payment
+        accumulates as restoration credit</strong> you can use toward your deductible or 
+        mitigation costs after any covered event.
+        <br/><br/>
+        It's not insurance. It's not a warranty. It's <strong>proactive protection that builds real value</strong> while inspections work to prevent the event from ever happening at all.
+      </p>
+
+      <div class="credit-bars">
+        <div class="cb-row">
+          <div class="cb-label"><span>Your credit after 12 months at $199/mo</span><strong>$2,388</strong></div>
+          <div class="cb-track"><div class="cb-fill blue" style="width:52%"></div></div>
+        </div>
+        <div class="cb-row">
+          <div class="cb-label"><span>Average water damage claim (national avg.)</span><strong>$12,514</strong></div>
+          <div class="cb-track"><div class="cb-fill red" style="width:100%"></div></div>
+        </div>
+      </div>
+
+      <div class="truth-pills">
+        <div class="pill blue-pill">100% of payments return as credit</div>
+        <div class="pill">60+ years restoration expertise</div>
+        <div class="pill">IICRC Certified Inspectors</div>
+        <div class="pill blue-pill">Month-to-month · No commitment</div>
+        <div class="pill">4.9 Stars · 1,000+ Reviews</div>
+      </div>
+
+      <div class="btn-row">
+        <button class="btn-blue" onclick="goTo(2)">Calculate My Credit →</button>
+        <button class="btn-outline" onclick="goTo(2)">View All Plans</button>
+      </div>
+    </div>
+    <div>
+      <div class="diff-card">
+        <div class="dc-head"><p>What Makes Advantage Different</p></div>
+        <div class="dc-body">
+          <div class="dc-row">
+            <span class="dc-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" ><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg></span>
+            <div>
+              <div class="dc-title">Credit That Accumulates</div>
+              <div class="dc-body-text">Every $119, $199, or $299 monthly payment becomes real restoration credit — never disappears.</div>
+            </div>
+          </div>
+          <div class="dc-row">
+            <span class="dc-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" ><path d="M14 14.76V3.5a2.5 2.5 0 0 0-5 0v11.26a4.5 4.5 0 1 0 5 0z"/></svg></span>
+            <div>
+              <div class="dc-title">Thermal Imaging Inspections</div>
+              <div class="dc-body-text">IICRC-certified techs find hidden moisture before it becomes a catastrophe. Data-driven, not guesswork.</div>
+            </div>
+          </div>
+          <div class="dc-row">
+            <span class="dc-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" ><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></span>
+            <div>
+              <div class="dc-title">Priority Emergency Response</div>
+              <div class="dc-body-text">Members are first in queue. 60-minute average arrival DFW. During freeze events, you don't wait.</div>
+            </div>
+          </div>
+          <div class="dc-row">
+            <span class="dc-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" ><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></span>
+            <div>
+              <div class="dc-title">Month-to-Month Flexibility</div>
+              <div class="dc-body-text">No annual lock-in. Cancel anytime. Credit is active while your membership is active.</div>
+            </div>
+          </div>
+          <button class="dc-cta" onclick="goTo(2)">See Credit Calculator →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- VIDEO SECTION -->
+  <div class="video-section">
+    <div class="video-inner">
+      <div class="video-eyebrow">What Your Credit Is Actually Protecting Against</div>
+      <h2>This Is the Moment <em>Your Credit Exists For</em></h2>
+      <p class="vsub">Fire, water, storm, structural catastrophe — when it hits, there is no negotiating with it. Every dollar you've accumulated is standing between you and this. That's not an abstraction. That's the math.</p>
+      <div class="video-wrap">
+        <video controls preload="metadata">
+          <source src="Funnel_Video.mp4" type="video/mp4"/>
+          Your browser does not support HTML5 video.
+        </video>
+        <div class="video-caption">
+          <div class="vc-badge">The Cost of Being Unprotected</div>
+          <div class="vc-text"><strong>Mr. Restore Advantage</strong> — your accumulated credit and proactive inspections exist so this never becomes your reality</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- WHY DIFFERENT -->
+  <div class="why-diff">
+    <div class="why-inner">
+      <div class="section-tag">The Core Difference</div>
+      <h2>This Is Not Insurance. <em>It's Smarter.</em></h2>
+      <p class="sub">Insurance pays after the loss. Warranties deny claims. Advantage prevents the loss — and when fire, water, or storm strikes anyway, your accumulated credit is already waiting to protect your wallet.</p>
+      <div class="why-grid">
+        <div class="why-card">
+          <span class="wc-icon"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" ><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span>
+          <h3>Prevention First, Every Time</h3>
+          <p>Every inspection uses professional thermal imaging to identify vulnerabilities months or years before they fail catastrophically. Most members never file a claim because we find the problem first.</p>
+          <div class="tag-note">✓ Thermal &amp; moisture imaging every visit</div>
+        </div>
+        <div class="why-card">
+          <span class="wc-icon"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" ><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></span>
+          <h3>Your Money Doesn't Disappear</h3>
+          <p>Traditional insurance and warranty payments evaporate — you pay for the right to file a claim that might be denied. With Advantage, 100% of every payment becomes credit you control.</p>
+          <div class="tag-note">✓ $2,388 accumulated after Year 1 at $199/mo</div>
+        </div>
+        <div class="why-card">
+          <span class="wc-icon"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" ><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg></span>
+          <h3>Backed by 60 Years of Expertise</h3>
+          <p>Mr. Restore has been the trusted name in restoration across DFW, Amarillo, and OKC for decades. The Advantage Program is our prevention arm — the same team, same standards, same response.</p>
+          <div class="tag-note">✓ IICRC Certified · BBB Accredited · 6-Time Best of Denton County Winner</div>
+        </div>
+        <div class="why-card">
+          <span class="wc-icon"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" ><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></span>
+          <h3>Priority When It Counts Most</h3>
+          <p>During high-demand events like the 2021 Texas freeze, emergency queues were days long. Advantage members jump the line — 60-minute average response every time, guaranteed.</p>
+          <div class="tag-note">✓ 24/7/365 priority emergency response</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROOF -->
+  <div class="proof">
+    <div class="proof-inner">
+      <div class="proof-header">
+        <div>
+          <div class="section-tag">Member Experiences</div>
+          <h2>Real Credit. Real Protection. Real Members.</h2>
+        </div>
+        <div style="text-align:right">
+          <div class="stars">★★★★★</div>
+          <div style="font-size:12px;color:var(--muted)">4.9 / 5 · 1,000+ reviews</div>
+        </div>
+      </div>
+      <div class="reviews">
+        <div class="rv">
+          <div class="rv-stars">★★★★★</div>
+          <p class="rv-text">"After 16 months in the Advanced plan, we had $3,184 in credit. When our slab leak hit, it covered our entire deductible. The inspection the prior year had flagged a pressure anomaly in that same line."</p>
+          <div class="rv-attr"><div class="av">MK</div><div><div class="rv-name">Michael K.</div><div class="rv-role">Advanced Member · Plano, TX</div></div></div>
+        </div>
+        <div class="rv">
+          <div class="rv-stars">★★★★★</div>
+          <p class="rv-text">"I was skeptical about yet another monthly subscription. But the math is undeniable — at $199/mo I'm building nearly $2,400 a year that I keep. And my home has been inspected twice. It pays for itself either way."</p>
+          <div class="rv-attr"><div class="av">DL</div><div><div class="rv-name">Diane L.</div><div class="rv-role">Advanced Member · Southlake, TX</div></div></div>
+        </div>
+        <div class="rv">
+          <div class="rv-stars">★★★★★</div>
+          <p class="rv-text">"The thermal imaging on my first inspection found moisture in the wall behind my master shower. I had no idea. The repair was $1,100. Without them finding it, it would have been mold remediation at $15,000+."</p>
+          <div class="rv-attr"><div class="av">AP</div><div><div class="rv-name">Amanda P.</div><div class="rv-role">Elite Member · Westlake, TX</div></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CREDIT BENEFITS -->
+  <div class="credit-benefits">
+    <div class="cb-inner">
+      <div class="cb-header">
+        <div class="section-tag" style="color:var(--red)">Credit Flexibility</div>
+        <h2>Two Things Most Members <em>Don't Realize</em> About Their Credit</h2>
+        <p>The credit model is already compelling on paper. These two features make it something else entirely — a financial instrument that works for you across properties and across events, not just once.</p>
+      </div>
+      <div class="cb-blocks">
+
+        <!-- BLOCK 1: PORTABILITY -->
+        <div class="cb-block">
+          <span class="cb-block-icon"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" ><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="rgba(255,49,49,.6)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" ><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.5)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" ><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></span>
+          <h3>Moving? Your Credit <em>Goes With You.</em></h3>
+          <p>Your accumulated restoration credit is not anchored to a single address. Upon verified relocation, your full credit balance transfers to your new property — so the months or years you've spent building don't vanish because you moved. Whether you're upsizing, downsizing, or relocating across the state, your credit travels with your membership.</p>
+          <div class="cb-scenario">
+            <div class="sc-label">Example Scenario — Relocation</div>
+            <div class="cb-scenario-row">
+              <span class="sr-label">Credit built at current home (24 months)</span>
+              <span class="sr-val">$4,776</span>
+            </div>
+            <div class="cb-scenario-row">
+              <span class="sr-label">Transfer to new property</span>
+              <span class="sr-val green">Full balance moves</span>
+            </div>
+            <div class="cb-scenario-row">
+              <span class="sr-label">Credit lost at cancellation</span>
+              <span class="sr-val green">$0</span>
+            </div>
+            <div class="cb-scenario-total">
+              <span class="st-label">Credit arriving at your new home</span>
+              <span class="st-val">$4,776</span>
+            </div>
+            <p class="cb-note">Credit transfers upon verified relocation. Membership stays active and continuous — your protection never lapses during the move.</p>
+          </div>
+        </div>
+
+        <!-- BLOCK 2: SURPLUS CREDIT -->
+        <div class="cb-block">
+          <span class="cb-block-icon"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" ><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="rgba(255,49,49,.6)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" ><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.5)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" ><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></span>
+          <h3>Credit Exceeds Your Deductible. <em>You Pay Nothing. You Keep the Rest.</em></h3>
+          <p>When your accumulated credit is larger than your insurance deductible, Mr. Restore applies it to cover your deductible in full. The unused portion doesn't disappear — it carries forward and keeps compounding toward the next event. Done right, you move through an entire covered restoration without touching your wallet once.</p>
+          <div class="cb-scenario">
+            <div class="sc-label">Example Scenario — Zero Out-of-Pocket Event</div>
+            <div class="cb-scenario-row">
+              <span class="sr-label">Accumulated credit (18 months at $199)</span>
+              <span class="sr-val">$3,582</span>
+            </div>
+            <div class="cb-scenario-row">
+              <span class="sr-label">Insurance deductible</span>
+              <span class="sr-val red">$2,500</span>
+            </div>
+            <div class="cb-scenario-row">
+              <span class="sr-label">Credit applied to deductible</span>
+              <span class="sr-val green">−$2,500</span>
+            </div>
+            <div class="cb-scenario-row">
+              <span class="sr-label">Your out-of-pocket cost</span>
+              <span class="sr-val green">$0</span>
+            </div>
+            <div class="cb-scenario-total">
+              <span class="st-label">Credit carried forward to next event</span>
+              <span class="st-val">$1,082</span>
+            </div>
+            <p class="cb-note">Surplus credit never expires or resets between events. It simply keeps building until you need it again.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="tape">
+    <span class="tape-inner">CREDIT ACCUMULATION · TRANSFERS TO NEW PROPERTY · ZERO OUT-OF-POCKET EVENTS · SURPLUS CREDIT CARRIES FORWARD · DEDUCTIBLE OFFSET · PRIORITY RESPONSE · IICRC CERTIFIED · MONTH-TO-MONTH · CREDIT ACCUMULATION · TRANSFERS TO NEW PROPERTY · ZERO OUT-OF-POCKET EVENTS · SURPLUS CREDIT CARRIES FORWARD · DEDUCTIBLE OFFSET · PRIORITY RESPONSE · IICRC CERTIFIED · MONTH-TO-MONTH ·&nbsp;</span>
+  </div>
+
+</section><!-- /panel-1 -->
+
+<!-- ═══════════════════════════════════
+     PANEL 2 — CONSIDERATION
+═══════════════════════════════════ -->
+<section class="panel" id="panel-2">
+
+  <!-- CALCULATOR -->
+  <div class="calc-section">
+    <div class="section-center">
+      <div class="sc-tag">Credit Calculator</div>
+      <h2>See Exactly How Much <em>Credit You Build</em></h2>
+      <p>Select a plan below to see how your monthly investment converts into usable restoration credit over time.</p>
+    </div>
+    <div class="calc-card">
+      <h3>Your Accumulation Timeline</h3>
+      <div class="calc-subtitle">Select a plan — your credit grows from day one</div>
+      <div class="tab-row">
+        <div class="tab" onclick="updateCalc(119,'Essential',this)">
+          <span class="tp">$119</span><span class="tn">Essential</span>
+        </div>
+        <div class="tab active" onclick="updateCalc(199,'Advanced',this)">
+          <span class="tp">$199</span><span class="tn">Advanced</span>
+        </div>
+        <div class="tab" onclick="updateCalc(299,'Elite',this)">
+          <span class="tp">$299</span><span class="tn">Elite</span>
+        </div>
+      </div>
+      <div class="timeline-row">
+        <div class="tl-item"><div class="tl-mo">3 Months</div><span class="tl-amt" id="tl1">$597</span><div class="tl-lbl">in credit</div></div>
+        <div class="tl-item"><div class="tl-mo">6 Months</div><span class="tl-amt" id="tl2">$1,194</span><div class="tl-lbl">in credit</div></div>
+        <div class="tl-item"><div class="tl-mo">12 Months</div><span class="tl-amt" id="tl3">$2,388</span><div class="tl-lbl">in credit</div></div>
+        <div class="tl-item"><div class="tl-mo">24 Months</div><span class="tl-amt" id="tl4">$4,776</span><div class="tl-lbl">in credit</div></div>
+      </div>
+      <div class="calc-facts">
+        <div class="cf">
+          <div class="fl">Average Water Damage Claim</div>
+          <div class="fv">$12,514</div>
+          <div class="fn">National average, residential properties</div>
+        </div>
+        <div class="cf">
+          <div class="fl">Your Exposure Reduced After 2 Years</div>
+          <div class="fv" id="cf2">$4,776</div>
+          <div class="fn">Credit applied toward deductible or mitigation costs</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PLANS -->
+  <div class="plans-section">
+    <div class="plans-header">
+      <h3>Choose Your <em>Advantage Plan</em></h3>
+      <p>Month-to-month · No long-term commitment · Cancel anytime</p>
+    </div>
+    <div class="plans-grid">
+      <div class="plan" onclick="selectPlan('Essential',119,'1 Annual Inspection · Deductible Credit')">
+        <div class="plan-name">Essential</div>
+        <div class="plan-tag">Start your protection today</div>
+        <div class="plan-price"><sup>$</sup>119</div>
+        <div class="plan-mo">per month</div>
+        <div class="plan-credit">Builds <strong>$1,428/year</strong> in restoration credit toward your deductible or mitigation.</div>
+        <ul class="plan-features">
+          <li>Annual Multi-Point Inspection</li>
+          <li>Thermal &amp; Moisture Imaging</li>
+          <li>Antimicrobial Treatment</li>
+          <li>Plumbing &amp; Appliance Checks</li>
+          <li>24/7 Emergency Response</li>
+          <li>Customized Risk Report</li>
+        </ul>
+        <button class="plan-btn">Select Essential →</button>
+      </div>
+      <div class="plan featured" onclick="selectPlan('Advanced',199,'2 Bi-Annual Inspections · Priority Response')">
+        <div class="plan-badge">Most Popular</div>
+        <div class="plan-name">Advanced</div>
+        <div class="plan-tag">The smart homeowner's choice</div>
+        <div class="plan-price"><sup>$</sup>199</div>
+        <div class="plan-mo">per month</div>
+        <div class="plan-credit">Builds <strong>$2,388/year</strong> in credit. Two professional inspections keep your home continuously monitored.</div>
+        <ul class="plan-features">
+          <li>Bi-Annual Multi-Point Inspections</li>
+          <li>Thermal &amp; Moisture Imaging</li>
+          <li>Annual Antimicrobial Treatment</li>
+          <li>Plumbing &amp; Appliance Checks</li>
+          <li>24/7 Priority Response</li>
+          <li>Full Credit Toward Deductible/Mitigation</li>
+        </ul>
+        <button class="plan-btn">Select Advanced →</button>
+      </div>
+      <div class="plan" onclick="selectPlan('Elite',299,'Quarterly Inspections · Unlimited Credit')">
+        <div class="plan-name">Elite</div>
+        <div class="plan-tag">Maximum credit, maximum protection</div>
+        <div class="plan-price"><sup>$</sup>299</div>
+        <div class="plan-mo">per month</div>
+        <div class="plan-credit">Builds <strong>$3,588/year</strong> in credit. Quarterly inspections + unlimited mitigation coverage.</div>
+        <ul class="plan-features">
+          <li>Quarterly Thermal &amp; Moisture Inspections</li>
+          <li>Antimicrobial Treatment Every Visit</li>
+          <li>Plumbing &amp; Appliance Checks</li>
+          <li>Guaranteed Priority Response</li>
+          <li>Unlimited Mitigation Credit</li>
+          <li>Dedicated Account Manager</li>
+        </ul>
+        <button class="plan-btn">Select Elite →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- HOW CREDIT WORKS -->
+  <div class="credit-how">
+    <div class="ch-inner">
+      <div class="section-tag">The Mechanism</div>
+      <h2>Exactly How <em>Your Credit Works</em></h2>
+      <p class="sub">Every step is designed to put money back in your pocket when you need it, and protection in your home while you don't.</p>
+      <div class="credit-steps">
+        <div class="cs">
+          <div class="cs-n">01</div>
+          <h3>You Pay Your Monthly Subscription</h3>
+          <p>Your monthly payment ($119, $199, or $299 depending on plan) is processed and 100% of that amount is logged as accumulated restoration credit in your account.</p>
+          <div class="cs-example">Example: Month 1 of Advanced Plan → $199 credited to your account immediately.</div>
+        </div>
+        <div class="cs">
+          <div class="cs-n">02</div>
+          <h3>Credit Grows Every Month</h3>
+          <p>There is no cap on how much credit you can accumulate while your membership is active. The longer you stay a member, the more protection value you hold.</p>
+          <div class="cs-example">Example: After 12 months at $199/mo → $2,388 waiting to be used.</div>
+        </div>
+        <div class="cs">
+          <div class="cs-n">03</div>
+          <h3>Credit Applied to a Covered Event</h3>
+          <p>If a covered water, fire, or storm event occurs at your home and Mr. Restore performs the mitigation or reconstruction, your full accumulated credit is applied directly to the bill — reducing or eliminating your out-of-pocket cost.</p>
+          <div class="cs-example">Example: $2,388 credit applied to a $4,500 mitigation job → you pay $2,112 instead of $4,500.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FAQ -->
+  <div class="faq-section">
+    <div class="faq-inner">
+      <div class="faq-hdr">
+        <div class="section-tag" style="color:var(--red)">Questions About the Credit Model</div>
+        <h2>Frequently Asked Questions</h2>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">Can my credit be used toward my insurance deductible? <span class="faq-icon">+</span></button>
+        <div class="faq-a">Yes. Your accumulated credit can be applied toward your insurance deductible on a covered claim, or directly toward the mitigation/reconstruction costs if you're handling it without insurance involvement.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">What happens if I never have a water damage event? <span class="faq-icon">+</span></button>
+        <div class="faq-a">You still received professional thermal imaging inspections that identified and prevented potential damage — protecting your home's structural integrity and value. The inspections themselves are worth more than the subscription cost in many cases.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">Is there a cap on how much credit I can accumulate? <span class="faq-icon">+</span></button>
+        <div class="faq-a">There is no cap on credit accumulation. Every month you're subscribed, your full payment is added to your credit balance. Elite members in particular accumulate credit against potentially unlimited mitigation costs.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">What if I cancel and then re-subscribe later? <span class="faq-icon">+</span></button>
+        <div class="faq-a">Credit resets to $0 upon cancellation. If you re-subscribe, your credit begins accumulating fresh from your first new payment. There is no penalty for canceling or re-subscribing.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">Does credit apply to any type of restoration? <span class="faq-icon">+</span></button>
+        <div class="faq-a">Credit applies to mitigation and reconstruction work for covered events (water, fire, or storm damage) performed by Mr. Restore. It does not apply to voluntary remodels, cosmetic improvements, or general maintenance repairs.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">Can I take my credit with me if I move? <span class="faq-icon">+</span></button>
+        <div class="faq-a">Yes. Upon verified relocation, your full accumulated credit balance transfers to your new property. Your membership stays active and continuous throughout the move — you never lose what you've built just because your address changes. This is one of the key distinctions between Advantage credit and a standard home warranty, which is always property-specific.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">What happens if my credit is more than my deductible? <span class="faq-icon">+</span></button>
+        <div class="faq-a">If your accumulated credit exceeds your insurance deductible, Mr. Restore applies the credit to cover your deductible in full — meaning your out-of-pocket cost is $0. The remaining unused credit doesn't disappear. It carries forward and continues building toward the next covered event. In the right scenario, you can move through an entire restoration without paying a single dollar out of pocket, and still have credit left over afterward.</div>
+      </div>
+    </div>
+  </div>
+
+</section><!-- /panel-2 -->
+
+<!-- ═══════════════════════════════════
+     PANEL 3 — CONVERSION
+═══════════════════════════════════ -->
+<section class="panel" id="panel-3">
+  <div class="conv-wrap">
+    <div class="conv-left">
+      <div class="tag">Step 3 — Activate Your Membership</div>
+      <h2>Start Building <em>Your Credit</em> Today</h2>
+      <p class="cbody">Your credit starts accumulating from your very first payment. A Mr. Restore Advantage specialist will contact you within 24 hours to confirm your plan, schedule your first inspection, and walk you through exactly how your credit applies to any future event.</p>
+
+      <div class="acc-box">
+        <div class="acc-title">Your monthly credit accumulation — Year 1</div>
+        <div class="acc-grid" id="acc-grid"></div>
+        <div class="acc-legend"><span>Month 1</span><strong id="acc-total">$2,388 after Year 1</strong></div>
+      </div>
+
+      <div class="plan-badge-box">
+        <div>
+          <div class="pbb-name" id="pbb-name">Advanced Plan</div>
+          <div class="pbb-detail" id="pbb-detail">2 Bi-Annual Inspections · Priority Response</div>
+        </div>
+        <div class="pbb-price" id="pbb-price">$199<span style="font-size:14px;color:var(--muted)">/mo</span></div>
+      </div>
+      <button class="change-btn" onclick="goTo(2)">← Change plan</button>
+
+      <ul class="steps-list">
+        <li class="sl-item"><div class="sl-num">1</div><div><div class="sl-title">Specialist contacts you within 24 hours</div><div class="sl-body">Confirms your plan details and answers any final questions before your first inspection.</div></div></li>
+        <li class="sl-item"><div class="sl-num">2</div><div><div class="sl-title">First inspection scheduled same week</div><div class="sl-body">IICRC-certified tech visits with thermal imaging equipment and documents your home's baseline.</div></div></li>
+        <li class="sl-item"><div class="sl-num">3</div><div><div class="sl-title">Credit activates from Payment 1</div><div class="sl-body">Your first monthly payment is immediately credited to your account. Building starts now.</div></div></li>
+      </ul>
+    </div>
+
+    <div>
+      <div class="form-box">
+        <div class="fb-top">
+          <div class="fbt-name" id="fbt-name">Advanced Plan</div>
+          <div class="fbt-price" id="fbt-price">$199/mo</div>
+        </div>
+        <button class="fb-chg" onclick="goTo(2)">← Change plan</button>
+
+        <h3>Activate My Membership</h3>
+        <p class="fsub">We'll reach out within 24 hours to confirm everything.</p>
+
+        <form class="lead-form" id="lead-form" onsubmit="submitForm(event)">
+          <div class="form-row">
+            <div class="fg"><label>First Name *</label><input type="text" name="firstName" placeholder="Jane" required/></div>
+            <div class="fg"><label>Last Name *</label><input type="text" name="lastName" placeholder="Doe" required/></div>
+          </div>
+          <div class="fg"><label>Email Address *</label><input type="email" name="email" placeholder="jane@email.com" required/></div>
+          <div class="fg"><label>Phone Number *</label><input type="tel" name="phone" placeholder="(214) 555-0100" required/></div>
+          <div class="fg"><label>Street Address *</label><input type="text" name="address" placeholder="1234 Preston Rd" required/></div>
+          <div class="form-row">
+            <div class="fg"><label>City *</label><input type="text" name="city" placeholder="Frisco" required/></div>
+            <div class="fg"><label>Zip Code *</label><input type="text" name="zip" placeholder="75034" required maxlength="10"/></div>
+          </div>
+          <div class="fg"><label>State</label>
+            <select name="state"><option value="TX">Texas</option><option value="OK">Oklahoma</option><option value="Other">Other</option></select>
+          </div>
+          <div class="fg"><label>How did you hear about us?</label>
+            <select name="sourceChannel">
+              <option value="Social Media">Social Media</option>
+              <option value="Search">Google / Search</option>
+              <option value="Referral">Friend / Referral</option>
+              <option value="Ad">Online Ad</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+          <input type="hidden" name="selectedPlan" id="h-plan" value="Advanced"/>
+          <input type="hidden" name="planPrice" id="h-price" value="199"/>
+          <input type="hidden" name="funnelSource" value="Funnel-2-Credit-Math"/>
+          <input type="hidden" name="funnelStage" value="Conversion"/>
+
+          <button type="submit" class="submit-btn" id="submit-btn">Activate My Credit →</button>
+          <p class="form-note">Not insurance. Month-to-month, cancel anytime. We respect your privacy and never sell your information.</p>
+        </form>
+
+        <div class="success-box" id="success-box">
+          <span class="ico"><svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#4ade80" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" ><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></span>
+          <h2>Your Credit Is Activating</h2>
+          <p>A specialist will contact you within 24 hours to schedule your first inspection and confirm your first month of credit. Welcome to the Advantage.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+const GHL_WEBHOOK_URL = 'https://YOUR_GHL_WEBHOOK_URL_HERE';
+let currentPanel = 1;
+let plan = {name:'Advanced', price:199, detail:'2 Bi-Annual Inspections · Priority Response'};
+
+const pmap = {1:'33%',2:'66%',3:'100%'};
+const lmap = {1:'Discover',2:'Compare Plans',3:'Enroll'};
+
+function goTo(n){
+  document.getElementById('panel-'+currentPanel).classList.remove('active');
+  document.getElementById('panel-'+n).classList.add('active');
+  currentPanel = n;
+  window.scrollTo({top:0,behavior:'smooth'});
+  document.getElementById('prog-fill').style.width = pmap[n];
+  document.getElementById('prog-label').textContent = lmap[n];
+  if(n===3) buildAccGrid(plan.price);
+}
+
+function updateCalc(price, name, el){
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById('tl1').textContent = '$'+(price*3).toLocaleString();
+  document.getElementById('tl2').textContent = '$'+(price*6).toLocaleString();
+  document.getElementById('tl3').textContent = '$'+(price*12).toLocaleString();
+  document.getElementById('tl4').textContent = '$'+(price*24).toLocaleString();
+  document.getElementById('cf2').textContent = '$'+(price*24).toLocaleString();
+}
+
+function selectPlan(name, price, detail){
+  plan = {name, price, detail};
+  document.getElementById('pbb-name').textContent = name+' Plan';
+  document.getElementById('pbb-detail').textContent = detail;
+  document.getElementById('pbb-price').innerHTML = '$'+price+'<span style="font-size:14px;color:var(--muted)">/mo</span>';
+  document.getElementById('fbt-name').textContent = name+' Plan';
+  document.getElementById('fbt-price').textContent = '$'+price+'/mo';
+  document.getElementById('h-plan').value = name;
+  document.getElementById('h-price').value = price;
+  document.getElementById('acc-total').textContent = '$'+(price*12).toLocaleString()+' after Year 1';
+  goTo(3);
+}
+
+function buildAccGrid(price){
+  const grid = document.getElementById('acc-grid');
+  grid.innerHTML = '';
+  for(let i=1;i<=12;i++){
+    const d = document.createElement('div');
+    d.className = 'acc-month';
+    setTimeout(()=>d.classList.add('filled'), i*70);
+    grid.appendChild(d);
+  }
+  document.getElementById('acc-total').textContent = '$'+(price*12).toLocaleString()+' after Year 1';
+}
+
+function toggleFaq(btn){
+  const item = btn.closest('.faq-item');
+  const isOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item.open').forEach(i=>i.classList.remove('open'));
+  if(!isOpen) item.classList.add('open');
+}
+
+async function submitForm(e){
+  e.preventDefault();
+  const btn = document.getElementById('submit-btn');
+  btn.disabled=true; btn.textContent='Submitting...';
+  const f = e.target;
+  const payload = {
+    firstName:f.firstName.value, lastName:f.lastName.value,
+    email:f.email.value, phone:f.phone.value,
+    address:f.address.value, city:f.city.value, state:f.state.value, zip:f.zip.value,
+    sourceChannel:f.sourceChannel.value,
+    selectedPlan:f.selectedPlan.value, planPrice:f.planPrice.value,
+    funnelSource:f.funnelSource.value, funnelStage:'Conversion',
+    tags:['Funnel-2 | Credit Interest','Advantage Lead',f.selectedPlan.value+' Plan'],
+    timestamp:new Date().toISOString()
+  };
+  try{ await fetch(GHL_WEBHOOK_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload),mode:'no-cors'}); }
+  catch(err){ console.warn('GHL:',err.message); }
+  document.getElementById('lead-form').style.display='none';
+  document.getElementById('success-box').style.display='block';
+}
+</script>
+</body>
+</html>
