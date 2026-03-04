@@ -1024,6 +1024,34 @@ body{background:var(--navy2);color:var(--white);font-family:var(--font);overflow
 
 <script>
 const GHL_WEBHOOK_URL = 'https://services.leadconnectorhq.com/hooks/zrzOGclvAYraeKbgXPY1/webhook-trigger/a95f31e4-2325-4ff8-9dbf-f960fca0dead';
+const GHL_ABANDON_URL = 'https://services.leadconnectorhq.com/hooks/zrzOGclvAYraeKbgXPY1/webhook-trigger/03d70dee-fd76-40de-b2ad-c49f8df071ec';
+
+document.addEventListener('DOMContentLoaded', function(){
+  const emailField = document.querySelector('input[name="email"]');
+  if(!emailField) return;
+  let abandonFired = false;
+  emailField.addEventListener('blur', async function(){
+    if(abandonFired) return;
+    const email = emailField.value.trim();
+    if(!email || !email.includes('@')) return;
+    abandonFired = true;
+    const f = emailField.closest('form');
+    const payload = {
+      firstName:    f && f.firstName    ? f.firstName.value    : '',
+      lastName:     f && f.lastName     ? f.lastName.value     : '',
+      email:        email,
+      phone:        f && f.phone        ? f.phone.value        : '',
+      selectedPlan: f && f.selectedPlan ? f.selectedPlan.value : '',
+      planPrice:    f && f.planPrice    ? f.planPrice.value    : '',
+      funnelSource: 'Funnel-2-Credit-Math',
+      abandonStage: 'email',
+      tags: ['Abandoned Form', 'Funnel Abandonment', 'Funnel-2 | Credit Interest'],
+      timestamp: new Date().toISOString()
+    };
+    try{ await fetch(GHL_ABANDON_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)}); }
+    catch(err){ console.warn('Abandon GHL:', err.message); }
+  });
+});
 let currentPanel = 1;
 let plan = {name:'Advanced', price:199, detail:'2 Bi-Annual Inspections · Priority Response'};
 
