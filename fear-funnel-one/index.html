@@ -46,8 +46,13 @@ body{background:var(--navy);color:var(--white);font-family:var(--font);overflow-
 .nav-logo{
   font-size:17px;font-weight:700;color:var(--white);
   letter-spacing:.5px;margin-right:auto;
+  display:flex;align-items:center;gap:10px;
 }
 .nav-logo span{color:var(--red)}
+/* crops the ADVANTAGE-LOGO mascot out of the square logo — the logo's own
+   wordmark is unreadable at nav size and duplicates the text beside it */
+.nav-logo-mark{position:relative;width:50px;height:44px;overflow:hidden;flex-shrink:0}
+.nav-logo-mark img{position:absolute;left:-9px;top:-7px;width:72px;height:72px;display:block}
 .nav-steps{display:flex;gap:0}
 .nav-step{
   padding:0 18px;height:56px;display:flex;align-items:center;
@@ -641,7 +646,9 @@ body{background:var(--navy);color:var(--white);font-family:var(--font);overflow-
 }
 @media(max-width:480px){
   .topnav{padding:0 16px;height:52px}
-  .nav-logo{font-size:15px}
+  .nav-logo{font-size:15px;gap:8px}
+  .nav-logo-mark{width:43px;height:38px}
+  .nav-logo-mark img{left:-8px;top:-6px;width:62px;height:62px}
   .panel{padding-top:52px}
   .hero{padding:40px 20px 36px}
   .hero-inner{gap:32px}
@@ -704,7 +711,7 @@ body{background:var(--navy);color:var(--white);font-family:var(--font);overflow-
 
 <!-- NAV -->
 <nav class="topnav">
-  <div class="nav-logo">Mr. Restore <span>Advantage</span></div>
+  <div class="nav-logo"><div class="nav-logo-mark"><img src="../ADVANTAGE-LOGO.png" alt="Mr. Restore Advantage"></div>Mr. Restore <span>Advantage</span></div>
   <div class="nav-steps">
     <div class="nav-step active" id="ns1" onclick="goTo(1)">
       <div class="step-pip">1</div> Know the Risk
