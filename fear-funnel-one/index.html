@@ -4,634 +4,1062 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
 <title>Mr. Restore Advantage | Stop the Damage Before It Starts</title>
-<link rel="preconnect" href="https://fonts.cdnfonts.com"/>
-<link href="https://fonts.cdnfonts.com/css/open-sauce-one" rel="stylesheet"/>
-<style>
-/* ============================================================
-   BRAND PALETTE — Mr. Restore Brand Guide
-   Deep Sea Navy : #0d2442
-   Washed Black  : #272727
-   Bright Red    : #ff3131
-   Royal Blue    : #3828eb
-   White         : #ffffff
-   Font          : Open Sauce One (SemiBold)
-   ============================================================ */
-:root {
-  --navy:    #0d2442;
-  --navy2:   #0a1d38;
-  --navy3:   #0f2d52;
-  --black:   #272727;
-  --black2:  #1e1e1e;
-  --red:     #ff3131;
-  --red2:    #e01c1c;
-  --blue:    #3828eb;
-  --blue2:   #2a1dc7;
-  --white:   #ffffff;
-  --off:     #d6e0ef;
-  --muted:   #8fa8c4;
-  --font:    'Open Sauce One', 'Nunito', sans-serif;
-}
-*{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{background:var(--navy);color:var(--white);font-family:var(--font);overflow-x:hidden}
+<!-- ═══════════════════════════════════════════════════════════════════
+     TYPEFACE — Mr. Restore Brand Guide v4.0
+     Open Sauce Sans is the official face. It is not published on Google
+     Fonts, so Open Sans loads here as the guide-specified substitute.
 
-/* ── NAV ── */
+     >>> WHEN MARKETING SUPPLIES THE OPEN SAUCE WEBFONT FILES <<<
+     Drop the .woff2 files in this funnel's folder and add the @font-face
+     blocks below (weights 400 / 600 / 800 only — never fake-bold, never
+     stretch, never substitute a condensed or slab face). The font stack
+     in the :root token block already names "Open Sauce Sans" first, so
+     the page picks it up with no other change.
+
+       (wrap these in a style element, or move them into the token
+       stylesheet below)
+       @font-face{font-family:"Open Sauce Sans";src:url("OpenSauceSans-Regular.woff2") format("woff2");font-weight:400;font-style:normal;font-display:swap}
+       @font-face{font-family:"Open Sauce Sans";src:url("OpenSauceSans-SemiBold.woff2") format("woff2");font-weight:600;font-style:normal;font-display:swap}
+       @font-face{font-family:"Open Sauce Sans";src:url("OpenSauceSans-ExtraBold.woff2") format("woff2");font-weight:800;font-style:normal;font-display:swap}
+     ═══════════════════════════════════════════════════════════════════ -->
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;800&display=swap" rel="stylesheet"/>
+<style>
+/* ════════════════════════════════════════════════════════════════════════
+   MR. RESTORE — DESIGN TOKENS
+   Mr. Restore Brand Guide v4.0
+   ────────────────────────────────────────────────────────────────────────
+   PORTABILITY: this :root block is the whole design system. It is lifted
+   verbatim from the commercial funnel so every colour, font and type
+   value travels with it. Nothing below this block contains a literal
+   colour, size, weight, line height or tracking value — everything
+   references a token declared here.
+   ════════════════════════════════════════════════════════════════════════ */
+:root{
+
+  /* ── BRAND ─────────────────────────────────────────────────────────────
+     Navy is the primary: full-bleed bands, headers, footers, and
+     headlines on light backgrounds.
+     Red is accent and urgency ONLY — primary CTA buttons, the emergency
+     phone number, single-word emphasis. Never a large background field.
+     Blue is interactive and informational — links, secondary buttons.  */
+  --navy:#0D2442;   /* Deep Sea Navy */
+  --red:#C8102E;    /* Signal Red    */
+  --blue:#1C6BBA;   /* Signal Blue   */
+
+  /* ── NEUTRALS ──────────────────────────────────────────────────────────
+     Ink   body copy on light backgrounds
+     Slate secondary text, captions, form labels
+     Steel borders, dividers, disabled states, placeholder text
+           — NEVER body copy, it fails AA at small sizes (3.08:1 on white)
+     Mist  section dividers, row separators, light panel fills
+     Fog   page and card backgrounds where white is too stark          */
+  --ink:#272727;
+  --slate:#55606E;
+  --steel:#8A94A0;
+  --mist:#D5DAE0;
+  --fog:#F2F4F6;
+  --white:#FFFFFF;
+
+  /* ── FUNCTIONAL ────────────────────────────────────────────────────────
+     Interface states only. Never decorative, never marketing.          */
+  --success:#1E7A46;   /* Clear Green   — form submitted */
+  --warning:#A85C00;   /* Caution Amber — warning        */
+  --error:#C8102E;     /* Signal Red doubles as error    */
+
+  /* ── CHANNEL TOKENS ────────────────────────────────────────────────────
+     Same brand colours as raw RGB channels so translucent fills and
+     focus rings can be built without introducing a new hex value.
+     Interactive darkening is done with filter:brightness() for the same
+     reason — no off-guide colour is ever invented below this block.    */
+  --navy-rgb:13 36 66;
+  --red-rgb:200 16 46;
+  --blue-rgb:28 107 186;
+  --white-rgb:255 255 255;
+  --steel-rgb:138 148 160;
+
+  /* ── TYPEFACE ──────────────────────────────────────────────────────────
+     Open Sauce Sans is the official face. It is not on Google Fonts, so
+     Open Sans loads as the guide-specified substitute (see <head>).
+     Never substitute a condensed or slab face. Never fake-bold or
+     stretch type — only the weights declared below are used.          */
+  --font:"Open Sauce Sans","Open Sans","Segoe UI",Helvetica,Arial,sans-serif;
+
+  /* ── TYPE SCALE — seven styles, no others ──────────────────────────────
+     Style    Weight  Size   Line height  Tracking
+     Display  800     72px   1.02         -0.03em
+     H1       800     48px   1.10         -0.02em
+     H2       600     32px   1.20         -0.01em
+     H3       600     24px   1.30          0
+     Body     400     16px   1.55          0
+     Small    400     13px   1.45          0.01em
+     Caption  600     12px   1.35          0.14em, uppercase
+     Sizes are re-declared (never invented) in the responsive blocks at
+     the end of this stylesheet, so every element keeps its style
+     mapping at every width.                                           */
+  --fw-display:800; --fs-display:72px; --lh-display:1.02; --ls-display:-0.03em;
+  --fw-h1:800;      --fs-h1:48px;      --lh-h1:1.10;      --ls-h1:-0.02em;
+  --fw-h2:600;      --fs-h2:32px;      --lh-h2:1.20;      --ls-h2:-0.01em;
+  --fw-h3:600;      --fs-h3:24px;      --lh-h3:1.30;      --ls-h3:0;
+  --fw-body:400;    --fs-body:16px;    --lh-body:1.55;    --ls-body:0;
+  --fw-small:400;   --fs-small:13px;   --lh-small:1.45;   --ls-small:0.01em;
+  --fw-caption:600; --fs-caption:12px; --lh-caption:1.35; --ls-caption:0.14em;
+
+  /* Semibold companion to Body and Small. It is NOT an eighth style: it
+     changes weight only, never size, line height or tracking, so an
+     element using it stays mapped to Body or Small. It exists because
+     inline <strong>, button labels and data values have to read heavier
+     than 400. 600 is a real loaded weight of Open Sans / Open Sauce —
+     nothing here is fake-bolded or stretched. */
+  --fw-strong:600;
+
+  /* ── MEASURE ───────────────────────────────────────────────────────────
+     Line length target 50–75 characters, hard ceiling 90.
+     The ch unit is the width of "0"; running text averages narrower, so
+     62ch of container renders roughly 66–72 characters.               */
+  --measure:62ch;
+  --measure-tight:52ch;
+
+  /* ── LAYOUT ────────────────────────────────────────────────────────────*/
+  --shell:1080px;          /* content column max width          */
+  --shell-narrow:900px;
+  --shell-text:820px;
+  --gutter:40px;
+  --gutter-sm:20px;
+  --nav-h:56px;
+  --radius:2px;
+  --hairline:1px;
+  --tap:44px;              /* minimum tap target                */
+
+  /* ── SPACING ───────────────────────────────────────────────────────────*/
+  --sp-1:6px;  --sp-2:10px; --sp-3:14px; --sp-4:20px;  --sp-5:28px;
+  --sp-6:36px; --sp-7:48px; --sp-8:64px; --sp-9:80px;
+
+  /* ── MOTION ────────────────────────────────────────────────────────────*/
+  --t-fast:.15s; --t-base:.2s; --t-slow:.35s;
+}
+/* ════════════════════════════════════════════════════════════════════════
+   TYPE PRIMITIVES
+   Every rule below composes one of the seven styles. There are no
+   one-off font sizes anywhere in this stylesheet.
+   ════════════════════════════════════════════════════════════════════════ */
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+
+body{
+  background:var(--white);
+  color:var(--ink);
+  font-family:var(--font);
+  font-size:var(--fs-body);
+  font-weight:var(--fw-body);
+  line-height:var(--lh-body);
+  letter-spacing:var(--ls-body);
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+
+/* keyboard focus — Signal Blue is the interactive colour, switched to
+   white where the focused control sits on a navy band */
+:focus-visible{outline:calc(var(--hairline) * 2) solid var(--blue);outline-offset:2px}
+.topnav :focus-visible,
+.hero :focus-visible,
+.trust-strip :focus-visible,
+.conv-left :focus-visible{outline-color:var(--white)}
+
+img{max-width:100%;height:auto;display:block}
+
+/* ── SENTENCE-CASE CAPTION MODIFIER ──────────────────────────────────────
+   The guide caps an all-caps label at four words. Labels that run longer
+   keep their wording and drop to the Small style in sentence case, so no
+   eyebrow anywhere on the page is set in caps beyond four words.      */
+.sc{text-transform:none !important;
+    font-size:var(--fs-small) !important;font-weight:var(--fw-small) !important;
+    line-height:var(--lh-small) !important;letter-spacing:var(--ls-small) !important}
+
+/* ════════════════════════════════════════════════════════════════════════
+   NAV — navy band (guide: headers are Deep Sea Navy)
+   ════════════════════════════════════════════════════════════════════════ */
 .topnav{
   position:fixed;top:0;left:0;right:0;z-index:200;
-  background:var(--navy2);
-  border-bottom:2px solid var(--red);
-  height:56px;display:flex;align-items:center;
-  padding:0 32px;gap:0;
+  background:var(--navy);
+  border-bottom:var(--hairline) solid rgb(var(--white-rgb) / .14);
+  height:var(--nav-h);display:flex;align-items:center;
+  padding:0 var(--gutter);gap:0;
 }
 .nav-logo{
-  font-size:17px;font-weight:700;color:var(--white);
-  letter-spacing:.5px;margin-right:auto;
-  display:flex;align-items:center;gap:10px;
+  font-size:var(--fs-caption);font-weight:var(--fw-caption);
+  line-height:var(--lh-caption);letter-spacing:var(--ls-caption);
+  text-transform:uppercase;
+  color:var(--white);margin-right:auto;
+  display:flex;align-items:center;gap:var(--sp-2);
 }
-.nav-logo span{color:var(--red)}
-/* crops the ADVANTAGE-LOGO mascot out of the square logo — the logo's own
-   wordmark is unreadable at nav size and duplicates the text beside it */
+.nav-logo span{color:var(--mist)}          /* white on navy 15.58:1 / Mist 11.08:1 */
+/* Crops the ADVANTAGE-LOGO mascot out of the square logo — the logo's own
+   wordmark is unreadable at nav size and duplicates the text beside it.
+   No recolour, no rotation, no shadow, glow, outline or opacity is
+   applied to the mark; the frame only crops it. */
 .nav-logo-mark{position:relative;width:50px;height:44px;overflow:hidden;flex-shrink:0}
 .nav-logo-mark img{position:absolute;left:-9px;top:-7px;width:72px;height:72px;display:block}
+
 .nav-steps{display:flex;gap:0}
+/* Step markers are light neutrals, never Signal Red: red on navy is
+   2.65:1 and fails both the text prohibition and the 3:1 non-text rule. */
 .nav-step{
-  padding:0 18px;height:56px;display:flex;align-items:center;
-  gap:8px;font-size:11px;letter-spacing:2px;text-transform:uppercase;
-  color:var(--muted);border-bottom:3px solid transparent;
-  transition:all .2s;cursor:pointer;
+  padding:0 var(--sp-4);height:var(--nav-h);display:flex;align-items:center;
+  gap:var(--sp-2);
+  font-size:var(--fs-caption);font-weight:var(--fw-caption);
+  line-height:var(--lh-caption);letter-spacing:var(--ls-caption);
+  text-transform:uppercase;
+  color:var(--mist);border-bottom:3px solid transparent;
+  transition:color var(--t-base),border-color var(--t-base);cursor:pointer;
 }
-.nav-step.active{color:var(--white);border-bottom-color:var(--red)}
-.nav-step.done{color:var(--muted);border-bottom-color:rgba(255,49,49,.3)}
+.nav-step.active{color:var(--white);border-bottom-color:var(--white)}
+.nav-step.done{color:var(--mist);border-bottom-color:var(--steel)}
 .step-pip{
   width:22px;height:22px;border-radius:50%;
-  background:var(--navy3);border:1px solid rgba(255,255,255,.15);
+  background:rgb(var(--white-rgb) / .06);
+  border:var(--hairline) solid var(--mist);color:var(--mist);
   display:flex;align-items:center;justify-content:center;
-  font-size:11px;font-weight:700;transition:all .2s;
+  font-size:var(--fs-caption);font-weight:var(--fw-strong);line-height:1;
+  transition:background var(--t-base),color var(--t-base);
 }
-.nav-step.active .step-pip{background:var(--red);border-color:var(--red)}
-.nav-step.done .step-pip{background:rgba(255,49,49,.2);border-color:var(--red);color:var(--red)}
+.nav-step.active .step-pip{background:var(--white);border-color:var(--white);color:var(--navy)}
+.nav-step.done .step-pip{background:rgb(var(--white-rgb) / .12);border-color:var(--mist);color:var(--mist)}
 
-/* ── PANELS ── */
-.panel{display:none;min-height:100vh;padding-top:56px}
+/* ════════════════════════════════════════════════════════════════════════
+   PANELS
+   ════════════════════════════════════════════════════════════════════════ */
+.panel{display:none;min-height:100vh;padding-top:var(--nav-h);background:var(--white)}
 .panel.active{display:block}
 
-/* ══════════════════════════════════════
+/* ════════════════════════════════════════════════════════════════════════
    PANEL 1 — AWARENESS
-══════════════════════════════════════ */
-/* HERO */
+   HERO — NAVY BAND 1 of 3 (the trust strip below continues the same band)
+   ════════════════════════════════════════════════════════════════════════ */
 .hero{
-  background:linear-gradient(160deg,var(--navy2) 0%,var(--navy) 50%,#0a1e36 100%);
-  padding:72px 40px 56px;position:relative;overflow:hidden;
+  background:var(--navy);color:var(--white);
+  padding:var(--sp-9) var(--gutter) var(--sp-8);
+  position:relative;overflow:hidden;
 }
+/* decorative glow — a white-channel wash, so no off-guide colour is
+   introduced and nothing competes with the headline */
 .hero::before{
   content:'';position:absolute;top:-60px;right:-80px;
   width:500px;height:500px;border-radius:50%;
-  background:radial-gradient(circle,rgba(255,49,49,.12) 0%,transparent 70%);
+  background:radial-gradient(circle,rgb(var(--white-rgb) / .06) 0%,transparent 70%);
   pointer-events:none;
 }
-.hero-inner{max-width:1040px;margin:0 auto;display:grid;grid-template-columns:1fr 400px;gap:64px;align-items:center}
+.hero-inner{
+  max-width:var(--shell);margin:0 auto;position:relative;
+  display:grid;grid-template-columns:1fr 400px;gap:var(--sp-8);align-items:center;
+}
 
+/* Eyebrow. Sentence case, not all caps: the geography puts this label
+   past the four-word ceiling the guide sets for all-caps labels. */
 .hero-tag{
-  display:inline-flex;align-items:center;gap:8px;
-  font-size:11px;letter-spacing:3px;text-transform:uppercase;
-  color:var(--red);margin-bottom:24px;
+  display:flex;align-items:center;gap:var(--sp-2);
+  font-size:var(--fs-small);font-weight:var(--fw-small);
+  line-height:var(--lh-small);letter-spacing:var(--ls-small);
+  color:var(--mist);margin-bottom:var(--sp-5);
 }
-.hero-tag::before{content:'';width:24px;height:2px;background:var(--red)}
+.hero-tag::before{content:'';width:var(--sp-5);height:var(--hairline);background:var(--mist);flex-shrink:0}
 
+/* Display style. On a navy band the accent is a light neutral, never
+   Signal Red — red on navy is 2.65:1 and prohibited. Base Mist 11.08:1,
+   accent White 15.58:1, so the accent is the brighter of the two. */
 .hero h1{
-  font-size:clamp(42px,5.5vw,76px);font-weight:700;
-  line-height:1.0;letter-spacing:-1px;margin-bottom:24px;
+  font-size:var(--fs-display);font-weight:var(--fw-display);
+  line-height:var(--lh-display);letter-spacing:var(--ls-display);
+  color:var(--mist);margin-bottom:var(--sp-5);max-width:var(--measure-tight);
 }
-.hero h1 em{color:var(--red);font-style:normal;display:block}
+.hero h1 em{color:var(--white);font-style:normal;display:block}
 .hero-sub{
-  font-size:17px;line-height:1.75;color:var(--off);
-  margin-bottom:36px;max-width:540px;
+  font-size:var(--fs-body);font-weight:var(--fw-body);
+  line-height:var(--lh-body);letter-spacing:var(--ls-body);
+  color:var(--mist);margin-bottom:var(--sp-6);max-width:var(--measure);
 }
-.hero-sub strong{color:var(--white);font-weight:600}
+.hero-sub strong{color:var(--white);font-weight:var(--fw-strong)}
 
-/* stat row */
-.stat-row{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-bottom:40px;background:rgba(255,255,255,.06)}
-.stat{background:var(--navy2);padding:20px 16px;text-align:center}
-.stat .val{font-size:34px;font-weight:700;color:var(--red);display:block;line-height:1;margin-bottom:6px}
-.stat .lbl{font-size:11px;color:var(--muted);letter-spacing:1px;text-transform:uppercase}
+/* stat row — still inside the navy band */
+.stat-row{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:var(--sp-3);
+  margin-bottom:var(--sp-6);
+}
+.stat{
+  background:rgb(var(--white-rgb) / .05);
+  border:var(--hairline) solid rgb(var(--white-rgb) / .16);
+  border-top:3px solid var(--mist);
+  padding:var(--sp-5) var(--sp-4);text-align:center;border-radius:var(--radius);
+}
+/* White, not Signal Red: on navy the emphasis is carried by a light
+   neutral at 15.58:1. */
+.stat .val{
+  display:block;
+  font-size:var(--fs-h1);font-weight:var(--fw-h1);
+  line-height:var(--lh-h1);letter-spacing:var(--ls-h1);
+  color:var(--white);margin-bottom:var(--sp-2);
+}
+.stat .lbl{
+  font-size:var(--fs-caption);font-weight:var(--fw-caption);
+  line-height:var(--lh-caption);letter-spacing:var(--ls-caption);
+  text-transform:uppercase;color:var(--mist);
+}
 
+/* Primary CTA. Red fill is correct on a light section (5.88:1 on white,
+   5.34:1 on Fog, white label 5.88:1 on the fill). */
 .btn-red{
-  display:inline-flex;align-items:center;gap:10px;
+  display:inline-flex;align-items:center;justify-content:center;gap:var(--sp-2);
   background:var(--red);color:var(--white);
-  font-family:var(--font);font-weight:700;font-size:16px;
-  letter-spacing:.5px;padding:16px 36px;
-  border:none;cursor:pointer;text-decoration:none;
-  text-transform:uppercase;transition:background .2s,transform .15s;
+  border:var(--hairline) solid var(--red);border-radius:var(--radius);
+  font-family:var(--font);
+  font-size:var(--fs-body);font-weight:var(--fw-strong);
+  line-height:var(--lh-body);letter-spacing:var(--ls-body);
+  padding:var(--sp-3) var(--sp-6);min-height:var(--tap);
+  cursor:pointer;text-decoration:none;
+  transition:filter var(--t-base),transform var(--t-fast);
 }
-.btn-red:hover{background:var(--red2);transform:translateY(-2px)}
+.btn-red:hover{filter:brightness(.9);transform:translateY(-2px)}
+/* On a navy band the same button inverts: white fill, navy label. The
+   fill carries its own boundary at 15.58:1 and the label reads at
+   15.58:1 — a red fill would only reach 2.65:1 against the band. */
+.hero .btn-red{background:var(--white);color:var(--navy);border-color:var(--white)}
+.hero .btn-red:hover{filter:brightness(.92)}
 
+/* Secondary on navy — Mist border 11.08:1, Mist label 11.08:1 */
 .btn-outline{
-  display:inline-flex;align-items:center;gap:8px;
-  background:transparent;color:var(--off);
-  font-family:var(--font);font-size:13px;padding:14px 24px;
-  border:1px solid rgba(255,255,255,.2);cursor:pointer;
-  text-transform:uppercase;letter-spacing:.5px;transition:all .2s;
+  display:inline-flex;align-items:center;justify-content:center;gap:var(--sp-2);
+  background:transparent;color:var(--mist);
+  border:var(--hairline) solid var(--steel);border-radius:var(--radius);
+  font-family:var(--font);
+  font-size:var(--fs-small);font-weight:var(--fw-small);
+  line-height:var(--lh-small);letter-spacing:var(--ls-small);
+  padding:var(--sp-3) var(--sp-4);min-height:var(--tap);
+  cursor:pointer;transition:border-color var(--t-base),color var(--t-base);
 }
 .btn-outline:hover{border-color:var(--white);color:var(--white)}
-.btn-row{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.btn-row{display:flex;align-items:center;gap:var(--sp-3);flex-wrap:wrap}
 
-/* hero right — trust card */
+/* ── hero right: a white card on the navy band, so every figure inside
+   keeps Ink-on-white legibility ── */
 .hero-card{
-  background:var(--black);
-  border:1px solid rgba(255,255,255,.08);
+  background:var(--white);
+  border:var(--hairline) solid var(--mist);border-radius:var(--radius);
   padding:0;overflow:hidden;
 }
-.hc-top{background:var(--red);padding:16px 24px}
-.hc-top p{font-size:13px;font-weight:700;letter-spacing:1px;text-transform:uppercase}
-.hc-body{padding:28px 24px}
+.hc-top{background:var(--navy);padding:var(--sp-3) var(--sp-5)}
+.hc-top p{
+  font-size:var(--fs-caption);font-weight:var(--fw-caption);
+  line-height:var(--lh-caption);letter-spacing:var(--ls-caption);
+  text-transform:uppercase;color:var(--white);
+}
+.hc-body{padding:var(--sp-5)}
 .hc-row{
-  display:flex;justify-content:space-between;align-items:center;
-  padding:12px 0;border-bottom:1px solid rgba(255,255,255,.06);
-  font-size:13px;
+  display:flex;justify-content:space-between;align-items:center;gap:var(--sp-3);
+  padding:var(--sp-2) 0;border-bottom:var(--hairline) solid var(--mist);
+  font-size:var(--fs-body);font-weight:var(--fw-body);
+  line-height:var(--lh-body);letter-spacing:var(--ls-body);
 }
 .hc-row:last-of-type{border-bottom:none}
-.hc-row .label{color:var(--muted)}
-.hc-row .val2{font-weight:700;color:var(--white)}
+.hc-row .label{color:var(--slate)}
+.hc-row .val2{font-weight:var(--fw-strong);color:var(--navy)}
+/* Red on white is 5.88:1. The exposure figures are the one urgency use
+   of Signal Red on this card — every other value stays Navy. */
 .hc-row .val2.red{color:var(--red)}
-.hc-total{font-size:40px;font-weight:700;color:var(--red);text-align:center;margin:16px 0 4px}
-.hc-total-lbl{font-size:11px;color:var(--muted);text-align:center;letter-spacing:1px;text-transform:uppercase;margin-bottom:20px}
-.hc-cta{
-  display:block;width:100%;padding:14px;
-  background:var(--blue);color:var(--white);
-  font-family:var(--font);font-weight:700;font-size:14px;
-  letter-spacing:.5px;text-transform:uppercase;
-  border:none;cursor:pointer;transition:background .2s;
+.hc-total{
+  font-size:var(--fs-h1);font-weight:var(--fw-h1);
+  line-height:var(--lh-h1);letter-spacing:var(--ls-h1);
+  color:var(--red);text-align:center;margin:var(--sp-4) 0 var(--sp-1);
 }
-.hc-cta:hover{background:var(--blue2)}
+.hc-total-lbl{
+  font-size:var(--fs-caption);font-weight:var(--fw-caption);
+  line-height:var(--lh-caption);letter-spacing:var(--ls-caption);
+  text-transform:uppercase;color:var(--slate);
+  text-align:center;margin-bottom:var(--sp-4);
+}
+.hc-cta{
+  display:flex;align-items:center;justify-content:center;width:100%;
+  padding:var(--sp-3);min-height:var(--tap);
+  background:var(--red);color:var(--white);
+  border:var(--hairline) solid var(--red);border-radius:var(--radius);
+  font-family:var(--font);
+  font-size:var(--fs-body);font-weight:var(--fw-strong);
+  line-height:var(--lh-body);letter-spacing:var(--ls-body);
+  cursor:pointer;transition:filter var(--t-base);
+}
+.hc-cta:hover{filter:brightness(.9)}
 
-/* trust strip */
+/* ── trust strip: closes the navy band ── */
 .trust-strip{
-  background:var(--black2);border-top:1px solid rgba(255,255,255,.05);
-  padding:20px 40px;display:flex;align-items:center;
-  justify-content:center;gap:40px;flex-wrap:wrap;
+  background:var(--navy);
+  border-top:var(--hairline) solid rgb(var(--white-rgb) / .16);
+  padding:var(--sp-4) var(--gutter);display:flex;align-items:center;
+  justify-content:center;gap:var(--sp-6);flex-wrap:wrap;
 }
 .trust-item{
-  display:flex;align-items:center;gap:8px;
-  font-size:12px;color:var(--muted);letter-spacing:.5px;
+  display:flex;align-items:center;gap:var(--sp-2);
+  font-size:var(--fs-small);font-weight:var(--fw-small);
+  line-height:var(--lh-small);letter-spacing:var(--ls-small);
+  color:var(--mist);
 }
-.trust-item .ti{display:flex;align-items:center;flex-shrink:0}
-.trust-item .ti svg{stroke:var(--muted)}
-.risk-icon{display:block;margin-bottom:14px}
-.risk-icon svg{stroke:var(--red);opacity:.85}
+.trust-item .ti{display:flex;align-items:center;flex-shrink:0;color:var(--mist)}
+.trust-item .ti svg{stroke:currentColor}
 
-/* EDUCATION BAND */
-.edu-band{
-  background:var(--navy3);padding:72px 40px;
+/* ════════════════════════════════════════════════════════════════════════
+   SHARED LIGHT-SECTION TYPE
+   Navy headlines on light, Signal Red accents (5.88:1 on white,
+   5.34:1 on Fog), Ink body copy, Slate secondary.
+   ════════════════════════════════════════════════════════════════════════ */
+.section-tag,.video-eyebrow,.sc-label,.stat .lbl,.hc-total-lbl,.risk-card .cost,
+.conv-left .tag,.fg label,.plan-badge,.vc-badge,.comp-table th{
+  font-size:var(--fs-caption);font-weight:var(--fw-caption);
+  line-height:var(--lh-caption);letter-spacing:var(--ls-caption);
+  text-transform:uppercase;
 }
 .section-tag{
-  font-size:11px;letter-spacing:3px;text-transform:uppercase;
-  color:var(--red);margin-bottom:16px;
-  display:flex;align-items:center;gap:12px;
+  color:var(--slate);margin-bottom:var(--sp-3);
+  display:flex;align-items:center;gap:var(--sp-3);
 }
-.section-tag::after{content:'';flex:1;max-width:60px;height:1px;background:var(--red);opacity:.4}
-.edu-band h2{
-  font-size:clamp(32px,4vw,52px);font-weight:700;
-  letter-spacing:-0.5px;margin-bottom:16px;
-  max-width:680px;
-}
-.edu-band h2 em{color:var(--red);font-style:normal}
-.edu-band .lead{
-  font-size:16px;color:var(--off);line-height:1.8;
-  max-width:640px;margin-bottom:52px;
-}
+.section-tag::after{content:'';flex:1;max-width:var(--sp-8);height:var(--hairline);background:var(--mist)}
 
+.edu-band h2,.section-center h2,.video-section h2,.cb-header h2,
+.faq-header h2,.proof-header h2,.comp-header h2{
+  font-size:var(--fs-h1);font-weight:var(--fw-h1);
+  line-height:var(--lh-h1);letter-spacing:var(--ls-h1);
+  color:var(--navy);margin-bottom:var(--sp-3);max-width:var(--measure-tight);
+}
+.edu-band h2 em,.section-center h2 em,.video-section h2 em,.cb-header h2 em{
+  color:var(--red);font-style:normal;
+}
+.edu-band .lead,.section-center p,.cb-header p,.comp-header p{
+  font-size:var(--fs-body);font-weight:var(--fw-body);
+  line-height:var(--lh-body);letter-spacing:var(--ls-body);
+  color:var(--ink);max-width:var(--measure);
+}
+.edu-band .lead{margin-bottom:var(--sp-7)}
+
+/* ════════════════════════════════════════════════════════════════════════
+   VIDEO  (Fog section, white card)
+   The Vimeo embed and its wrapper are untouched — only the frame around
+   the player is restyled.
+   ════════════════════════════════════════════════════════════════════════ */
+.video-section{
+  background:var(--fog);padding:var(--sp-9) var(--gutter);
+  border-top:var(--hairline) solid var(--mist);
+  border-bottom:var(--hairline) solid var(--mist);
+}
+.video-inner{max-width:var(--shell-text);margin:0 auto}
+.video-eyebrow{
+  display:flex;align-items:center;gap:var(--sp-3);
+  color:var(--slate);margin-bottom:var(--sp-3);justify-content:center;
+}
+.video-eyebrow::before,.video-eyebrow::after{
+  content:'';flex:1;max-width:var(--sp-8);height:var(--hairline);background:var(--mist)
+}
+.video-section h2{text-align:center;margin-left:auto;margin-right:auto}
+.video-section .vsub{
+  font-size:var(--fs-body);font-weight:var(--fw-body);
+  line-height:var(--lh-body);letter-spacing:var(--ls-body);
+  color:var(--ink);text-align:center;max-width:var(--measure);
+  margin:0 auto var(--sp-6);
+}
+.video-wrap{
+  position:relative;background:var(--white);
+  border:var(--hairline) solid var(--mist);border-radius:var(--radius);
+  overflow:hidden;
+}
+.video-wrap video{display:block;width:100%;height:auto}
+.video-caption{
+  background:var(--white);border-top:var(--hairline) solid var(--mist);
+  padding:var(--sp-3) var(--sp-4);display:flex;align-items:center;gap:var(--sp-3);
+}
+.vc-badge{
+  background:var(--navy);color:var(--white);
+  padding:var(--sp-1) var(--sp-2);flex-shrink:0;border-radius:var(--radius);
+}
+.vc-text{
+  font-size:var(--fs-small);font-weight:var(--fw-small);
+  line-height:var(--lh-small);letter-spacing:var(--ls-small);
+  color:var(--slate);
+}
+.vc-text strong{color:var(--navy);font-weight:var(--fw-strong)}
+
+/* ════════════════════════════════════════════════════════════════════════
+   EDUCATION BAND — THE RISKS  (white page, Fog cards)
+   ════════════════════════════════════════════════════════════════════════ */
+.edu-band{background:var(--white);padding:var(--sp-9) var(--gutter)}
+.edu-inner{max-width:var(--shell);margin:0 auto}
 .risk-grid{
-  max-width:1040px;margin:0 auto;
-  display:grid;grid-template-columns:repeat(3,1fr);gap:1px;
-  background:rgba(255,255,255,.06);
+  max-width:var(--shell);margin:0 auto;
+  display:grid;grid-template-columns:repeat(3,1fr);gap:var(--hairline);
+  background:var(--mist);border:var(--hairline) solid var(--mist);
+  border-radius:var(--radius);overflow:hidden;
 }
 .risk-card{
-  background:var(--navy2);padding:32px 28px;
+  background:var(--fog);padding:var(--sp-6) var(--sp-5);
   border-bottom:3px solid transparent;
-  transition:border-color .2s,background .2s;
+  transition:border-color var(--t-base),background var(--t-base);
 }
-.risk-card:hover{background:var(--navy3);border-bottom-color:var(--red)}
-.risk-icon{font-size:28px;margin-bottom:14px;display:block}
-.risk-card h3{font-size:16px;font-weight:700;color:var(--white);margin-bottom:10px}
-.risk-card p{font-size:13px;color:var(--muted);line-height:1.7}
-.risk-card .cost{
-  margin-top:14px;font-size:12px;font-weight:700;
-  color:var(--red);letter-spacing:.5px;text-transform:uppercase;
+.risk-card:hover{background:var(--white);border-bottom-color:var(--blue)}
+/* Icons are Signal Blue — the informational colour. Full opacity, so the
+   4.93:1 measured against Fog is what actually renders. */
+.risk-icon{display:block;margin-bottom:var(--sp-3);color:var(--blue)}
+.risk-icon svg{stroke:currentColor}
+.risk-card h3{
+  font-size:var(--fs-h3);font-weight:var(--fw-h3);
+  line-height:var(--lh-h3);letter-spacing:var(--ls-h3);
+  color:var(--navy);margin-bottom:var(--sp-2);
 }
+.risk-card p{
+  font-size:var(--fs-body);font-weight:var(--fw-body);
+  line-height:var(--lh-body);letter-spacing:var(--ls-body);
+  color:var(--ink);max-width:var(--measure);
+}
+/* The cost line is a permitted urgency use of Signal Red — 5.34:1 on Fog. */
+.risk-card .cost{margin-top:var(--sp-3);color:var(--red)}
 
-/* SOCIAL PROOF */
-.proof-section{background:var(--black);padding:72px 40px}
-.proof-inner{max-width:1040px;margin:0 auto}
-.proof-header{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:40px;flex-wrap:wrap;gap:16px}
-.proof-header h2{font-size:clamp(28px,3.5vw,44px);font-weight:700;letter-spacing:-0.5px}
+/* ════════════════════════════════════════════════════════════════════════
+   SOCIAL PROOF  (Fog section, white cards)
+   ════════════════════════════════════════════════════════════════════════ */
+.proof-section{background:var(--fog);padding:var(--sp-9) var(--gutter);border-top:var(--hairline) solid var(--mist)}
+.proof-inner{max-width:var(--shell);margin:0 auto}
+.proof-header{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:var(--sp-6);flex-wrap:wrap;gap:var(--sp-3)}
 .proof-header .rating{
-  display:flex;flex-direction:column;align-items:flex-end;
-  font-size:13px;color:var(--muted);gap:4px;
+  display:flex;flex-direction:column;align-items:flex-end;gap:var(--sp-1);
+  font-size:var(--fs-small);font-weight:var(--fw-small);
+  line-height:var(--lh-small);letter-spacing:var(--ls-small);color:var(--slate);
 }
-.stars{color:#f5c842;font-size:20px;letter-spacing:2px}
-
-.review-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:40px}
+/* Star glyphs are Navy. The old gold was off-guide and measured 1.7:1 on
+   a light ground; the functional palette is reserved for interface
+   states, so a marketing rating never borrows Caution Amber. */
+.stars{
+  color:var(--navy);
+  font-size:var(--fs-h3);line-height:var(--lh-h3);letter-spacing:var(--ls-caption);
+}
+.review-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--sp-3);margin-bottom:var(--sp-6)}
 .review-card{
-  background:var(--navy);border:1px solid rgba(255,255,255,.07);
-  padding:28px 24px;
+  background:var(--white);border:var(--hairline) solid var(--mist);
+  border-radius:var(--radius);padding:var(--sp-6) var(--sp-5);
 }
-.review-stars{color:#f5c842;font-size:14px;margin-bottom:12px}
+.review-stars{
+  color:var(--navy);margin-bottom:var(--sp-2);
+  font-size:var(--fs-small);line-height:var(--lh-small);letter-spacing:var(--ls-small);
+}
 .review-text{
-  font-size:14px;color:var(--off);line-height:1.75;
-  margin-bottom:18px;font-style:italic;
+  font-size:var(--fs-body);font-weight:var(--fw-body);
+  line-height:var(--lh-body);letter-spacing:var(--ls-body);
+  color:var(--ink);margin-bottom:var(--sp-4);font-style:italic;max-width:var(--measure);
 }
-.reviewer{display:flex;align-items:center;gap:10px}
+.reviewer{display:flex;align-items:center;gap:var(--sp-2)}
+/* Navy avatar: white initials read at 15.58:1 */
 .avatar{
   width:36px;height:36px;border-radius:50%;
-  background:var(--blue);color:var(--white);
-  display:flex;align-items:center;justify-content:center;
-  font-size:14px;font-weight:700;flex-shrink:0;
+  background:var(--navy);color:var(--white);
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+  font-size:var(--fs-small);font-weight:var(--fw-strong);line-height:1;
 }
-.reviewer-info .name{font-size:13px;font-weight:700}
-.reviewer-info .role{font-size:11px;color:var(--muted)}
+.reviewer-info .name{
+  font-size:var(--fs-body);font-weight:var(--fw-strong);
+  line-height:var(--lh-body);letter-spacing:var(--ls-body);color:var(--navy);
+}
+.reviewer-info .role{
+  font-size:var(--fs-small);font-weight:var(--fw-small);
+  line-height:var(--lh-small);letter-spacing:var(--ls-small);color:var(--slate);
+}
 
 .proof-cta{
-  background:var(--navy3);border:1px solid rgba(255,49,49,.25);
-  padding:32px 36px;display:flex;align-items:center;
-  justify-content:space-between;flex-wrap:wrap;gap:20px;
+  background:var(--white);border:var(--hairline) solid var(--mist);
+  border-left:3px solid var(--red);border-radius:var(--radius);
+  padding:var(--sp-6);display:flex;align-items:center;
+  justify-content:space-between;flex-wrap:wrap;gap:var(--sp-4);
 }
-.proof-cta .msg h3{font-size:20px;font-weight:700;margin-bottom:6px}
-.proof-cta .msg p{font-size:14px;color:var(--muted)}
-
-/* ── VIDEO SECTION ── */
-  .video-section{
-    background:var(--black2);
-    padding:72px 40px;
-    border-top:1px solid rgba(255,255,255,.05);
-    border-bottom:1px solid rgba(255,255,255,.05);
-  }
-  .video-inner{max-width:900px;margin:0 auto}
-  .video-eyebrow{
-    display:flex;align-items:center;gap:12px;
-    font-size:11px;letter-spacing:3px;text-transform:uppercase;
-    color:var(--red);margin-bottom:16px;justify-content:center;
-  }
-  .video-eyebrow::before,.video-eyebrow::after{content:'';flex:1;max-width:60px;height:1px;background:var(--red);opacity:.4}
-  .video-section h2{
-    font-size:clamp(26px,3.5vw,42px);font-weight:700;
-    letter-spacing:-0.5px;text-align:center;margin-bottom:10px;
-  }
-  .video-section h2 em{color:var(--red);font-style:normal}
-  .video-section .vsub{
-    font-size:15px;color:var(--muted);line-height:1.75;
-    text-align:center;max-width:580px;margin:0 auto 36px;
-  }
-  .video-wrap{
-    position:relative;background:var(--navy2);
-    border:1px solid rgba(255,255,255,.08);
-    overflow:hidden;
-  }
-  .video-wrap video{display:block;width:100%;height:auto}
-  .video-caption{
-    background:var(--navy);border-top:1px solid rgba(255,255,255,.06);
-    padding:14px 20px;display:flex;align-items:center;gap:12px;
-  }
-  .vc-badge{
-    background:var(--red);color:var(--white);
-    font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;
-    padding:4px 10px;flex-shrink:0;
-  }
-  .vc-text{font-size:13px;color:var(--muted)}
-  .vc-text strong{color:var(--white)}
-
-/* ── CREDIT BENEFITS ── */
-  .credit-benefits{
-    background:var(--navy2);
-    padding:80px 40px;
-    border-top:1px solid rgba(255,255,255,.05);
-  }
-  .cb-inner{max-width:1040px;margin:0 auto}
-  .cb-header{margin-bottom:52px}
-  .cb-header .section-tag{justify-content:flex-start}
-  .cb-header h2{
-    font-size:clamp(30px,4vw,50px);font-weight:700;
-    letter-spacing:-0.5px;margin-bottom:14px;line-height:1.08;
-  }
-  .cb-header h2 em{color:var(--red);font-style:normal}
-  .cb-header p{font-size:16px;color:var(--off);line-height:1.8;max-width:640px}
-  .cb-blocks{display:grid;grid-template-columns:1fr 1fr;gap:2px;background:rgba(255,255,255,.06)}
-  .cb-block{
-    background:var(--black);padding:48px 40px;
-    border-bottom:4px solid transparent;
-    transition:border-color .2s,background .2s;
-  }
-  .cb-block:hover{background:var(--black2);border-bottom-color:var(--red)}
-  .cb-block-icon{margin-bottom:20px;display:flex;gap:4px;align-items:center}
-  .cb-block h3{
-    font-size:24px;font-weight:700;margin-bottom:14px;
-    letter-spacing:-0.25px;line-height:1.15;
-  }
-  .cb-block h3 em{color:var(--red);font-style:normal}
-  .cb-block p{font-size:14px;color:var(--muted);line-height:1.8;margin-bottom:24px}
-  .cb-scenario{
-    background:var(--navy);border:1px solid rgba(255,49,49,.2);
-    padding:20px 22px;
-  }
-  .cb-scenario .sc-label{
-    font-size:10px;letter-spacing:2px;text-transform:uppercase;
-    color:var(--red);margin-bottom:12px;font-weight:700;
-  }
-  .cb-scenario-row{
-    display:flex;justify-content:space-between;align-items:center;
-    font-size:13px;padding:7px 0;
-    border-bottom:1px solid rgba(255,255,255,.05);
-  }
-  .cb-scenario-row:last-of-type{border-bottom:none}
-  .cb-scenario-row .sr-label{color:var(--muted)}
-  .cb-scenario-row .sr-val{font-weight:700;color:var(--white)}
-  .cb-scenario-row .sr-val.green{color:#4ade80}
-  .cb-scenario-row .sr-val.red{color:var(--red)}
-  .cb-scenario-total{
-    margin-top:14px;padding-top:14px;
-    border-top:2px solid var(--red);
-    display:flex;justify-content:space-between;align-items:center;
-  }
-  .cb-scenario-total .st-label{font-size:13px;font-weight:700;color:var(--white)}
-  .cb-scenario-total .st-val{font-size:28px;font-weight:700;color:#4ade80}
-  .cb-note{
-    margin-top:16px;font-size:12px;color:var(--muted);
-    line-height:1.65;font-style:italic;
-  }
-
-/* TAPE */
-.tape{
-  background:var(--red);padding:10px 0;overflow:hidden;
-  white-space:nowrap;
+.proof-cta .msg h3{
+  font-size:var(--fs-h3);font-weight:var(--fw-h3);
+  line-height:var(--lh-h3);letter-spacing:var(--ls-h3);
+  color:var(--navy);margin-bottom:var(--sp-1);
 }
+.proof-cta .msg p{
+  font-size:var(--fs-body);font-weight:var(--fw-body);
+  line-height:var(--lh-body);letter-spacing:var(--ls-body);
+  color:var(--ink);max-width:var(--measure);
+}
+
+/* ════════════════════════════════════════════════════════════════════════
+   CREDIT BENEFITS  (white page, Fog blocks, white scenario cards)
+   ════════════════════════════════════════════════════════════════════════ */
+.credit-benefits{background:var(--white);padding:var(--sp-9) var(--gutter);border-top:var(--hairline) solid var(--mist)}
+.cb-inner{max-width:var(--shell);margin:0 auto}
+.cb-header{margin-bottom:var(--sp-7)}
+.cb-header .section-tag{justify-content:flex-start}
+.cb-header p{margin-top:var(--sp-3)}
+.cb-blocks{
+  display:grid;grid-template-columns:1fr 1fr;gap:var(--hairline);
+  background:var(--mist);border:var(--hairline) solid var(--mist);
+  border-radius:var(--radius);overflow:hidden;
+}
+.cb-block{
+  background:var(--fog);padding:var(--sp-7) var(--sp-6);
+  border-bottom:4px solid transparent;
+  transition:border-color var(--t-base),background var(--t-base);
+}
+.cb-block:hover{background:var(--white);border-bottom-color:var(--blue)}
+.cb-block-icon{margin-bottom:var(--sp-4);display:flex;gap:var(--sp-1);align-items:center;color:var(--blue)}
+.cb-block-icon svg{stroke:currentColor}
+.cb-block h3{
+  font-size:var(--fs-h3);font-weight:var(--fw-h3);
+  line-height:var(--lh-h3);letter-spacing:var(--ls-h3);
+  color:var(--navy);margin-bottom:var(--sp-3);max-width:var(--measure);
+}
+.cb-block h3 em{color:var(--red);font-style:normal}
+.cb-block p{
+  font-size:var(--fs-body);font-weight:var(--fw-body);
+  line-height:var(--lh-body);letter-spacing:var(--ls-body);
+  color:var(--ink);margin-bottom:var(--sp-5);max-width:var(--measure);
+}
+.cb-scenario{
+  background:var(--white);border:var(--hairline) solid var(--mist);
+  border-radius:var(--radius);padding:var(--sp-4);
+}
+.cb-scenario .sc-label{color:var(--slate);margin-bottom:var(--sp-3)}
+.cb-scenario-row{
+  display:flex;justify-content:space-between;align-items:center;gap:var(--sp-3);
+  font-size:var(--fs-body);font-weight:var(--fw-body);
+  line-height:var(--lh-body);letter-spacing:var(--ls-body);
+  padding:var(--sp-1) 0;border-bottom:var(--hairline) solid var(--mist);
+}
+.cb-scenario-row:last-of-type{border-bottom:none}
+.cb-scenario-row .sr-label{color:var(--slate);flex:1}
+/* Data values stay Navy. The functional palette (Clear Green, Caution
+   Amber, Signal Red) is reserved for interface states — it is never used
+   decoratively or in marketing, so the credit figures below do not
+   borrow the success colour. */
+.cb-scenario-row .sr-val{font-weight:var(--fw-strong);color:var(--navy)}
+.cb-scenario-row .sr-val.green,
+.cb-scenario-row .sr-val.red{color:var(--navy)}
+.cb-scenario-total{
+  margin-top:var(--sp-3);padding-top:var(--sp-3);gap:var(--sp-3);
+  border-top:calc(var(--hairline) * 2) solid var(--navy);
+  display:flex;justify-content:space-between;align-items:center;
+}
+.cb-scenario-total .st-label{
+  font-size:var(--fs-body);font-weight:var(--fw-strong);
+  line-height:var(--lh-body);letter-spacing:var(--ls-body);color:var(--navy);
+}
+.cb-scenario-total .st-val{
+  font-size:var(--fs-h3);font-weight:var(--fw-h3);
+  line-height:var(--lh-h3);letter-spacing:var(--ls-h3);color:var(--navy);
+}
+.cb-note{
+  margin-top:var(--sp-4);
+  font-size:var(--fs-small);font-weight:var(--fw-small);
+  line-height:var(--lh-small);letter-spacing:var(--ls-small);
+  color:var(--slate);font-style:italic;max-width:var(--measure);
+}
+
+/* ════════════════════════════════════════════════════════════════════════
+   CREDENTIAL TAPE — thin navy rule
+   Sentence case, not all caps: the credential string runs well past the
+   four-word ceiling the guide sets for all-caps labels.
+   ════════════════════════════════════════════════════════════════════════ */
+.tape{background:var(--navy);padding:var(--sp-2) 0;overflow:hidden;white-space:nowrap}
 .tape-inner{
-  display:inline-block;
-  animation:scroll 22s linear infinite;
-  font-size:11px;letter-spacing:3px;text-transform:uppercase;
-  font-weight:700;
+  display:inline-block;animation:scroll 22s linear infinite;
+  font-size:var(--fs-small);font-weight:var(--fw-strong);
+  line-height:var(--lh-small);letter-spacing:var(--ls-small);
+  color:var(--mist);
 }
 @keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
-/* ══════════════════════════════════════
+/* ════════════════════════════════════════════════════════════════════════
    PANEL 2 — CONSIDERATION
-══════════════════════════════════════ */
-#panel-2{background:var(--navy2)}
+   ════════════════════════════════════════════════════════════════════════ */
+#panel-2{background:var(--white)}
 
+/* HOW IT WORKS  (Fog section, white cards) */
 .hiw-section{
-  max-width:1040px;margin:0 auto;padding:80px 40px 60px;
+  background:var(--fog);max-width:none;margin:0;
+  padding:var(--sp-9) var(--gutter) var(--sp-8);
+  border-bottom:var(--hairline) solid var(--mist);
 }
-.section-center{text-align:center;margin-bottom:52px}
+.section-center{text-align:center;margin-bottom:var(--sp-7);max-width:var(--shell);margin-left:auto;margin-right:auto}
 .section-center .section-tag{justify-content:center}
 .section-center .section-tag::after{display:none}
-.section-center h2{
-  font-size:clamp(30px,4vw,50px);font-weight:700;
-  letter-spacing:-0.5px;margin-bottom:14px;
-}
-.section-center h2 em{color:var(--red);font-style:normal}
-.section-center p{font-size:15px;color:var(--off);line-height:1.75;max-width:580px;margin:0 auto}
+.section-center h2,.section-center p{margin-left:auto;margin-right:auto}
+.section-center h2{max-width:var(--measure-tight)}
 
-.hiw-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(255,255,255,.06)}
-.hiw-step{
-  background:var(--navy2);padding:40px 32px;
-  position:relative;
+.hiw-steps{
+  max-width:var(--shell);margin:0 auto;
+  display:grid;grid-template-columns:repeat(3,1fr);gap:var(--hairline);
+  background:var(--mist);border:var(--hairline) solid var(--mist);
+  border-radius:var(--radius);overflow:hidden;
 }
+.hiw-step{background:var(--white);padding:var(--sp-7) var(--sp-6);position:relative}
+/* Steel at Display size clears the 3:1 large-text rule on white (3.08:1)
+   and reads as a numeral, not as body copy. */
 .step-num{
-  font-size:72px;font-weight:700;
-  color:rgba(255,49,49,.1);
-  position:absolute;top:16px;right:20px;line-height:1;
+  font-size:var(--fs-display);font-weight:var(--fw-display);
+  line-height:var(--lh-display);letter-spacing:var(--ls-display);
+  color:var(--steel);position:absolute;top:var(--sp-3);right:var(--sp-4);
 }
-.hiw-step .si{margin-bottom:16px;display:block}
-.hiw-step .si svg{stroke:var(--red)}
-.hiw-step h3{font-size:18px;font-weight:700;margin-bottom:10px}
-.hiw-step p{font-size:13px;color:var(--muted);line-height:1.75}
-.hiw-step ul{margin-top:12px;padding-left:0;list-style:none}
+.hiw-step .si{margin-bottom:var(--sp-4);display:block;color:var(--blue);position:relative}
+.hiw-step .si svg{stroke:currentColor}
+.hiw-step h3{
+  font-size:var(--fs-h3);font-weight:var(--fw-h3);
+  line-height:var(--lh-h3);letter-spacing:var(--ls-h3);
+  color:var(--navy);margin-bottom:var(--sp-2);position:relative;
+}
+.hiw-step p{
+  font-size:var(--fs-body);font-weight:var(--fw-body);
+  line-height:var(--lh-body);letter-spacing:var(--ls-body);
+  color:var(--ink);max-width:var(--measure);position:relative;
+}
+.hiw-step ul{margin-top:var(--sp-3);padding-left:0;list-style:none;position:relative}
 .hiw-step ul li{
-  font-size:12px;color:var(--off);padding:5px 0;
-  border-bottom:1px solid rgba(255,255,255,.05);
-  display:flex;align-items:center;gap:8px;
+  font-size:var(--fs-small);font-weight:var(--fw-small);
+  line-height:var(--lh-small);letter-spacing:var(--ls-small);
+  color:var(--ink);padding:var(--sp-1) 0;
+  border-bottom:var(--hairline) solid var(--mist);
+  display:flex;align-items:center;gap:var(--sp-2);
 }
-.hiw-step ul li::before{content:'✓';color:var(--red);font-size:11px;font-weight:700}
+.hiw-step ul li::before{content:'✓';color:var(--blue);font-size:var(--fs-caption);font-weight:var(--fw-strong)}
 
-/* plans */
-.plans-section{padding:0 40px 80px;max-width:1040px;margin:0 auto}
-.plans-section .section-center{margin-bottom:40px}
-
-.plans-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+/* ── PLANS  (white page, Fog cards) ── */
+.plans-section{padding:var(--sp-9) var(--gutter) var(--sp-9);max-width:var(--shell);margin:0 auto}
+.plans-section .section-center{margin-bottom:var(--sp-6)}
+.plans-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--sp-3)}
 .plan{
-  background:var(--black);
-  border:1px solid rgba(255,255,255,.07);
-  padding:36px 28px;cursor:pointer;
-  transition:border-color .2s,transform .2s;
-  position:relative;
+  background:var(--fog);
+  border:var(--hairline) solid var(--mist);border-radius:var(--radius);
+  padding:var(--sp-7) var(--sp-6);cursor:pointer;position:relative;
+  transition:border-color var(--t-base),transform var(--t-base);
 }
-.plan:hover{border-color:rgba(255,49,49,.5);transform:translateY(-4px)}
-.plan.featured{
-  border-color:var(--red);
-  background:linear-gradient(170deg,rgba(255,49,49,.06) 0%,var(--black) 60%);
-}
+.plan:hover{border-color:var(--navy);transform:translateY(-4px)}
+.plan.featured{border-color:var(--navy);border-top:3px solid var(--navy)}
 .plan-badge{
   position:absolute;top:-1px;left:-1px;right:-1px;
-  background:var(--red);color:var(--white);
-  text-align:center;font-size:10px;font-weight:700;
-  letter-spacing:2px;text-transform:uppercase;padding:7px;
+  background:var(--navy);color:var(--white);text-align:center;padding:var(--sp-1);
 }
-.plan-name{font-size:26px;font-weight:700;margin-bottom:4px}
-.plan.featured .plan-name{margin-top:22px}
-.plan-tag{font-size:12px;color:var(--muted);margin-bottom:24px}
-.plan-price{font-size:52px;font-weight:700;line-height:1;margin-bottom:4px}
-.plan-price sup{font-size:24px;vertical-align:super;color:var(--red)}
-.plan-mo{font-size:13px;color:var(--muted);margin-bottom:20px}
+.plan-name{
+  font-size:var(--fs-h2);font-weight:var(--fw-h2);
+  line-height:var(--lh-h2);letter-spacing:var(--ls-h2);
+  color:var(--navy);margin-bottom:var(--sp-1);
+}
+.plan.featured .plan-name{margin-top:var(--sp-5)}
+.plan-tag{
+  font-size:var(--fs-body);font-weight:var(--fw-body);
+  line-height:var(--lh-body);letter-spacing:var(--ls-body);
+  color:var(--slate);margin-bottom:var(--sp-5);
+}
+.plan-price{
+  font-size:var(--fs-h1);font-weight:var(--fw-h1);
+  line-height:var(--lh-h1);letter-spacing:var(--ls-h1);
+  color:var(--navy);margin-bottom:var(--sp-1);
+}
+.plan-price sup{font-size:var(--fs-h3);vertical-align:super;color:var(--red)}
+.plan-mo{
+  font-size:var(--fs-body);font-weight:var(--fw-body);
+  line-height:var(--lh-body);letter-spacing:var(--ls-body);
+  color:var(--slate);margin-bottom:var(--sp-4);
+}
 .plan-credit{
-  background:rgba(56,40,235,.12);border-left:3px solid var(--blue);
-  padding:11px 14px;font-size:12px;color:var(--off);line-height:1.5;
-  margin-bottom:20px;
+  background:var(--white);border:var(--hairline) solid var(--mist);
+  border-left:3px solid var(--blue);border-radius:var(--radius);
+  padding:var(--sp-3);margin-bottom:var(--sp-4);
+  font-size:var(--fs-small);font-weight:var(--fw-small);
+  line-height:var(--lh-small);letter-spacing:var(--ls-small);
+  color:var(--ink);max-width:var(--measure);
 }
-.plan-credit strong{color:var(--blue);color:#7b6ff0}
-.plan-features{list-style:none;margin-bottom:28px}
+.plan-credit strong{color:var(--navy);font-weight:var(--fw-strong)}
+.plan-features{list-style:none;margin-bottom:var(--sp-5)}
 .plan-features li{
-  display:flex;align-items:flex-start;gap:9px;
-  font-size:13px;color:var(--muted);padding:7px 0;
-  border-bottom:1px solid rgba(255,255,255,.04);line-height:1.5;
+  display:flex;align-items:flex-start;gap:var(--sp-2);
+  font-size:var(--fs-body);font-weight:var(--fw-body);
+  line-height:var(--lh-body);letter-spacing:var(--ls-body);
+  color:var(--ink);padding:var(--sp-1) 0;
+  border-bottom:var(--hairline) solid var(--mist);
 }
 .plan-features li:last-child{border-bottom:none}
-.plan-features li::before{content:'→';color:var(--red);font-size:11px;margin-top:1px;flex-shrink:0}
+.plan-features li::before{content:'→';color:var(--blue);font-size:var(--fs-caption);margin-top:var(--sp-1);flex-shrink:0}
+/* Primary CTA on a light card: red fill 5.34:1 against Fog, white label
+   5.88:1 on the fill. */
 .plan-btn{
-  width:100%;padding:14px;background:transparent;
-  border:1px solid rgba(255,255,255,.15);color:var(--white);
-  font-family:var(--font);font-weight:700;font-size:14px;
-  cursor:pointer;text-transform:uppercase;letter-spacing:.5px;
-  transition:all .2s;
+  width:100%;background:var(--red);color:var(--white);
+  border:var(--hairline) solid var(--red);border-radius:var(--radius);
+  font-family:var(--font);
+  font-size:var(--fs-body);font-weight:var(--fw-strong);
+  line-height:var(--lh-body);letter-spacing:var(--ls-body);
+  padding:var(--sp-3);min-height:var(--tap);cursor:pointer;
+  transition:filter var(--t-base);
 }
-.plan.featured .plan-btn{background:var(--red);border-color:var(--red)}
-.plan-btn:hover{background:var(--red);border-color:var(--red)}
+.plan.featured .plan-btn,.plan-btn:hover{filter:brightness(.9)}
 
-/* FAQ */
-.faq-section{background:var(--black);padding:72px 40px}
-.faq-inner{max-width:800px;margin:0 auto}
-.faq-header{margin-bottom:40px}
+/* ── FAQ  (white page, Mist row separators) ── */
+.faq-section{background:var(--white);padding:var(--sp-9) var(--gutter);border-top:var(--hairline) solid var(--mist)}
+.faq-inner{max-width:var(--shell-text);margin:0 auto}
+.faq-header{margin-bottom:var(--sp-6)}
 .faq-header .section-tag{justify-content:flex-start}
-.faq-header h2{font-size:clamp(28px,3.5vw,44px);font-weight:700;letter-spacing:-0.5px}
-
-.faq-item{
-  border-bottom:1px solid rgba(255,255,255,.07);
-  overflow:hidden;
-}
+.faq-item{border-bottom:var(--hairline) solid var(--mist);overflow:hidden}
 .faq-q{
   display:flex;justify-content:space-between;align-items:center;
-  padding:20px 0;cursor:pointer;font-size:16px;font-weight:700;
-  color:var(--white);gap:16px;background:none;border:none;
-  width:100%;text-align:left;font-family:var(--font);
-  transition:color .2s;
+  gap:var(--sp-3);width:100%;text-align:left;cursor:pointer;
+  background:none;border:none;font-family:var(--font);
+  font-size:var(--fs-h3);font-weight:var(--fw-h3);
+  line-height:var(--lh-h3);letter-spacing:var(--ls-h3);
+  color:var(--navy);padding:var(--sp-4) 0;min-height:var(--tap);
+  transition:color var(--t-base);
 }
-.faq-q:hover{color:var(--red)}
+.faq-q:hover{color:var(--blue)}
 .faq-icon{
-  font-size:20px;color:var(--red);flex-shrink:0;
-  transition:transform .2s;
+  font-size:var(--fs-h3);line-height:1;color:var(--blue);
+  flex-shrink:0;transition:transform var(--t-base);
 }
 .faq-item.open .faq-icon{transform:rotate(45deg)}
 .faq-a{
-  font-size:14px;color:var(--muted);line-height:1.8;
-  max-height:0;overflow:hidden;transition:max-height .35s ease,padding .2s;
-  padding:0;
+  font-size:var(--fs-body);font-weight:var(--fw-body);
+  line-height:var(--lh-body);letter-spacing:var(--ls-body);
+  color:var(--ink);max-width:var(--measure);
+  max-height:0;overflow:hidden;padding:0;
+  transition:max-height var(--t-slow) ease,padding var(--t-base);
 }
-.faq-item.open .faq-a{max-height:200px;padding:0 0 20px}
+.faq-item.open .faq-a{max-height:1200px;padding:0 0 var(--sp-4)}
 
-/* comparison */
-.comp-section{background:var(--navy3);padding:72px 40px}
-.comp-inner{max-width:860px;margin:0 auto}
-.comp-header{margin-bottom:36px}
-.comp-header h2{font-size:clamp(26px,3vw,40px);font-weight:700;letter-spacing:-0.5px;margin-bottom:8px}
-.comp-header p{font-size:14px;color:var(--muted)}
-
-.comp-table{width:100%;border-collapse:collapse}
+/* ── COMPARISON  (Fog section, white table) ── */
+.comp-section{background:var(--fog);padding:var(--sp-9) var(--gutter);border-top:var(--hairline) solid var(--mist)}
+/* the table is wider than a phone: it scrolls inside its own container
+   rather than pushing the page sideways */
+.comp-inner{max-width:var(--shell-text);margin:0 auto;overflow-x:auto;-webkit-overflow-scrolling:touch}
+.comp-header{margin-bottom:var(--sp-6)}
+.comp-header p{margin-top:var(--sp-2)}
+.comp-table{width:100%;border-collapse:collapse;background:var(--white);min-width:520px}
 .comp-table th{
-  text-align:left;padding:14px 20px;
-  font-size:11px;letter-spacing:2px;text-transform:uppercase;
-  color:var(--muted);background:var(--navy2);
-  border-bottom:2px solid var(--red);
+  text-align:left;padding:var(--sp-3) var(--sp-4);
+  color:var(--slate);background:var(--fog);
+  border-bottom:calc(var(--hairline) * 2) solid var(--navy);
 }
 .comp-table th:first-child{width:45%}
-.comp-table th.highlight{color:var(--white);background:var(--red)}
+.comp-table th.highlight{color:var(--white);background:var(--navy)}
 .comp-table td{
-  padding:14px 20px;font-size:13px;
-  border-bottom:1px solid rgba(255,255,255,.05);
-  vertical-align:middle;
+  padding:var(--sp-3) var(--sp-4);
+  font-size:var(--fs-body);font-weight:var(--fw-body);
+  line-height:var(--lh-body);letter-spacing:var(--ls-body);
+  color:var(--ink);
+  border-bottom:var(--hairline) solid var(--mist);vertical-align:middle;
 }
-.comp-table td:first-child{color:var(--off);font-weight:600}
-.comp-table td.check{color:#4ade80;font-size:16px}
-.comp-table td.cross{color:var(--red);font-size:16px}
-.comp-table td.highlight{background:rgba(255,49,49,.05)}
+.comp-table td:first-child{color:var(--navy);font-weight:var(--fw-strong)}
+/* Glyphs stay Navy and Slate: the functional palette is interface-only,
+   so a comparison table never borrows Clear Green or Signal Red. */
+.comp-table td.check{color:var(--navy);font-size:var(--fs-h3)}
+.comp-table td.cross{color:var(--slate);font-size:var(--fs-h3)}
+.comp-table td.highlight{background:rgb(var(--navy-rgb) / .04)}
 .comp-table tr:last-child td{border-bottom:none}
 
-/* ══════════════════════════════════════
-   PANEL 3 — CONVERSION
-══════════════════════════════════════ */
+/* ════════════════════════════════════════════════════════════════════════
+   PANEL 3 — CONVERSION — NAVY BAND 3 of 3
+   The band closes the page in place of a footer; the form and the plan
+   card are white cards on top of it, so every field keeps Ink-on-white
+   legibility.
+   ════════════════════════════════════════════════════════════════════════ */
 #panel-3{background:var(--navy)}
 
 .conv-wrap{
-  max-width:1040px;margin:0 auto;
-  padding:72px 40px 80px;
+  background:var(--navy);color:var(--white);
+  max-width:none;margin:0;
+  padding-inline:max(var(--gutter),(100% - var(--shell))/2);
+  padding-block:var(--sp-9);
   display:grid;grid-template-columns:1fr 460px;
-  gap:64px;align-items:start;
+  gap:var(--sp-8);align-items:start;
 }
-.conv-left .tag{
-  font-size:11px;letter-spacing:3px;text-transform:uppercase;
-  color:var(--red);margin-bottom:16px;
-}
+.conv-left .tag{color:var(--mist);display:block;margin-bottom:var(--sp-3)}
 .conv-left h2{
-  font-size:clamp(32px,4vw,52px);font-weight:700;
-  letter-spacing:-0.5px;line-height:1.05;margin-bottom:16px;
+  font-size:var(--fs-h1);font-weight:var(--fw-h1);
+  line-height:var(--lh-h1);letter-spacing:var(--ls-h1);
+  color:var(--mist);margin-bottom:var(--sp-3);max-width:var(--measure-tight);
 }
-.conv-left h2 em{color:var(--red);font-style:normal}
+.conv-left h2 em{color:var(--white);font-style:normal}
 .conv-left .conv-body{
-  font-size:15px;color:var(--off);line-height:1.8;margin-bottom:36px;
+  font-size:var(--fs-body);font-weight:var(--fw-body);
+  line-height:var(--lh-body);letter-spacing:var(--ls-body);
+  color:var(--mist);margin-bottom:var(--sp-6);max-width:var(--measure);
 }
 
 .selected-plan{
-  background:var(--black);border:1px solid rgba(255,49,49,.3);
-  padding:18px 22px;display:flex;align-items:center;
-  justify-content:space-between;margin-bottom:8px;gap:12px;
+  background:var(--white);border:var(--hairline) solid var(--mist);
+  border-radius:var(--radius);padding:var(--sp-4);
+  display:flex;align-items:center;justify-content:space-between;
+  margin-bottom:var(--sp-1);gap:var(--sp-3);
 }
-.sp-name{font-size:18px;font-weight:700}
-.sp-detail{font-size:12px;color:var(--muted)}
-.sp-price{font-size:28px;font-weight:700;color:var(--red);flex-shrink:0}
+.sp-name{
+  font-size:var(--fs-h3);font-weight:var(--fw-h3);
+  line-height:var(--lh-h3);letter-spacing:var(--ls-h3);color:var(--navy);
+}
+.sp-detail{
+  font-size:var(--fs-small);font-weight:var(--fw-small);
+  line-height:var(--lh-small);letter-spacing:var(--ls-small);color:var(--slate);
+}
+/* Red on white 5.88:1 — the price sits on the white card, never on navy. */
+.sp-price{
+  font-size:var(--fs-h2);font-weight:var(--fw-h2);
+  line-height:var(--lh-h2);letter-spacing:var(--ls-h2);
+  color:var(--red);flex-shrink:0;
+}
+.sp-price .per{
+  font-size:var(--fs-body);font-weight:var(--fw-body);
+  letter-spacing:var(--ls-body);color:var(--slate);
+}
 .change-btn{
-  font-size:11px;color:var(--muted);text-decoration:underline;
+  font-size:var(--fs-small);font-weight:var(--fw-small);
+  line-height:var(--lh-small);letter-spacing:var(--ls-small);
+  color:var(--mist);text-decoration:underline;
   cursor:pointer;border:none;background:none;font-family:var(--font);
-  margin-bottom:28px;display:block;letter-spacing:.5px;
+  margin-bottom:var(--sp-5);display:inline-flex;align-items:center;
+  min-height:var(--tap);padding:var(--sp-1) 0;
 }
+.change-btn:hover{color:var(--white)}
 
-.why-list{list-style:none;margin-bottom:36px}
+.why-list{list-style:none;margin-bottom:var(--sp-6)}
 .why-item{
-  display:flex;gap:14px;align-items:flex-start;
-  padding:14px 0;border-bottom:1px solid rgba(255,255,255,.06);
+  display:flex;gap:var(--sp-3);align-items:flex-start;
+  padding:var(--sp-3) 0;border-bottom:var(--hairline) solid rgb(var(--white-rgb) / .16);
 }
 .why-item:last-child{border-bottom:none}
 .why-num{
   width:28px;height:28px;border-radius:50%;
-  border:1px solid var(--red);color:var(--red);
+  border:var(--hairline) solid var(--mist);color:var(--mist);
   display:flex;align-items:center;justify-content:center;
-  font-size:12px;font-weight:700;flex-shrink:0;
+  font-size:var(--fs-small);font-weight:var(--fw-strong);
+  line-height:1;flex-shrink:0;
 }
-.why-text .wt{font-size:14px;font-weight:700;margin-bottom:3px}
-.why-text .wb{font-size:13px;color:var(--muted);line-height:1.6}
+.why-text .wt{
+  font-size:var(--fs-body);font-weight:var(--fw-strong);
+  line-height:var(--lh-body);letter-spacing:var(--ls-body);color:var(--white);
+}
+.why-text .wb{
+  font-size:var(--fs-small);font-weight:var(--fw-small);
+  line-height:var(--lh-small);letter-spacing:var(--ls-small);
+  color:var(--mist);max-width:var(--measure);
+}
 
-/* form box */
+/* ── form card — white on the navy band ── */
 .form-box{
-  background:var(--black);
-  border:1px solid rgba(255,255,255,.08);
-  padding:36px 32px;
+  background:var(--white);border:var(--hairline) solid var(--mist);
+  border-radius:var(--radius);padding:var(--sp-6);
 }
 .fb-plan{
-  background:var(--red);margin:-36px -32px 28px;
-  padding:14px 22px;display:flex;align-items:center;
-  justify-content:space-between;
+  background:var(--navy);margin:calc(var(--sp-6) * -1) calc(var(--sp-6) * -1) var(--sp-5);
+  padding:var(--sp-3) var(--sp-4);
+  display:flex;align-items:center;justify-content:space-between;gap:var(--sp-3);
 }
-.fbp-name{font-size:15px;font-weight:700}
-.fbp-price{font-size:20px;font-weight:700}
+.fbp-name{
+  font-size:var(--fs-body);font-weight:var(--fw-strong);
+  line-height:var(--lh-body);letter-spacing:var(--ls-body);color:var(--white);
+}
+.fbp-price{
+  font-size:var(--fs-h3);font-weight:var(--fw-h3);
+  line-height:var(--lh-h3);letter-spacing:var(--ls-h3);color:var(--white);
+}
 .fb-change{
-  font-size:11px;color:rgba(255,255,255,.6);text-decoration:underline;
-  cursor:pointer;border:none;background:none;
-  font-family:var(--font);margin-bottom:22px;display:block;
+  font-size:var(--fs-small);font-weight:var(--fw-small);
+  line-height:var(--lh-small);letter-spacing:var(--ls-small);
+  color:var(--slate);text-decoration:underline;
+  cursor:pointer;border:none;background:none;font-family:var(--font);
+  margin-bottom:var(--sp-4);display:inline-flex;align-items:center;
+  min-height:var(--tap);padding:var(--sp-1) 0;
 }
-.form-box h3{font-size:22px;font-weight:700;margin-bottom:6px}
-.form-box .fsub{font-size:13px;color:var(--muted);margin-bottom:24px}
+.fb-change:hover{color:var(--navy)}
+.form-box h3{
+  font-size:var(--fs-h3);font-weight:var(--fw-h3);
+  line-height:var(--lh-h3);letter-spacing:var(--ls-h3);
+  color:var(--navy);margin-bottom:var(--sp-1);
+}
+.form-box .fsub{
+  font-size:var(--fs-body);font-weight:var(--fw-body);
+  line-height:var(--lh-body);letter-spacing:var(--ls-body);
+  color:var(--slate);margin-bottom:var(--sp-5);max-width:var(--measure);
+}
 
-.lead-form{display:flex;flex-direction:column;gap:14px}
-.form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.fg{display:flex;flex-direction:column;gap:5px}
-.fg label{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted)}
+.lead-form{display:flex;flex-direction:column;gap:var(--sp-3)}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:var(--sp-2)}
+.fg{display:flex;flex-direction:column;gap:var(--sp-1)}
+.fg label{color:var(--slate)}
+/* Steel borders — 3.08:1 on white, which clears the 3:1 non-text rule.
+   Placeholder text is Steel too, per the guide; the value the visitor
+   types is Ink at 14.94:1. */
 .fg input,.fg select{
-  background:var(--navy);border:1px solid rgba(255,255,255,.1);
-  color:var(--white);padding:13px 14px;
-  font-family:var(--font);font-size:14px;
-  outline:none;transition:border-color .2s;
+  background:var(--white);
+  border:var(--hairline) solid var(--steel);border-radius:var(--radius);
+  color:var(--ink);
+  font-family:var(--font);
+  font-size:var(--fs-body);font-weight:var(--fw-body);
+  line-height:var(--lh-body);letter-spacing:var(--ls-body);
+  padding:var(--sp-2) var(--sp-3);min-height:var(--tap);
+  outline:none;transition:border-color var(--t-base),box-shadow var(--t-base);
   width:100%;appearance:none;-webkit-appearance:none;
 }
-.fg input:focus,.fg select:focus{border-color:var(--red)}
-.fg select option{background:var(--black)}
+.fg input::placeholder{color:var(--steel);opacity:1}
+.fg input:focus,.fg select:focus{
+  border-color:var(--blue);box-shadow:0 0 0 3px rgb(var(--blue-rgb) / .18);
+}
+.fg select option{background:var(--white);color:var(--ink)}
+/* appearance:none strips the native caret — draw one back or a phone
+   user cannot tell a select from a text input */
+.fg select{
+  background-image:
+    linear-gradient(45deg,transparent 50%,var(--slate) 50%),
+    linear-gradient(135deg,var(--slate) 50%,transparent 50%);
+  background-position:calc(100% - 19px) calc(50% - 2px),calc(100% - 14px) calc(50% - 2px);
+  background-size:5px 5px,5px 5px;background-repeat:no-repeat;
+  padding-right:36px;
+}
 
 .submit-btn{
-  width:100%;padding:18px;
-  background:var(--red);border:none;color:var(--white);
-  font-family:var(--font);font-weight:700;font-size:18px;
-  cursor:pointer;text-transform:uppercase;letter-spacing:.5px;
-  transition:background .2s,transform .15s;margin-top:4px;
+  width:100%;background:var(--red);color:var(--white);
+  border:var(--hairline) solid var(--red);border-radius:var(--radius);
+  font-family:var(--font);
+  font-size:var(--fs-body);font-weight:var(--fw-strong);
+  line-height:var(--lh-body);letter-spacing:var(--ls-body);
+  padding:var(--sp-4);min-height:var(--tap);cursor:pointer;
+  transition:filter var(--t-base),transform var(--t-fast);margin-top:var(--sp-1);
 }
-.submit-btn:hover{background:var(--red2);transform:translateY(-2px)}
-.submit-btn:disabled{background:#444;cursor:not-allowed;transform:none}
-
+.submit-btn:hover{filter:brightness(.9);transform:translateY(-2px)}
+.submit-btn:disabled{
+  background:var(--mist);border-color:var(--steel);color:var(--slate);
+  cursor:not-allowed;transform:none;filter:none;
+}
 .form-note{
-  font-size:10px;color:rgba(143,168,196,.45);
-  text-align:center;margin-top:8px;line-height:1.6;
+  font-size:var(--fs-small);font-weight:var(--fw-small);
+  line-height:var(--lh-small);letter-spacing:var(--ls-small);
+  color:var(--slate);text-align:center;margin-top:var(--sp-2);
 }
 
-.success-box{display:none;text-align:center;padding:48px 24px}
-.success-box .ico{display:block;margin-bottom:16px}
-.success-box h2{font-size:28px;font-weight:700;color:var(--red);margin-bottom:12px}
-.success-box p{font-size:14px;color:var(--muted);line-height:1.7}
+/* confirmation — Clear Green is the success state */
+.success-box{display:none;text-align:center;padding:var(--sp-7) var(--sp-4)}
+.success-box .ico{display:block;margin-bottom:var(--sp-4);color:var(--success)}
+.success-box .ico svg{margin:0 auto;stroke:currentColor}
+.success-box h2{
+  font-size:var(--fs-h2);font-weight:var(--fw-h2);
+  line-height:var(--lh-h2);letter-spacing:var(--ls-h2);
+  color:var(--success);margin-bottom:var(--sp-2);
+}
+.success-box p{
+  font-size:var(--fs-body);font-weight:var(--fw-body);
+  line-height:var(--lh-body);letter-spacing:var(--ls-body);
+  color:var(--ink);max-width:var(--measure);margin:0 auto;
+}
 
-/* RESPONSIVE */
+/* ════════════════════════════════════════════════════════════════════════
+   RESPONSIVE
+   Type steps down by re-declaring the seven size tokens — no element
+   ever leaves the scale, and no one-off size is introduced.
+   ════════════════════════════════════════════════════════════════════════ */
+@media(max-width:1100px){
+  :root{--fs-display:56px;--fs-h1:38px;--fs-h2:28px;--fs-h3:22px}
+}
+
 @media(max-width:900px){
+  :root{
+    --fs-display:44px;--fs-h1:32px;--fs-h2:25px;--fs-h3:20px;
+    --gutter:24px;
+  }
   .hero-inner{grid-template-columns:1fr}
   .stat-row{grid-template-columns:1fr}
   .risk-grid{grid-template-columns:1fr}
@@ -641,69 +1069,48 @@ body{background:var(--navy);color:var(--white);font-family:var(--font);overflow-
   .conv-wrap{grid-template-columns:1fr}
   .form-row{grid-template-columns:1fr}
   .nav-steps{display:none}
-  .comp-table{font-size:12px}
   .cb-blocks{grid-template-columns:1fr}
+  .proof-cta{flex-direction:column;align-items:flex-start}
 }
-@media(max-width:480px){
-  .topnav{padding:0 16px;height:52px}
-  .nav-logo{font-size:15px;gap:8px}
+
+@media(max-width:560px){
+  :root{
+    --fs-display:36px;--fs-h1:27px;--fs-h2:22px;--fs-h3:18px;
+    --gutter:var(--gutter-sm);
+    --sp-9:56px;--sp-8:44px;--sp-7:36px;--sp-6:28px;
+  }
   .nav-logo-mark{width:43px;height:38px}
   .nav-logo-mark img{left:-8px;top:-6px;width:62px;height:62px}
-  .panel{padding-top:52px}
-  .hero{padding:40px 20px 36px}
-  .hero-inner{gap:32px}
-  .hero h1{font-size:clamp(32px,9vw,48px);letter-spacing:-.5px}
-  .hero-sub{font-size:15px;margin-bottom:24px}
-  .hero-tag{font-size:10px;margin-bottom:16px}
-  .stat-row{grid-template-columns:1fr 1fr;gap:2px}
-  .stat .val{font-size:26px}
-  .stat .lbl{font-size:10px}
-  .btn-red{width:100%;justify-content:center;padding:16px 24px;font-size:15px}
-  .btn-outline{width:100%;justify-content:center;padding:14px 20px}
-  .btn-row{flex-direction:column;gap:10px}
-  .hero-card{margin-top:8px}
-  .hc-total{font-size:32px}
-  .trust-strip{padding:16px 20px;gap:16px}
-  .trust-item{font-size:11px}
-  .edu-band{padding:48px 20px}
-  .edu-band h2{font-size:clamp(26px,7vw,38px)}
-  .edu-band .lead{font-size:14px;margin-bottom:36px}
-  .risk-grid{grid-template-columns:1fr}
-  .risk-card{padding:24px 20px}
-  .proof-section{padding:48px 20px}
+  .hero::before{display:none}
+  .stat-row{grid-template-columns:1fr 1fr}
+  .risk-card{padding:var(--sp-5) var(--sp-4)}
+  .review-card{padding:var(--sp-5) var(--sp-4)}
+  .cb-block{padding:var(--sp-5) var(--sp-4)}
+  .hiw-step{padding:var(--sp-5) var(--sp-4)}
+  .plan{padding:var(--sp-5) var(--sp-4)}
+  .plan-credit,.cb-scenario,.proof-cta{padding:var(--sp-4)}
+  .form-box{padding:var(--sp-4)}
+  .fb-plan{margin:calc(var(--sp-4) * -1) calc(var(--sp-4) * -1) var(--sp-4);padding:var(--sp-3)}
+  .video-caption{flex-direction:column;align-items:flex-start;gap:var(--sp-2)}
+  .cb-scenario-row,.cb-scenario-total{flex-wrap:wrap}
   .proof-header{flex-direction:column;align-items:flex-start}
   .proof-header .rating{align-items:flex-start}
-  .review-grid{grid-template-columns:1fr}
-  .proof-cta{padding:24px 20px;flex-direction:column}
-  .proof-cta .msg h3{font-size:17px}
-  .video-section{padding:48px 20px}
-  .video-section h2{font-size:clamp(22px,6vw,32px)}
-  .video-caption{flex-direction:column;align-items:flex-start;gap:8px}
-  .credit-benefits{padding:48px 20px}
-  .cb-blocks{grid-template-columns:1fr}
-  .cb-block{padding:32px 24px}
-  .cb-block h3{font-size:20px}
-  .tape-inner{font-size:10px;letter-spacing:2px}
-  .hiw-section{padding:48px 20px 40px}
-  .hiw-steps{grid-template-columns:1fr}
-  .hiw-step{padding:28px 20px}
-  .plans-section{padding:0 20px 48px}
-  .plans-grid{grid-template-columns:1fr}
-  .plan{padding:28px 20px}
-  .plan-price{font-size:42px}
-  .comp-table{font-size:11px}
-  .comp-table th,.comp-table td{padding:10px 8px}
-  .faq-section{padding:48px 20px}
-  .faq-q{font-size:14px}
-  .conv-section{padding:48px 20px}
-  .conv-wrap{grid-template-columns:1fr;gap:32px}
-  .conv-left h2{font-size:clamp(26px,7vw,38px)}
-  .form-box{padding:28px 20px}
-  .form-row{grid-template-columns:1fr}
-  .fg input,.fg select{font-size:16px;padding:13px 14px}
-  .submit-btn{font-size:15px;padding:16px}
-  .diff-section{padding:48px 20px}
-  .diff-grid{grid-template-columns:1fr}
+  .step-num{top:var(--sp-2);right:var(--sp-3)}
+  /* one-handed on a phone — the hero CTAs go full width so the thumb
+     cannot miss */
+  .btn-row{flex-direction:column;align-items:stretch}
+  .btn-red,.btn-outline,.hc-cta{width:100%;padding-inline:var(--sp-4)}
+}
+
+@media(max-width:380px){
+  :root{--fs-display:31px;--fs-h1:24px;--fs-h2:20px;--fs-h3:17px}
+  .btn-red,.btn-outline{padding-inline:var(--sp-2)}
+  .stat-row{grid-template-columns:1fr}
+}
+
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:.001ms !important;animation-iteration-count:1 !important;transition-duration:.001ms !important}
 }
 </style>
 </head>
@@ -734,10 +1141,10 @@ body{background:var(--navy);color:var(--white);font-family:var(--font);overflow-
   <div class="hero">
     <div class="hero-inner">
       <div>
-        <div class="hero-tag">North Texas &amp; Oklahoma Homeowners</div>
+        <div class="hero-tag">North Texas &amp; Oklahoma homeowners</div>
         <h1>
-          Your Home Is One Event Away <em>From Everything</em>
-          Changing
+          Your home is one event away <em>from everything</em>
+          changing
         </h1>
         <p class="hero-sub">
           Fire. Water. Storm. Structural failure. The catastrophes that destroy homes and displace families rarely announce themselves.
@@ -786,12 +1193,12 @@ body{background:var(--navy);color:var(--white);font-family:var(--font);overflow-
   <div class="video-section">
     <div class="video-inner">
       <div class="video-eyebrow">When Prevention Doesn't Happen</div>
-      <h2>This Is What a Home Looks Like <em>When It's Too Late</em></h2>
+      <h2>This is what a home looks like <em>when it's too late</em></h2>
       <p class="vsub">Fire. Water. Storm. Structural failure. Catastrophe doesn't discriminate — and it doesn't warn you first. The Advantage Program exists because the best time to prevent this is before it starts.</p>
       <div class="video-wrap">
         <iframe src="https://player.vimeo.com/video/1170335388?h=fb8ec62380&autoplay=0&title=0&byline=0&portrait=0" width="100%" style="aspect-ratio:16/9;display:block;" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
         <div class="video-caption">
-          <div class="vc-badge">The Cost of No Prevention</div>
+          <div class="vc-badge sc">The cost of no prevention</div>
           <div class="vc-text"><strong>Mr. Restore Advantage</strong> is built for this moment — so your family never has to stand in front of it</div>
         </div>
       </div>
@@ -800,44 +1207,44 @@ body{background:var(--navy);color:var(--white);font-family:var(--font);overflow-
 
   <!-- EDUCATION: WHERE DISASTERS START -->
   <div class="edu-band">
-    <div style="max-width:1040px;margin:0 auto">
-      <div class="section-tag">The Risks In Your Home Right Now</div>
-      <h2>Most Homeowners Don't Know <em>What's Building</em> Inside Their Property</h2>
+    <div class="edu-inner">
+      <div class="section-tag sc">The risks in your home right now</div>
+      <h2>Most homeowners don't know <em>what's building</em> inside their property</h2>
       <p class="lead">Our IICRC-certified inspectors use thermal imaging and multi-point risk assessment to detect hidden vulnerabilities — moisture, electrical heat signatures, structural stress points — that are invisible to the naked eye until they've caused catastrophic damage.</p>
       <div class="risk-grid">
         <div class="risk-card">
           <span class="risk-icon"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" ><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg></span>
-          <h3>Supply Line Failures</h3>
+          <h3>Supply line failures</h3>
           <p>Braided supply lines under sinks and toilets fail silently, often releasing hundreds of gallons before anyone notices. Most are never inspected.</p>
           <div class="cost">Avg. repair cost: $3,000–$8,000</div>
         </div>
         <div class="risk-card">
           <span class="risk-icon"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" ><path d="M14 14.76V3.5a2.5 2.5 0 0 0-5 0v11.26a4.5 4.5 0 1 0 5 0z"/></svg></span>
-          <h3>Hidden Slab Leaks</h3>
+          <h3>Hidden slab leaks</h3>
           <p>Underground pipe leaks go undetected for months beneath concrete slabs. By the time your floors buckle or your water bill spikes, significant damage is already done.</p>
           <div class="cost">Avg. repair cost: $5,000–$15,000</div>
         </div>
         <div class="risk-card">
           <span class="risk-icon"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" ><rect x="5" y="3" width="14" height="11" rx="2"/><path d="M12 14v4"/><path d="M8 18h8"/><path d="M7 21h10"/><line x1="9" y1="7" x2="9" y2="7"/><line x1="15" y1="7" x2="15" y2="7"/></svg></span>
-          <h3>Water Heater Failure</h3>
+          <h3>Water heater failure</h3>
           <p>The average water heater fails between years 8 and 12. Most homeowners don't know their unit's age. A catastrophic failure can release 40–80 gallons instantly.</p>
           <div class="cost">Avg. damage cost: $4,000–$9,000</div>
         </div>
         <div class="risk-card">
           <span class="risk-icon"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" ><line x1="16" y1="13" x2="16" y2="21"/><line x1="8" y1="13" x2="8" y2="21"/><line x1="12" y1="15" x2="12" y2="23"/><path d="M20 16.58A5 5 0 0 0 18 7h-1.26A8 8 0 1 0 4 15.25"/></svg></span>
-          <h3>Attic Moisture Buildup</h3>
+          <h3>Attic moisture buildup</h3>
           <p>Poor ventilation causes condensation to accumulate in attic spaces, silently spreading into insulation and roof decking before visible signs appear.</p>
           <div class="cost">Avg. repair cost: $2,000–$7,000</div>
         </div>
         <div class="risk-card">
           <span class="risk-icon"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" ><rect x="2" y="2" width="20" height="20" rx="2"/><circle cx="12" cy="13" r="5"/><path d="M7 7h.01M11 7h5"/></svg></span>
-          <h3>Appliance Connections</h3>
+          <h3>Appliance connections</h3>
           <p>Washing machine hoses are the #1 cause of preventable interior flooding. Dishwasher and refrigerator connections are rarely checked and harden over time.</p>
           <div class="cost">Avg. damage cost: $3,500–$10,000</div>
         </div>
         <div class="risk-card">
           <span class="risk-icon"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" ><line x1="12" y1="2" x2="12" y2="22"/><line x1="2" y1="12" x2="22" y2="12"/><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/><line x1="19.07" y1="4.93" x2="4.93" y2="19.07"/><polyline points="10 6 12 2 14 6"/><polyline points="10 18 12 22 14 18"/><polyline points="6 10 2 12 6 14"/><polyline points="18 10 22 12 18 14"/></svg></span>
-          <h3>Freeze Events</h3>
+          <h3>Freeze events</h3>
           <p>North Texas saw thousands of burst pipes in 2021 alone. Uninsulated pipes in exterior walls and attics are catastrophic failures waiting for the next hard freeze.</p>
           <div class="cost">Avg. damage cost: $8,000–$25,000</div>
         </div>
@@ -851,7 +1258,7 @@ body{background:var(--navy);color:var(--white);font-family:var(--font);overflow-
       <div class="proof-header">
         <div>
           <div class="section-tag">What Members Say</div>
-          <h2>Trusted By Homeowners Across DFW, Amarillo &amp; OKC</h2>
+          <h2>Trusted by homeowners across DFW, Amarillo &amp; OKC</h2>
         </div>
         <div class="rating">
           <div class="stars">★★★★★</div>
@@ -908,7 +1315,7 @@ body{background:var(--navy);color:var(--white);font-family:var(--font);overflow-
     <div class="cb-inner">
       <div class="cb-header">
         <div class="section-tag">Credit Flexibility</div>
-        <h2>Your Credit Works <em>Harder</em> Than You Think</h2>
+        <h2>Your credit works <em>harder</em> than you think</h2>
         <p>Most protection programs are rigid — tied to one property, used once, gone. Mr. Restore Advantage credit is built to move with you and compound in your favor, even across multiple events.</p>
       </div>
       <div class="cb-blocks">
@@ -916,7 +1323,7 @@ body{background:var(--navy);color:var(--white);font-family:var(--font);overflow-
         <!-- BLOCK 1: PORTABILITY -->
         <div class="cb-block">
           <span class="cb-block-icon"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" ><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="rgba(255,49,49,.6)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" ><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.5)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" ><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></span>
-          <h3>Your Credit <em>Moves With You</em></h3>
+          <h3>Your credit <em>moves with you</em></h3>
           <p>Selling your home? Purchasing a second property? Relocating across town or across state lines? Your accumulated restoration credit is not locked to a single address. Upon verified relocation, your full credit balance transfers to your new property — so years of building don't start over at zero just because your address changed.</p>
           <div class="cb-scenario">
             <div class="sc-label">Example Scenario — Relocation</div>
@@ -943,10 +1350,10 @@ body{background:var(--navy);color:var(--white);font-family:var(--font);overflow-
         <!-- BLOCK 2: SURPLUS CREDIT -->
         <div class="cb-block">
           <span class="cb-block-icon"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" ><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="rgba(255,49,49,.6)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" ><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.5)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" ><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></span>
-          <h3>Exceed Your Deductible. <em>Pay Nothing.</em> Keep the Rest.</h3>
+          <h3>Exceed your deductible. <em>Pay nothing.</em> Keep the rest.</h3>
           <p>When a covered event occurs and your accumulated credit exceeds your insurance deductible, Mr. Restore applies your credit to cover the deductible in full — and any unused credit doesn't disappear. It carries forward and keeps building for the next event. In the right scenario, you go through an entire restoration without paying a single dollar out of pocket.</p>
           <div class="cb-scenario">
-            <div class="sc-label">Example Scenario — Zero Out-of-Pocket Event</div>
+            <div class="sc-label sc">Example scenario — zero out-of-pocket event</div>
             <div class="cb-scenario-row">
               <span class="sr-label">Accumulated credit (18 months at $199)</span>
               <span class="sr-val">$3,582</span>
@@ -976,7 +1383,7 @@ body{background:var(--navy);color:var(--white);font-family:var(--font);overflow-
   </div>
 
   <div class="tape">
-    <span class="tape-inner">PREVENTION · THERMAL IMAGING · CREDIT TRANSFERS WITH YOU · ZERO OUT-OF-POCKET EVENTS · SURPLUS CREDIT CARRIES FORWARD · IICRC CERTIFIED · PRIORITY RESPONSE · 877-631-7576 · PREVENTION · THERMAL IMAGING · CREDIT TRANSFERS WITH YOU · ZERO OUT-OF-POCKET EVENTS · SURPLUS CREDIT CARRIES FORWARD · IICRC CERTIFIED · PRIORITY RESPONSE · 877-631-7576 ·&nbsp;</span>
+    <span class="tape-inner">Prevention · Thermal imaging · Credit transfers with you · Zero out-of-pocket events · Surplus credit carries forward · IICRC certified · Priority response · 877-631-7576 · Prevention · Thermal imaging · Credit transfers with you · Zero out-of-pocket events · Surplus credit carries forward · IICRC certified · Priority response · 877-631-7576 ·&nbsp;</span>
   </div>
 
 </section><!-- /panel-1 -->
@@ -990,14 +1397,14 @@ body{background:var(--navy);color:var(--white);font-family:var(--font);overflow-
   <div class="hiw-section">
     <div class="section-center">
       <div class="section-tag">The Process</div>
-      <h2>Prevention That <em>Pays You Back</em></h2>
+      <h2>Prevention that <em>pays you back</em></h2>
       <p>Three simple steps that put you ahead of catastrophe — and put money back in your pocket if anything ever goes wrong.</p>
     </div>
     <div class="hiw-steps">
       <div class="hiw-step">
         <div class="step-num">01</div>
         <span class="si"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" ><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></span>
-        <h3>We Inspect with Thermal Imaging</h3>
+        <h3>We inspect with thermal imaging</h3>
         <p>IICRC-certified technicians visit your home and conduct a multi-point inspection using professional-grade thermal imaging cameras to find hidden moisture, detect pipe vulnerabilities, and document your full risk profile.</p>
         <ul>
           <li>Thermal &amp; moisture imaging</li>
@@ -1010,7 +1417,7 @@ body{background:var(--navy);color:var(--white);font-family:var(--font);overflow-
       <div class="hiw-step">
         <div class="step-num">02</div>
         <span class="si"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" ><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/><line x1="9" y1="12" x2="15" y2="12"/><line x1="9" y1="16" x2="13" y2="16"/></svg></span>
-        <h3>You Get a Full Risk Report</h3>
+        <h3>You get a full risk report</h3>
         <p>After every visit you receive a detailed property report documenting everything inspected, flagged, and treated. You'll know exactly where your vulnerabilities are and have a clear record for insurance purposes.</p>
         <ul>
           <li>Documented risk findings</li>
@@ -1023,7 +1430,7 @@ body{background:var(--navy);color:var(--white);font-family:var(--font);overflow-
       <div class="hiw-step">
         <div class="step-num">03</div>
         <span class="si"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" ><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg></span>
-        <h3>Your Credit Builds Every Month</h3>
+        <h3>Your credit builds every month</h3>
         <p>100% of every monthly payment accumulates as restoration credit in your account. If a covered water, fire, or storm event ever occurs, that credit applies directly to your deductible or mitigation costs. Nothing disappears.</p>
         <ul>
           <li>100% of payments become credit</li>
@@ -1040,7 +1447,7 @@ body{background:var(--navy);color:var(--white);font-family:var(--font);overflow-
   <div class="plans-section">
     <div class="section-center">
       <div class="section-tag">Residential Membership Plans</div>
-      <h2>Choose Your Level of <em>Protection</em></h2>
+      <h2>Choose your level of <em>protection</em></h2>
       <p>Month-to-month. Cancel anytime. No long-term commitment required.</p>
     </div>
     <div class="plans-grid">
@@ -1104,7 +1511,7 @@ body{background:var(--navy);color:var(--white);font-family:var(--font);overflow-
     <div class="comp-inner">
       <div class="comp-header">
         <div class="section-tag">How We Stack Up</div>
-        <h2>Advantage vs. Doing Nothing vs. Home Warranty</h2>
+        <h2>Advantage vs. doing nothing vs. home warranty</h2>
         <p>Most homeowners are relying on solutions that weren't designed for this problem.</p>
       </div>
       <table class="comp-table">
@@ -1134,7 +1541,7 @@ body{background:var(--navy);color:var(--white);font-family:var(--font);overflow-
     <div class="faq-inner">
       <div class="faq-header">
         <div class="section-tag">Common Questions</div>
-        <h2>Frequently Asked Questions</h2>
+        <h2>Frequently asked questions</h2>
       </div>
       <div class="faq-item">
         <button class="faq-q" onclick="toggleFaq(this)">Is this the same as insurance? <span class="faq-icon">+</span></button>
@@ -1179,8 +1586,8 @@ body{background:var(--navy);color:var(--white);font-family:var(--font);overflow-
 <section class="panel" id="panel-3">
   <div class="conv-wrap">
     <div class="conv-left">
-      <div class="tag">Step 3 of 3 — Secure Your Membership</div>
-      <h2>Lock In Your <em>Protection</em> Today</h2>
+      <div class="tag sc">Step 3 of 3 — Secure your membership</div>
+      <h2>Lock in your <em>protection</em> today</h2>
       <p class="conv-body">Fill out the form and a Mr. Restore Advantage specialist will contact you within 24 hours to confirm your plan, schedule your first inspection, and activate your credit accumulation from day one.</p>
 
       <div class="selected-plan">
@@ -1188,7 +1595,7 @@ body{background:var(--navy);color:var(--white);font-family:var(--font);overflow-
           <div class="sp-name" id="sp-name">Advanced Plan</div>
           <div class="sp-detail" id="sp-detail">2 Bi-Annual Inspections · Priority Response</div>
         </div>
-        <div class="sp-price" id="sp-price">$199<span style="font-size:14px;color:var(--muted)">/mo</span></div>
+        <div class="sp-price" id="sp-price">$199<span class="per">/mo</span></div>
       </div>
       <button class="change-btn" onclick="goTo(2)">← Change plan</button>
 
@@ -1225,7 +1632,7 @@ body{background:var(--navy);color:var(--white);font-family:var(--font);overflow-
         </div>
         <button class="fb-change" onclick="goTo(2)">← Change plan</button>
 
-        <h3>Start My Protection Plan</h3>
+        <h3>Start my protection plan</h3>
         <p class="fsub">We'll reach out within 24 hours to confirm everything.</p>
 
         <form class="lead-form" id="lead-form" onsubmit="submitForm(event)">
@@ -1260,7 +1667,7 @@ body{background:var(--navy);color:var(--white);font-family:var(--font);overflow-
         </form>
 
         <div class="success-box" id="success-box">
-          <span class="ico"><svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#4ade80" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" ><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></span>
+          <span class="ico"><svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" ><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></span>
           <h2>You're Protected.</h2>
           <p>A Mr. Restore Advantage specialist will contact you within 24 hours to schedule your first inspection and activate your credit. Welcome to proactive protection.</p>
         </div>
@@ -1319,7 +1726,7 @@ function selectPlan(name, price, detail){
   plan = {name, price, detail};
   document.getElementById('sp-name').textContent = name+' Plan';
   document.getElementById('sp-detail').textContent = detail;
-  document.getElementById('sp-price').innerHTML = '$'+price+'<span style="font-size:14px;color:var(--muted)">/mo</span>';
+  document.getElementById('sp-price').innerHTML = '$'+price+'<span class="per">/mo</span>';
   document.getElementById('fbp-name').textContent = name+' Plan';
   document.getElementById('fbp-price').textContent = '$'+price+'/mo';
   document.getElementById('h-plan').value = name;
